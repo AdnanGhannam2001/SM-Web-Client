@@ -1,0 +1,9 @@
+:host {
+    display: block;
+
+    .app {
+        &__main {
+            padding-left: var(--sidebar-width);
+        }
+    }
+}
