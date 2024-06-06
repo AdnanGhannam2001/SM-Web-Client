@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IProfile } from '../../interfaces/profile.interface';
 import { ProfileService } from '../../services/profile.service';
 import { TabMenuItem } from '../../ui-components/tab-menu/tab-menu.component';
+import { LOGIN_REDIRECT_URI } from '../../constants/apis';
 
 @Component({
   selector: 'social-profile',
@@ -24,12 +25,13 @@ export class ProfileComponent {
     this.activatedRoute.paramMap.subscribe(async (param) => {
       const id = param.get('id');
 
+      console.log({ id })
       const promise = id && id !== "profile"
         ? this.profileService.getProfile(id)
         : this.profileService.getPersonalProfile();
 
       try {
-        const profile = await promise;
+        this.profile = await promise;
 
         const url = `/profile/${id}/`;
 
@@ -45,15 +47,16 @@ export class ProfileComponent {
           {
             url: url + 'friends',
             text: 'Friends',
-            badge: profile.friends?.length + '',
+            badge: this.profile.friends?.length + '',
           },
           {
             url: url + 'groups',
             text: 'Groups',
-            badge: profile.memberOf?.length + '',
+            badge: this.profile.memberOf?.length + '',
           },
         ];
-      } catch (error) {
+      } catch (error: any) {
+        if (error.url?.startsWith(LOGIN_REDIRECT_URI)) window.location.href = error.url;
         this.router.navigate(['/not-found']);
       }
     });

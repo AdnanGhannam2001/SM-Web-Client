@@ -15,6 +15,7 @@ export class FollowedBoxComponent {
   constructor(private profileService: ProfileService) { }
 
   async ngOnInit() {
-    this.followed = await this.profileService.getProfiles({ pageSize: 10 });
+    // TODO: handle this
+    // this.followed = await this.profileService.getProfiles({ pageSize: 10 });
   }
 }
