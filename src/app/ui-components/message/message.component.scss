@@ -1,0 +1,23 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    @include mixin.flex(stretch, stretch);
+    border-radius: var(--br-s);
+    overflow: hidden;
+    border: 1px solid var(--clr-border);
+
+    .message {
+        &__iconbox {
+            @include mixin.flex;
+            padding: .75em 1em;
+            color: var(--white);
+        }
+
+        &__text {
+            flex: 1;
+            padding: 1em;
+            color: var(--clr-message-text);
+            font-size: .95em;
+        }
+    }
+}

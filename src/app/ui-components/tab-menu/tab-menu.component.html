@@ -1,0 +1,11 @@
+<a *ngFor="let item of items"
+  class="social-link tab-menu__link"
+  [routerLink]="item.url"
+  [routerLinkActiveOptions]="{ exact: true }"
+  routerLinkActive="active">
+  <div class="tab-menu__content">
+      <span *ngIf="item.icon" [class]="item.icon"></span>
+      <span>{{ item.text }}</span>
+  </div>
+  <span *ngIf="item.badge" class="tab-menu__badge">{{ item.badge }}</span>
+</a>
