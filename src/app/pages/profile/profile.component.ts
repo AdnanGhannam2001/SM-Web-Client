@@ -24,7 +24,7 @@ export class ProfileComponent {
     this.activatedRoute.paramMap.subscribe(async (param) => {
       const id = param.get('id');
 
-      const promise = id
+      const promise = id && id !== "profile"
         ? this.profileService.getProfile(id)
         : this.profileService.getPersonalProfile();
 
@@ -53,8 +53,6 @@ export class ProfileComponent {
             badge: profile.memberOf?.length + '',
           },
         ];
-
-        console.info(profile);
       } catch (error) {
         this.router.navigate(['/not-found']);
       }

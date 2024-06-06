@@ -1,0 +1,61 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    $padding: 2em;
+    display: block;
+    position: relative;
+    border: 1px solid var(--clr-border);
+    border-radius: var(--br-b);
+    background-color: var(--bg-profile-grid-view);
+    overflow: hidden;
+    transition: box-shadow .25s ease;
+
+    &:not(:last-child) {
+        margin-bottom: 1em;
+    }
+
+    &:hover {
+        box-shadow: 0 3px 24px 0 rgba(18,43,70,.08);
+    }
+
+    .profile-grid-view {
+        &__top {
+            @include mixin.flex(center, stretch, column);
+            gap: 1em;
+            padding: $padding;
+        }
+
+        &__row {
+            @include mixin.flex;
+            gap: .5em;
+        }
+
+        &__bottom {
+            @include mixin.grid(1fr, repeat(2, 1fr));
+            text-align: center;
+            background-color: var(--bg-profile-grid-view-bottom);
+            border-top: 1px solid var(--clr-border);
+            >* {
+                &:not(:last-child) {
+                    border-right: 1px solid var(--clr-border);
+                }
+            }
+        }
+
+        &__followers {
+            display: inline-block;
+            color: var(--clr-faded);
+        }
+
+        &__menu {
+            @include mixin.absolute(1em, 1em, auto, auto);
+        }
+    }
+
+    ::ng-deep {
+        .block {
+            display: block;
+            width: 100%;
+        }
+    }
+}

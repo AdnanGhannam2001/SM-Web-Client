@@ -1,0 +1,42 @@
+<social-item-showcase
+    class="profile-list-view__profilebox"
+    [image]="profile.image"
+    [content]="profile.firstName"
+    [description]="profile.createdAtUtc.toString()"
+    size="big"
+    [rounded]="true"
+    [badge]="profile.jobInformations.jobTitle"
+></social-item-showcase>
+
+<div class="profile-list-view__column">
+    <span>{{ profile.followedBy.length }}</span>
+    <span class="profile-list-view__followers">Followers</span>
+</div>
+
+<div class="profile-list-view__column">
+    <p-button
+        icon="pi pi-heart"
+        styleClass="p-button-rounded p-button-text"
+        pTooltip="Follow" tooltipPosition="bottom"
+    ></p-button>
+    <p-button
+        icon="pi pi-user-plus"
+        styleClass="p-button-rounded p-button-text"
+        pTooltip="Send a Friend Request" tooltipPosition="bottom"
+    ></p-button>
+</div>
+
+<p-button
+    label="Send Message"
+    [disabled]="true"
+    icon="pi pi-send"
+    styleClass="p-button-outlined p-button-secondary"
+></p-button>
+
+<button pButton
+    type="button"
+    (click)="menu.toggle($event)"
+    icon="pi pi-ellipsis-h"
+    class="p-button-text p-button-rounded"
+></button>
+<p-menu #menu [model]="items" [popup]="true"></p-menu>

@@ -1,0 +1,53 @@
+<div class="profile-grid-view__top">
+  <social-item-showcase
+      class="profile-grid-view__profilebox"
+      [image]="profile.image"
+      [content]="profile.firstName"
+      [description]="profile.createdAtUtc.toString()"
+      size="big"
+      direction="column"
+      [rounded]="true"
+      [badge]="profile.jobInformations.jobTitle"
+  ></social-item-showcase>
+
+  <div class="profile-grid-view__row">
+      <span>{{ profile.followedBy.length }}</span>
+      <span class="profile-grid-view__followers">Followers</span>
+  </div>
+
+  <p-button
+      label="Send Message"
+      [disabled]="true"
+      icon="pi pi-send"
+      styleClass="p-button-outlined p-button-secondary block      "
+  ></p-button>
+
+  <!-- FIXME -->
+  <div class="profile-grid-view__menu">
+      <button pButton
+          type="button"
+          (click)="menu.toggle($event)"
+          icon="pi pi-ellipsis-h"
+          class="p-button-text p-button-rounded"
+      ></button>
+      <p-menu #menu [model]="items" [popup]="true"></p-menu>
+  </div>
+</div>
+
+
+<div class="profile-grid-view__bottom">
+  <div>
+      <p-button
+          icon="pi pi-heart"
+          styleClass="p-button-text"
+          pTooltip="Follow" tooltipPosition="bottom"
+      ></p-button>
+  </div>
+  <div>
+      <p-button
+          icon="pi pi-user-plus"
+          styleClass="p-button-text"
+          pTooltip="Send a Friend Request" tooltipPosition="bottom"
+      ></p-button>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    ::ng-deep {
+        .posts-view {
+            &__header {
+                @include mixin.flex(space-between);
+                width: 100%;
+            }
+        }
+    }
+}

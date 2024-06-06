@@ -1,0 +1,33 @@
+<div class="group-grid-view__cover-img">
+  <img [src]="group.coverImage" class="img"/>
+</div>
+
+<a class="group-grid-view__imgbox social-link" [routerLink]="'/groups/' + group.id">
+  <img [src]="group.image" class="img"/>
+</a>
+
+<div class="group-grid-view__content">
+  <strong class="group-grid-view__name">
+      <a [routerLink]="'/groups/' + group.id" class="social-link">
+          {{ group.name }}
+      </a>
+  </strong>
+  <small class="group-grid-view__type">{{ group.visibility }}</small>
+
+  <!-- TODO: Check this -->
+  <!-- <div class="group-grid-view__bottom">
+      <p-avatarGroup>
+              <p-avatar
+                  *ngFor="let member of group.members"
+                  [image]="member.user"
+                  shape="circle"
+              ></p-avatar>
+      </p-avatarGroup>
+
+      <p-button
+          label="Join Group"
+          styleClass="p-button-primary"
+          [style]="{ 'white-space': 'nowrap' }"
+      ></p-button>
+  </div> -->
+</div>

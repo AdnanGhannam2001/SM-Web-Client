@@ -1,0 +1,27 @@
+<social-item-showcase
+    [image]="group.image"
+    size="big"
+    [rounded]="false"
+    [badgeColor]="color"
+    [badge]="group.visibility.toString()">
+    <h3 [style]="{ 'font-weight': '500' }">{{ group.name }}</h3>
+    <small class="group-list-view__desc" footer>
+        {{ group.description }}
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi explicabo perferendis corrupti minima impedit qui alias recusandae, autem exercitationem non deleniti nulla! Repudiandae harum enim cupiditate molestias voluptates eaque odio?
+    </small>
+</social-item-showcase>
+
+<!-- TODO: Check this -->
+<!-- <p-avatarGroup>
+        <p-avatar
+            *ngFor="let member of group.members"
+            [image]="member.user"
+            shape="circle"
+        ></p-avatar>
+</p-avatarGroup> -->
+
+<p-button
+    label="Join Group"
+    styleClass="p-button-primary"
+    [style]="{ 'white-space': 'nowrap' }"
+></p-button>

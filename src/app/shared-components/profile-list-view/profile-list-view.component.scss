@@ -1,0 +1,39 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    @include mixin.flex;
+    gap: 2em;
+    padding: 1em;
+    border: 1px solid var(--clr-border);
+    border-bottom-color: transparent;
+    transition: box-shadow .25s ease;
+
+    &:first-child {
+        border-radius: var(--br-b) var(--br-b) 0 0;
+    }
+
+    &:last-child {
+        border-radius: 0 0 var(--br-b) var(--br-b);
+        border-bottom-color: var(--clr-border);
+    }
+
+    &:hover {
+        box-shadow: 0 3px 24px 0 rgba(18,43,70,.08);
+    }
+
+    .profile-list-view {
+        &__profilebox {
+            flex: 1;
+        }
+
+        &__column {
+            @include mixin.flex;
+            gap: .5em;
+        }
+
+        &__followers {
+            display: inline-block;
+            color: var(--clr-faded);
+        }
+    }
+}

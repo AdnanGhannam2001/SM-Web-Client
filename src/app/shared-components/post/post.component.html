@@ -1,0 +1,76 @@
+<div class="post__top">
+    <social-item-showcase
+        [image]="post.profile.image"
+        [url]="'/users/' + post.profile.id"
+        [description]="post.createdAtUtc.toString()"
+        [rounded]="true">
+        <a [routerLink]="'/users/' + post.profile.id" class="social-link">
+            {{ post.profile.firstName }}
+        </a>
+        posted an update
+        <div toolbar>
+            <button pButton
+                type="button"
+                (click)="menu.toggle($event)"
+                icon="pi pi-ellipsis-h"
+                class="p-button-text p-button-rounded"
+            ></button>
+            <p-menu #menu [model]="items" [popup]="true"></p-menu>
+        </div>
+    </social-item-showcase>
+
+    <p>{{ post.content }}</p>
+
+    <div class="post__infobox">
+        <span>{{ post.reactions.length }} reacted to this</span>
+        <span>{{ post.comments.length }} Comments</span>
+    </div>
+
+    <div class="post__actions">
+        <p-button label="Like"
+            icon="pi pi-thumbs-up"
+            styleClass="p-button-text"
+        ></p-button>
+        <p-button label="Dislike"
+            icon="pi pi-thumbs-down"
+            styleClass="p-button-danger p-button-text"
+        ></p-button>
+        <p-button label="Comment"
+            icon="pi pi-comment"
+            styleClass="p-button-success p-button-text"
+            (onClick)="opened = !opened"
+        ></p-button>
+    </div>
+</div>
+<!-- TODO: Add Comment Section -->
+<!--
+<div class="post__bottom" *ngIf="post.comments.length || opened">
+    <form *ngIf="opened" class="post__add-comment">
+        <div class="post__add-comment__top">
+            <p-avatar
+                image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png"
+                shape="circle"
+            ></p-avatar>
+            <input pInputText
+                type="text"
+                name="comment"
+                placeholder="Write you comment here..."
+                [(ngModel)]="comment"
+                style="flex: 1" />
+        </div>
+        <p-button
+            label="Post"
+            styleClass="p-button-text"
+            [disabled]="!comment"
+        ></p-button>
+        <p-button
+            (onClick)="opened = false; comment = ''"
+            label="Cencel"
+            styleClass="p-button-text p-button-danger"
+        ></p-button>
+    </form>
+
+    <p-divider *ngIf="post.comments.length && opened"></p-divider>
+
+    <social-comments [comments]="post.comments"></social-comments>
+</div> -->

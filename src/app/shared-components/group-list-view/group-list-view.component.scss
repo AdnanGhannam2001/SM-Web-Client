@@ -1,0 +1,36 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    @include mixin.flex;
+    gap: 1.5em;
+    padding: 1em;
+    position: relative;
+    border: 1px solid var(--clr-border);
+    border-bottom-color: transparent;
+    background-color: var(--bg-group);
+    transition: box-shadow .25s ease;
+
+    &:first-child {
+        border-radius: var(--br-b) var(--br-b) 0 0;
+    }
+
+    &:last-child {
+        border-radius: 0 0 var(--br-b) var(--br-b);
+        border-bottom-color: var(--clr-border);
+    }
+
+    &:hover {
+        box-shadow: 0 3px 24px 0 rgba(18,43,70,.08);
+        z-index: 10;
+    }
+
+    .group-list-view {
+        &__desc {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}

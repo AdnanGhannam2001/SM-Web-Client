@@ -1,0 +1,57 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    @include mixin.flex(stretch, stretch, column);
+    border-radius: var(--br-b);
+    border: 1px solid var(--clr-border);
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-group);
+    text-align: center;
+
+    &:not(:last-child) {
+        margin-bottom: 1em;
+    }
+
+    .group-grid-view {
+        &__cover-img {
+            flex: 2;
+        }
+
+        &__imgbox {
+            $size: 2.3em;
+            display: block;
+            width: 100%;
+            height: $size;
+            position: relative;
+
+            .img {
+                @include mixin.absolute(auto, auto, 0, 50%, -50%);
+                @include mixin.size(calc($size * 3));
+                border: 3px solid var(--clr-cover-img-border);
+                border-radius: var(--br-b);
+            }
+        }
+
+        &__content {
+            flex: 1.25;
+            padding: 1em;
+            @include mixin.flex(stretch, stretch, column);
+            gap: .5em;
+        }
+
+        &__name {
+            font-size: 1.35em;
+            font-weight: 600;
+            display: block;
+        }
+
+        &__type {
+            color: var(--clr-faded);
+        }
+
+        &__bottom {
+            @include mixin.flex(space-between);
+        }
+    }
+}
