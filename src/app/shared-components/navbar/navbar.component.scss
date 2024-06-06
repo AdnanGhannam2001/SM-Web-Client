@@ -1,0 +1,68 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    display: block;
+    box-shadow: 0px 1px 0px 0px rgba(140, 140, 150, .05),
+                0px 0px 1px 0px rgba(65, 75, 110, .15);
+    padding: 1em 0;
+    background-color: var(--bg-navbar);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    .container {
+        position: relative;
+        padding-left: calc(var(--sidebar-width) + 1em);
+        transition: all .2s ease;
+    }
+
+    .navbar {
+        &__box {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .25s ease;
+
+            &.visible {
+                opacity: 1;
+                visibility: visible;
+                z-index: 10;
+            }
+        }
+
+        &__search {
+            @include mixin.absolute(0, 0, 0, 0);
+            @include mixin.grid(1fr, repeat(3, 1fr), 1em, 1em);
+            justify-items: center;
+            align-items: center;
+            padding: inherit;
+            height: 100%;
+
+            >* {
+                &:first-child {
+                    grid-column: 2;
+                }
+
+                &:last-child {
+                    grid-column: 3;
+                    justify-self: right;
+                }
+            }
+        }
+
+        &__main {
+            @include mixin.flex(space-between);
+            gap: 1em;
+        }
+
+        &__right {
+            @include mixin.flex;
+        }
+    }
+
+    ::ng-deep .navbar {
+        &__user-btn {
+            @include mixin.flex;
+            gap: .5em;
+        }
+    }
+}

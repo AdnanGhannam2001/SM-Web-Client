@@ -9,6 +9,7 @@ import { MenuModule } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { FollowedBoxComponent } from './followed-box/followed-box.component';
 import { SideboxComponent } from './sidebox/sidebox.component';
 import { GroupsBoxComponent } from './groups-box/groups-box.component';
@@ -19,6 +20,11 @@ import { GroupListViewComponent } from './group-list-view/group-list-view.compon
 import { GroupGridViewComponent } from './group-grid-view/group-grid-view.component';
 import { PostsViewComponent } from './posts-view/posts-view.component';
 import { PostComponent } from './post/post.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FormsModule } from '@angular/forms';
+import { DividerModule } from 'primeng/divider';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ListItemComponent } from './list-item/list-item.component';
 
 @NgModule({
   declarations: [
@@ -33,16 +39,22 @@ import { PostComponent } from './post/post.component';
     GroupGridViewComponent,
     PostsViewComponent,
     PostComponent,
+    NavbarComponent,
+    SidebarComponent,
+    ListItemComponent,
   ],
   imports: [
     CommonModule,
+    FormsModule,
     UiComponentsModule,
     TooltipModule,
     MenuModule,
     AvatarModule,
     AvatarGroupModule,
     ButtonModule,
-    DataViewModule
+    DataViewModule,
+    OverlayPanelModule,
+    DividerModule
   ],
   exports: [
     ProfileHeaderComponent,
@@ -54,7 +66,10 @@ import { PostComponent } from './post/post.component';
     ProfileListViewComponent,
     GroupListViewComponent,
     GroupGridViewComponent,
-    PostsViewComponent
+    PostsViewComponent,
+    NavbarComponent,
+    SidebarComponent,
+    ListItemComponent
   ],
 })
 export class SharedComponentsModule { }

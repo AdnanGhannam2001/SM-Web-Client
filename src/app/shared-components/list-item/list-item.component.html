@@ -1,0 +1,10 @@
+<a class="list-item__link"
+    [routerLink]="url"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    [pTooltip]="collapsed ? label : ''"
+    tooltipPosition="right">
+    <span *ngIf="icon" [class]="icon + ' list-item__icon'"></span>
+    <p class="list-item__label">{{ label }}</p>
+    <span class="list-item__badge" *ngIf="badge">{{ badge }}</span>
+</a>

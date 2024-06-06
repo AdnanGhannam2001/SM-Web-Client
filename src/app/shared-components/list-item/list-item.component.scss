@@ -1,0 +1,64 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    display: block;
+
+    &:not(:last-child) {
+        margin-bottom: .5em;
+    }
+
+    &.collapsed {
+        .list-item {
+            &__label,
+            &__badge {
+                display: none;
+            }
+        }
+    }
+
+    &:hover {
+        .list-item {
+            &__link {
+                background-color: var(--bg-list-item-hover);
+            }
+
+            &__badge {
+                background-color: var(--bg-list-item-badge-hover);
+                color: var(--clr-list-item-badge-hover);
+            }
+        }
+    }
+
+    .list-item {
+        &__link {
+            @include mixin.flex;
+            gap: .75em;
+            padding: .75em 1em;
+            text-decoration: none;
+            color: inherit;
+            border-radius: var(--br-s);
+
+            &.active {
+                background-color: var(--bg-list-item-active);
+                color: var(--clr-list-item-active);
+            }
+
+            .list-item__badge {
+                background-color: var(--bg-list-item-badge-active);
+                color: var(--clr-list-item-badge-active);
+            }
+        }
+
+        &__label {
+            flex: 1;
+        }
+
+        &__badge {
+            display: inline-block;
+            background-color: var(--bg-list-item-badge);
+            padding: .25em .35em;
+            border-radius: var(--br-s);
+            font-size: .65em;
+        }
+    }
+}
