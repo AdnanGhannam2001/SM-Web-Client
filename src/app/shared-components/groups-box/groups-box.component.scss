@@ -1,0 +1,9 @@
+:host {
+  ::ng-deep {
+      .groups-box {
+          &__group:not(:last-child) {
+              margin-bottom: .75em;
+          }
+      }
+  }
+}

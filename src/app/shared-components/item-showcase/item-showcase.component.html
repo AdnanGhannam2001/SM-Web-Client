@@ -1,0 +1,24 @@
+<a class="item-showcase__imgbox social-link" [routerLink]="url" [class.online]="online">
+    <img [src]="image" class="img" [class.rounded]="rounded"/>
+    <div *ngIf="badge && direction == 'column'" class="item-showcase__badge" [style]="{ 'background-color': badgeColor }">
+        {{ badge }}
+    </div>
+</a>
+
+<div class="item-showcase__middle">
+    <div class="item-showcase__content">
+        <a
+            class="social-link item-showcase__text"
+            [routerLink]="url"
+            *ngIf="content"
+        >{{ content }}</a>
+        <ng-content *ngIf="!content"></ng-content>
+        <div *ngIf="badge && direction == 'row'" class="item-showcase__badge" [style]="{ 'background-color': badgeColor }">
+            {{ badge }}
+        </div>
+    </div>
+    <span class="item-showcase__desc" *ngIf="description">{{ description }}</span>
+    <ng-content select="[footer]"></ng-content>
+</div>
+
+<ng-content select="[toolbar]"></ng-content>

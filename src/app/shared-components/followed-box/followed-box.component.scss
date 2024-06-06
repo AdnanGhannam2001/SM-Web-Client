@@ -1,0 +1,9 @@
+:host {
+  ::ng-deep {
+      .followed-box {
+          &__avatar:not(:last-child) {
+              margin-right: .5em;
+          }
+      }
+  }
+}

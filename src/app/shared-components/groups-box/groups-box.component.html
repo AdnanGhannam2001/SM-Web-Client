@@ -1,0 +1,9 @@
+<social-sidebox title="Groups" [count]="groups.total">
+    <social-item-showcase
+        class="groups-box__group"
+        *ngFor="let group of groups.items"
+        [image]="group.image"
+        [content]="group.name"
+        [rounded]="false"
+    ></social-item-showcase>
+</social-sidebox>

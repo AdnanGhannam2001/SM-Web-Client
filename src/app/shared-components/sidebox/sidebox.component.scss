@@ -1,0 +1,25 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    @include mixin.flex(stretch, stretch, column);
+    gap: 1em;
+    padding: 2em 1.5em;
+    background-color: var(--bg-sidebox);
+    border-radius: var(--br-b);
+    border: 1px solid var(--clr-border);
+
+    .sidebox {
+        &__header {
+            @include mixin.flex(flex-start);
+            gap: .5em;
+
+            &__count {
+                color: var(--clr-faded);
+            }
+        }
+
+        &__content {
+            flex: 1;
+        }
+    }
+}

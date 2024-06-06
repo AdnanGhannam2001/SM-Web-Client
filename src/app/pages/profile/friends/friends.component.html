@@ -1,0 +1,11 @@
+<p-dataView [value]="friends.items" [layout]="layout">
+    <ng-template pTemplate="header">
+        <p-dataViewLayoutOptions [slot]="layout"></p-dataViewLayoutOptions>
+    </ng-template>
+    <ng-template let-user pTemplate="listItem">
+        <!-- <social-user-list-view [user]="user"></social-user-list-view> -->
+    </ng-template>
+    <ng-template let-user pTemplate="gridItem">
+        <!-- <social-user-grid-view [user]="user"></social-user-grid-view> -->
+    </ng-template>
+</p-dataView>

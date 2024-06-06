@@ -1,0 +1,15 @@
+<social-sidebox
+    title="I'm Following"
+    [count]="followed.total"
+    [showButton]="showButton"
+    seeMoreUrl="/followed">
+        <p-avatar
+            class="followed-box__avatar"
+            *ngFor="let profile of followed.items"
+            [image]="profile.image"
+            size="large"
+            shape="circle"
+            [pTooltip]="profile.firstName"
+            tooltipPosition="bottom"
+        ></p-avatar>
+</social-sidebox>

@@ -19,26 +19,26 @@ export interface IProfile {
   socials         : ISocials;
   settings        : ISettings;
 
-  Blocked            : Array<IBlock>;
-  BlockedBy          : Array<IBlock>;
-  SentRequests       : Array<IFriendshipRequest>;
-  ReceivedRequests   : Array<IFriendshipRequest>;
-  Following          : Array<IFollow>;
-  FollowedBy         : Array<IFollow>;
-  Friends            : Array<IFriendship>;
-  FriendTo           : Array<IFriendship>;
-  Posts              : Array<IPost>;
-  Hidden             : Array<IPost>;
-  Reactions          : Array<IReaction>;
-  Comments           : Array<IComment>;
-  MemberOf           : Array<IMember>;
-  Kicked             : Array<IKicked>;
-  KickedFrom         : Array<IKicked>;
-  JoinRequests       : Array<IJoinRequest>;
-  SentInvites        : Array<IInvite>;
-  ReceivedInvites    : Array<IInvite>;
-  Discussions        : Array<IDiscussion>;
-  FavoriteDiscussions: Array<IFavoriteDiscussion>;
+  blocked            : Array<IBlock>;
+  blockedBy          : Array<IBlock>;
+  sentRequests       : Array<IFriendshipRequest>;
+  receivedRequests   : Array<IFriendshipRequest>;
+  following          : Array<IFollow>;
+  followedBy         : Array<IFollow>;
+  friends            : Array<IFriendship>;
+  friendTo           : Array<IFriendship>;
+  posts              : Array<IPost>;
+  hidden             : Array<IPost>;
+  reactions          : Array<IReaction>;
+  comments           : Array<IComment>;
+  memberOf           : Array<IMember>;
+  kicked             : Array<IKicked>;
+  kickedFrom         : Array<IKicked>;
+  joinRequests       : Array<IJoinRequest>;
+  sentInvites        : Array<IInvite>;
+  receivedInvites    : Array<IInvite>;
+  discussions        : Array<IDiscussion>;
+  favoriteDiscussions: Array<IFavoriteDiscussion>;
 };
 
 export interface IPhoneNumber {

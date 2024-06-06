@@ -1,0 +1,91 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    @include mixin.flex;
+    gap: 1em;
+    --img-size: 2.5em;
+
+    &.big {
+        --img-size: 3.5em;
+        font-size: 1.25em;
+
+        &.column {
+            --img-size: 4.5em;
+        }
+    }
+
+    &.column {
+        flex-direction: column;
+
+        .item-showcase {
+            &__middle {
+                text-align: center;
+            }
+
+            &__content {
+                justify-content: center;
+            }
+
+            &__badge {
+                @include mixin.absolute(100%, auto, auto, 50%, -50%, -50%);
+            }
+        }
+    }
+
+    .item-showcase {
+        &__imgbox {
+            position: relative;
+            display: inline-block;
+            border-radius: 50%;
+            @include mixin.size(var(--img-size));
+
+            &.online {
+                &::before {
+                    content: '';
+                    display: inline-block;
+                    @include mixin.size(.5em);
+                    @include mixin.absolute(0px, 0px, auto, auto);
+                    border-radius: 50%;
+                    background-color: var(--bg-badge-online);
+                }
+            }
+
+            .img {
+                border-radius: 15px;
+                border: 1px solid var(--clr-border);
+
+                &.rounded {
+                    border-radius: 50%;
+                }
+            }
+        }
+
+        &__middle {
+            flex: 1;
+        }
+
+        &__content {
+            @include mixin.flex(flex-start);
+            gap: 1em;
+        }
+
+        &__text {
+            white-space: nowrap;
+        }
+
+        &__badge {
+            background-color: var(--bg-item-showcase-badge);
+            color: var(--clr-item-showcase-badge);
+            font-size: .65em;
+            font-weight: 600;
+            padding: .25em 1em;
+            border-radius: var(--br-s);
+            white-space: nowrap;
+        }
+
+        &__desc {
+            color: var(--clr-faded);
+            font-size: .9rem;
+        }
+    }
+}

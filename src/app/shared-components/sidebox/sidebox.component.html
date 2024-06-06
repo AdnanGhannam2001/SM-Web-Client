@@ -1,0 +1,12 @@
+<div class="sidebox__header">
+    <h3>{{ title }}</h3>
+    <p class="sidebox__header__count">{{ count }}</p>
+</div>
+
+<div class="sidebox__content">
+    <ng-content></ng-content>
+</div>
+
+<div class="sidebox__footer" *ngIf="showButton">
+    <p-button [routerLink]="seeMoreUrl" label="See More" styleClass="p-button-sm"></p-button>
+</div>
