@@ -1,0 +1,205 @@
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+:root {
+    --ff-primary: 'Open Sans', sans-serif;
+
+    --br-s: 6px;
+    --br-b: 10px;
+
+    --white: #fff;
+    --gray-200: #faf9f7;
+    --gray-300: #f4f3f2;
+    --gray-400: #e0dfdb;
+    --gray-500: #aaa;
+    --gray-800: #393e41;
+    --blue-300: #595999;
+    --blue-400: #007cff;
+    --orange-300: #ff703d;
+    --green-300: #1cd991;
+    --red-300: #ef4444;
+    --yellow-400: #f59e0b;
+
+    --bg-primary: var(--gray-200);
+    --clr-primary: var(--gray-800);
+
+    --bg-list-item-hover: var(--gray-300);
+    --bg-list-item-active: var(--blue-300);
+    --clr-list-item-active: var(--white);
+    --bg-list-item-badge: var(--gray-300);
+    --bg-list-item-badge-hover: var(--blue-300);
+    --bg-list-item-badge-active: var(--white);
+    --clr-list-item-badge-active: var(--blue-300);
+    --clr-list-item-badge-hover: var(--white);
+
+    --clr-link: var(--orange-300);
+    --clr-faded: var(--gray-500);
+    --clr-border: var(--gray-400);
+
+    --bg-badge-online: var(--green-300);
+    --bg-item-showcase-badge: var(--blue-300);
+    --clr-item-showcase-badge: var(--white);
+
+    --bg-cu: var(--white);
+    --bg-cu-post-bottom: var(--gray-300);
+
+    --clr-tab-menu-border: var(--orange-300);
+
+    --clr-message-text: var(--gray-800);
+
+    --bg-post: var(--white);
+    --bg-post-comments: var(--gray-200);
+
+    --bg-user-grid-view: var(--white);
+    --bg-user-grid-view-bottom: var(--gray-200);
+
+    --bg-group: var(--white);
+    --clr-cover-img-border: var(--white);
+
+    --bg-sidebox: var(--white);
+
+    --bg-account-header: var(--white);
+    --clr-account-header-img-border: var(--white);
+    --bg-account-header-badge: var(--blue-300);
+    --clr-account-header-badge: var(--white);
+    --bg-account-header-online: var(--green-300);
+    --clr-account-header-online-border: var(--white);
+
+    --bg-group-header: var(--white);
+    --bg-group-header-badge: var(--blue-300);
+    --clr-group-header-badge: var(--white);
+    --clr-group-header-imgbox-border: var(--white);
+
+    --bg-edit-form: var(--white);
+
+    --bg-navbar: var(--white);
+
+    --bg-sidebar: var(--white);
+
+    --bg-information-group: var(--white);
+
+    --bg-blocked-members: var(--white);
+
+    --bg-sign: var(--gray-200);
+
+    --bg-create-group: var(--white);
+
+    --bg-step-number: var(--white);
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    font-family: var(--ff-primary);
+    background-color: var(--bg-primary);
+    color: var(--clr-primary);
+}
+
+.container {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 1em;
+
+    &.flex {
+        @include mixin.flex(stretch, flex-start, row, wrap);
+        gap: 1em;
+        padding: 1em;
+
+        @mixin base() {
+            flex-basis: 480px;
+            flex-grow: 9999;
+        }
+
+        @mixin side() {
+            flex-basis: 270px;
+            flex-grow: 1;
+        }
+
+        >* {
+            @include mixin.flex(flex-start, stretch, column);
+            gap: 1em;
+        }
+
+        &.sides {
+            >* {
+                @include base();
+            }
+
+            >*:first-child,
+            >*:last-child {
+                @include side;
+            }
+        }
+
+        &.first {
+            >*:first-child {
+                @include side;
+            }
+
+            >*:last-child {
+                @include base;
+            }
+        }
+
+        &.last {
+            >*:first-child {
+                @include base;
+            }
+
+            >*:last-child {
+                @include side;
+            }
+        }
+    }
+}
+
+.social-link {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--clr-link);
+    }
+}
+
+.social-list {
+    list-style-type: none;
+}
+
+.social-input-container {
+    @include mixin.flex(flex-start, stretch, column);
+    gap: .5em;
+    padding: .5em 0;
+
+    &:first-child {
+        margin-top: .5em;
+    }
+
+    label {
+        font-size: 1.15em;
+    }
+}
+
+.img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.flex {
+    @include mixin.flex;
+    gap: .5em;
+}
