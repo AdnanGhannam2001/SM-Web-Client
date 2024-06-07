@@ -25,6 +25,8 @@ import { FormsModule } from '@angular/forms';
 import { DividerModule } from 'primeng/divider';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ListItemComponent } from './list-item/list-item.component';
+import { PageTitleComponent } from './page-title/page-title.component';
+import { GroupHeaderComponent } from './group-header/group-header.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { ListItemComponent } from './list-item/list-item.component';
     NavbarComponent,
     SidebarComponent,
     ListItemComponent,
+    PageTitleComponent,
+    GroupHeaderComponent,
   ],
   imports: [
     CommonModule,
@@ -67,9 +71,12 @@ import { ListItemComponent } from './list-item/list-item.component';
     GroupListViewComponent,
     GroupGridViewComponent,
     PostsViewComponent,
+    PostComponent,
     NavbarComponent,
     SidebarComponent,
-    ListItemComponent
+    ListItemComponent,
+    PageTitleComponent,
+    GroupHeaderComponent
   ],
 })
 export class SharedComponentsModule { }

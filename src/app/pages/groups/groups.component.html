@@ -1,0 +1,30 @@
+<div class="container flex last">
+    <div>
+        <social-page-title title="Groups">
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText
+                    [ngModel]="search"
+                    (change)="onSearch()"
+                    icon="pi pi-search"
+                    placeholder="Search group..." />
+            </span>
+        </social-page-title>
+        <social-tab-menu [items]="tabs"></social-tab-menu>
+        <p-dataView [value]="groups.items" [layout]="layout">
+            <ng-template pTemplate="header">
+                <p-dataViewLayoutOptions [slot]="layout"></p-dataViewLayoutOptions>
+            </ng-template>
+            <ng-template let-group pTemplate="listItem">
+                <social-group-list-view [group]="group"></social-group-list-view>
+            </ng-template>
+            <ng-template let-group pTemplate="gridItem">
+                <social-group-grid-view [group]="group"></social-group-grid-view>
+            </ng-template>
+        </p-dataView>
+    </div>
+    <div>
+        <social-followed-box></social-followed-box>
+        <social-groups-box></social-groups-box>
+    </div>
+</div>

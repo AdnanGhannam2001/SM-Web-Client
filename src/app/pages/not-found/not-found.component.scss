@@ -1,0 +1,11 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    font-size: 1.25em;
+
+    .container {
+        @include mixin.flex(center, center, column);
+        padding: 2em;
+        gap: 1em;
+    }
+}

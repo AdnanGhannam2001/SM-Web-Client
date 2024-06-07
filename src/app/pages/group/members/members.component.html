@@ -1,0 +1,11 @@
+<p-dataView [value]="members.items" [layout]="layout">
+    <ng-template pTemplate="header">
+        <p-dataViewLayoutOptions [slot]="layout"></p-dataViewLayoutOptions>
+    </ng-template>
+    <ng-template let-member pTemplate="listItem">
+        <social-profile-list-view [profile]="member.profile"></social-profile-list-view>
+    </ng-template>
+    <ng-template let-member pTemplate="gridItem">
+        <social-profile-grid-view [profile]="member.profile"></social-profile-grid-view>
+    </ng-template>
+</p-dataView>

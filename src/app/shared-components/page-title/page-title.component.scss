@@ -1,0 +1,7 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    @include mixin.flex(space-between);
+    gap: 1em;
+    margin: 1.5em 0;
+}

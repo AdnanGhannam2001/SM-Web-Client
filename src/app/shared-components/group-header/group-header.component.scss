@@ -1,0 +1,70 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    display: block;
+    max-height: 550px;
+    background-color: var(--bg-group-header);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--br-b);
+    overflow: hidden;
+
+    .group-header {
+        &__coverimg {
+            height: 50%;
+        }
+
+        &__bottom {
+            @include mixin.flex(center, flex-start);
+            gap: 2em;
+            padding: 1em 2em;
+        }
+
+        &__imgbox {
+            @include mixin.size(12em);
+
+            .img {
+                border: 3px solid var(--clr-group-header-imgbox-border);
+                border-radius: var(--br-b);
+                transform: translateY(-5em);
+            }
+        }
+
+        &__content {
+            flex: 1;
+
+            &__header {
+                @include mixin.flex(space-between);
+            }
+
+            &__title {
+                @include mixin.flex;
+                gap: .5em;
+            }
+        }
+
+        &__badge {
+            text-align: center;
+            background-color: var(--bg-group-header-badge);
+            color: var(--clr-group-header-badge);
+            font-size: .85em;
+            font-weight: 600;
+            padding: .25em 1em;
+            border-radius: var(--br-s);
+            white-space: nowrap;
+        }
+
+        &__desc {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: .5em 0;
+        }
+
+        &__admins {
+            @include mixin.flex(flex-start);
+            gap: 1em;
+        }
+    }
+}

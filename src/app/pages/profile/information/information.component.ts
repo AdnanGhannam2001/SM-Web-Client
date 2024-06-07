@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IProfile } from '../../../interfaces/profile.interface';
 
 @Component({
-  selector: 'app-information',
+  selector: 'social-information',
   templateUrl: './information.component.html',
   styleUrl: './information.component.scss'
 })

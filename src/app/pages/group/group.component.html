@@ -1,0 +1,11 @@
+<div class="container flex last">
+    <div>
+        <social-group-header *ngIf="group" [group]="group"></social-group-header>
+        <social-tab-menu [items]="tabs"></social-tab-menu>
+
+        <router-outlet></router-outlet>
+    </div>
+    <div>
+        <social-groups-box></social-groups-box>
+    </div>
+</div>

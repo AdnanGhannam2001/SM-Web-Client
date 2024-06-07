@@ -4,7 +4,7 @@ import { IPage } from '../../../interfaces/page.interface';
 import { GroupService } from '../../../services/group.service';
 
 @Component({
-  selector: 'app-groups',
+  selector: 'social-groups',
   templateUrl: './groups.component.html',
   styleUrl: './groups.component.scss'
 })
