@@ -1,206 +1,328 @@
 @use "./app/utilities/mixin.scss";
+@import "./app/utilities//normalize.scss";
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 :root {
-    --ff-primary: 'Open Sans', sans-serif;
+  --ff-primary: 'Open Sans', sans-serif;
 
-    --br-s: 6px;
-    --br-b: 10px;
+  --br-s: 6px;
+  --br-b: 10px;
 
-    --white: #fff;
-    --gray-200: #faf9f7;
-    --gray-300: #f4f3f2;
-    --gray-400: #e0dfdb;
-    --gray-500: #aaa;
-    --gray-800: #393e41;
-    --blue-300: #595999;
-    --blue-400: #007cff;
-    --orange-300: #ff703d;
-    --green-300: #1cd991;
-    --red-300: #ef4444;
-    --yellow-400: #f59e0b;
+  --white: #fff;
+  --gray-200: #faf9f7;
+  --gray-300: #f4f3f2;
+  --gray-400: #e0dfdb;
+  --gray-500: #aaa;
+  --gray-800: #393e41;
+  --blue-300: #595999;
+  --blue-400: #007cff;
+  --orange-300: #ff703d;
+  --green-300: #1cd991;
+  --red-300: #ef4444;
+  --yellow-400: #f59e0b;
 
-    --bg-primary: var(--gray-200);
-    --clr-primary: var(--gray-800);
+  --bg-primary: var(--gray-200);
+  --clr-primary: var(--gray-800);
 
-    --bg-list-item-hover: var(--gray-300);
-    --bg-list-item-active: var(--blue-300);
-    --clr-list-item-active: var(--white);
-    --bg-list-item-badge: var(--gray-300);
-    --bg-list-item-badge-hover: var(--blue-300);
-    --bg-list-item-badge-active: var(--white);
-    --clr-list-item-badge-active: var(--blue-300);
-    --clr-list-item-badge-hover: var(--white);
+  --bg-list-item-hover: var(--gray-300);
+  --bg-list-item-active: var(--blue-300);
+  --clr-list-item-active: var(--white);
+  --bg-list-item-badge: var(--gray-300);
+  --bg-list-item-badge-hover: var(--blue-300);
+  --bg-list-item-badge-active: var(--white);
+  --clr-list-item-badge-active: var(--blue-300);
+  --clr-list-item-badge-hover: var(--white);
 
-    --clr-link: var(--orange-300);
-    --clr-faded: var(--gray-500);
-    --clr-border: var(--gray-400);
+  --clr-link: var(--orange-300);
+  --clr-faded: var(--gray-500);
+  --clr-border: var(--gray-400);
 
-    --bg-badge-online: var(--green-300);
-    --bg-item-showcase-badge: var(--blue-300);
-    --clr-item-showcase-badge: var(--white);
+  --bg-badge-online: var(--green-300);
+  --bg-item-showcase-badge: var(--blue-300);
+  --clr-item-showcase-badge: var(--white);
 
-    --bg-cu: var(--white);
-    --bg-cu-post-bottom: var(--gray-300);
+  --bg-cu: var(--white);
+  --bg-cu-post-bottom: var(--gray-300);
 
-    --clr-tab-menu-border: var(--orange-300);
+  --clr-tab-menu-border: var(--orange-300);
 
-    --clr-message-text: var(--gray-800);
+  --clr-message-text: var(--gray-800);
 
-    --bg-post: var(--white);
-    --bg-post-comments: var(--gray-200);
+  --bg-post: var(--white);
+  --bg-post-comments: var(--gray-200);
 
-    --bg-user-grid-view: var(--white);
-    --bg-user-grid-view-bottom: var(--gray-200);
+  --bg-profile-grid-view: var(--white);
+  --bg-profile-grid-view-bottom: var(--gray-200);
 
-    --bg-group: var(--white);
-    --clr-cover-img-border: var(--white);
+  --bg-group: var(--white);
+  --clr-cover-img-border: var(--white);
 
-    --bg-sidebox: var(--white);
+  --bg-sidebox: var(--white);
 
-    --bg-account-header: var(--white);
-    --clr-account-header-img-border: var(--white);
-    --bg-account-header-badge: var(--blue-300);
-    --clr-account-header-badge: var(--white);
-    --bg-account-header-online: var(--green-300);
-    --clr-account-header-online-border: var(--white);
+  --bg-profile-header: var(--white);
+  --clr-profile-header-img-border: var(--white);
+  --bg-profile-header-badge: var(--blue-300);
+  --clr-profile-header-badge: var(--white);
+  --bg-profile-header-online: var(--green-300);
+  --clr-profile-header-online-border: var(--white);
 
-    --bg-group-header: var(--white);
-    --bg-group-header-badge: var(--blue-300);
-    --clr-group-header-badge: var(--white);
-    --clr-group-header-imgbox-border: var(--white);
+  --bg-group-header: var(--white);
+  --bg-group-header-badge: var(--blue-300);
+  --clr-group-header-badge: var(--white);
+  --clr-group-header-imgbox-border: var(--white);
 
-    --bg-edit-form: var(--white);
+  --bg-edit-form: var(--white);
 
-    --bg-navbar: var(--white);
+  --bg-navbar: var(--white);
 
-    --bg-sidebar: var(--white);
+  --bg-sidebar: var(--white);
 
-    --bg-information-group: var(--white);
+  --bg-information-group: var(--white);
 
-    --bg-blocked-members: var(--white);
+  --bg-blocked-members: var(--white);
 
-    --bg-sign: var(--gray-200);
+  --bg-sign: var(--gray-200);
 
-    --bg-create-group: var(--white);
+  --bg-create-group: var(--white);
 
-    --bg-step-number: var(--white);
-}
-
-*,
-*::before,
-*::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  --bg-step-number: var(--white);
 }
 
 html {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 body {
-    font-family: var(--ff-primary);
-    background-color: var(--bg-primary);
-    color: var(--clr-primary);
+  font-family: var(--ff-primary);
+  background-color: var(--bg-primary);
+  color: var(--clr-primary);
 }
 
 .container {
-    max-width: 1200px;
-    margin-inline: auto;
-    padding-inline: 1em;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1em;
 
-    &.flex {
-        @include mixin.flex(stretch, flex-start, row, wrap);
-        gap: 1em;
-        padding: 1em;
+  &.flex {
+    @include mixin.flex(stretch, flex-start, row, wrap);
+    gap: 1em;
+    padding: 1em;
 
-        @mixin base() {
-            flex-basis: 480px;
-            flex-grow: 9999;
-        }
-
-        @mixin side() {
-            flex-basis: 270px;
-            flex-grow: 1;
-        }
-
-        >* {
-            @include mixin.flex(flex-start, stretch, column);
-            gap: 1em;
-        }
-
-        &.sides {
-            >* {
-                @include base();
-            }
-
-            >*:first-child,
-            >*:last-child {
-                @include side;
-            }
-        }
-
-        &.first {
-            >*:first-child {
-                @include side;
-            }
-
-            >*:last-child {
-                @include base;
-            }
-        }
-
-        &.last {
-            >*:first-child {
-                @include base;
-            }
-
-            >*:last-child {
-                @include side;
-            }
-        }
+    @mixin base() {
+      flex-basis: 480px;
+      flex-grow: 9999;
     }
+
+    @mixin side() {
+      flex-basis: 270px;
+      flex-grow: 1;
+    }
+
+    >* {
+      @include mixin.flex(flex-start, stretch, column);
+      gap: 1em;
+    }
+
+    &.sides {
+      >* {
+        @include base();
+      }
+
+      >*:first-child,
+      >*:last-child {
+        @include side;
+      }
+    }
+
+    &.first {
+      >*:first-child {
+        @include side;
+      }
+
+      >*:last-child {
+        @include base;
+      }
+    }
+
+    &.last {
+      >*:first-child {
+        @include base;
+      }
+
+      >*:last-child {
+        @include side;
+      }
+    }
+  }
 }
 
 .social-link {
-    color: inherit;
-    text-decoration: none;
-    cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
 
-    &:hover {
-        color: var(--clr-link);
-    }
+  &:hover {
+    color: var(--clr-link);
+  }
 }
 
 .social-list {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 .social-input-container {
-    @include mixin.flex(flex-start, stretch, column);
-    gap: .5em;
-    padding: .5em 0;
+  @include mixin.flex(flex-start, stretch, column);
+  gap: .5em;
+  padding: .5em 0;
 
-    &:first-child {
-        margin-top: .5em;
-    }
+  &:first-child {
+    margin-top: .5em;
+  }
 
-    label {
-        font-size: 1.15em;
-    }
+  label {
+    font-size: 1.15em;
+  }
 }
 
 .img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .flex {
-    @include mixin.flex;
-    gap: .5em;
+  @include mixin.flex;
+  gap: .5em;
+}
+
+// PrimeNG
+social-root {
+  .p-component {
+    font-family: inherit;
+  }
+
+  .p-dataview {
+    position: static;
+
+    .p-dataview-header,
+    .p-dataview-content {
+      background-color: transparent;
+      border: none;
+    }
+
+    .p-dataview-header {
+      @include mixin.flex(space-between, center, row-reverse);
+    }
+
+    &.p-dataview-grid {
+      .p-dataview-content {
+        .p-grid {
+          @include mixin.grid(1fr, repeat(auto-fit, minmax(330px, 1fr)), 1em, 1em);
+        }
+      }
+    }
+  }
+
+  .p-menu {
+    .p-menuitem {
+      >.p-menuitem-content {
+        .p-menuitem-link {
+          padding: 1em 1.25em;
+        }
+      }
+    }
+  }
+
+  p-fileupload {
+    display: block;
+    margin: .5em 0;
+
+    .p-fileupload-buttonbar,
+    .p-fileupload-content {
+      background-color: transparent;
+      border: none;
+      padding-inline: 0;
+    }
+
+    .p-fileupload-content {
+      padding: 0;
+    }
+  }
+
+  .p-datatable {
+    border-radius: var(--br-b);
+    overflow: hidden;
+    border: 1px solid var(--clr-border);
+
+    .p-datatable-thead {
+      >tr {
+        >th {
+          border: none;
+        }
+      }
+    }
+  }
+
+  .p-paginator {
+    .p-paginator-current {
+      background-color: transparent;
+      border: none;
+      margin-right: 1em;
+      cursor: auto;
+      justify-self: start;
+    }
+  }
+
+  p-password {
+    .p-password {
+      width: 100%;
+
+      .p-inputtext {
+        width: 100%;
+      }
+    }
+  }
+
+  .p-steps {
+    .p-steps-item {
+      &.p-highlight {
+        .p-steps-number {
+          border: none;
+        }
+      }
+
+      &:not(.p-highlight) {
+        .p-steps-number {
+          background-color: var(--bg-step-number);
+        }
+      }
+    }
+  }
+
+  *[pDraggable] {
+    cursor: move;
+  }
+}
+
+.p-overlaypanel.custom {
+  .p-overlaypanel-content {
+    padding: 0;
+  }
+}
+
+
+p-progressspinner {
+  display: inline-block;
+  width: 100%;
+
+  .p-progress-spinner.custom {
+    display: block;
+    margin: 0 auto;
+    width: 35px;
+    height: 35px;
+  }
 }
