@@ -7,6 +7,13 @@ import { GroupsComponent, GroupsComponent as ProfileGroupsComponent } from './pa
 import { PostsComponent as ProfilePostsComponent } from './pages/profile/posts/posts.component';
 import { GroupComponent } from './pages/group/group.component';
 import { MembersComponent } from './pages/group/members/members.component';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { InformationComponent as InformationSettingsComponent } from './pages/settings/information/information.component';
+import { PrivacyComponent } from './pages/settings/privacy/privacy.component';
+import { ImageComponent } from './pages/settings/image/image.component';
+import { CoverImageComponent } from './pages/settings/cover-image/cover-image.component';
+import { BlockedListComponent } from './pages/settings/blocked-list/blocked-list.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -21,6 +28,17 @@ const routes: Routes = [
       { path: 'info', component: InformationComponent },
       { path: 'friends', component: FriendsComponent },
       { path: 'groups', component: ProfileGroupsComponent },
+    ],
+  },
+  {
+    path: 'settings/',
+    component: SettingsComponent,
+    children: [
+      { path: '', component: InformationSettingsComponent },
+      { path: 'privacy', component: PrivacyComponent },
+      { path: 'image', component: ImageComponent },
+      { path: 'cover-image', component: CoverImageComponent },
+      { path: 'blocked', component: BlockedListComponent },
     ],
   },
   { path: 'groups', component: GroupsComponent },

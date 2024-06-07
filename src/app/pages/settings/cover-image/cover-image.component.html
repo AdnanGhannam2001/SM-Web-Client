@@ -1,0 +1,15 @@
+<form social-edit-form title="Change Cover Photo">
+    <social-message>
+        Your Cover Photo will be used to customize the header of your profile.
+    </social-message>
+    <p-fileUpload
+        name=""
+        url=""
+        (onUpload)="onUpload($event)"
+        accept="image/*"
+        [maxFileSize]="1000000">
+        <ng-template pTemplate="content" *ngIf="uploadedImage">
+            {{ uploadedImage.name }} - {{ uploadedImage.size }} bytes
+        </ng-template>
+    </p-fileUpload>
+</form>

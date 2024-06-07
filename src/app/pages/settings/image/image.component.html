@@ -1,0 +1,15 @@
+<form social-edit-form title="Change Profile Photo">
+    <social-message>
+        Your profile photo will be used on your profile and throughout the site.
+    </social-message>
+    <p-fileUpload
+        name=""
+        url=""
+        (onUpload)="onUpload($event)"
+        accept="image/*"
+        [maxFileSize]="1000000">
+        <ng-template pTemplate="content" *ngIf="uploadedImage">
+            {{ uploadedImage.name }} - {{ uploadedImage.size }} bytes
+        </ng-template>
+    </p-fileUpload>
+</form>

@@ -1,0 +1,61 @@
+@if (profile)
+{
+  <div class="social-input-container">
+    <label htmlFor="firstname">First Name (required)</label>
+    <input pInputText id="firstname" [required]="true" name="firstname" [(ngModel)]="profile.firstName" />
+    <small id="firstname-help">Public</small>
+  </div>
+  <div class="social-input-container">
+    <label htmlFor="lastname">Last Name (required)</label>
+    <input pInputText id="lastname" [required]="true" name="lastname" [(ngModel)]="profile.lastName" />
+    <small id="lastname-help">{{profile.settings.lastName}}</small>
+  </div>
+  <div class="social-input-container">
+    <label htmlFor="date">Birth Date (required)</label>
+    <p-calendar id="date" [required]="true" name="date" [touchUI]="true" [readonlyInput]="true"
+      [(ngModel)]="profile.dateOfBirth"></p-calendar>
+    <small id="date-help">{{profile.settings.dateOfBirth}}</small>
+  </div>
+  <div class="social-input-container">
+    <label htmlFor="gender">Gender (required)</label>
+    <p-dropdown name="gender" [options]="Genders" [required]="true" optionLabel="name"
+      [(ngModel)]="profile.gender"></p-dropdown>
+    <small id="gender-help">{{profile.settings.gender}}</small>
+  </div>
+  <div class="social-input-container">
+    <label htmlFor="phonenumber">Phone Number</label>
+    <input pInputText id="phonenumber" name="phonenumber" [(ngModel)]="profile.phoneNumber" />
+    <small id="phonenumber-help">{{profile.settings.phone}}</small>
+  </div>
+  <div class="social-input-container">
+    <label htmlFor="facebook">Facebook</label>
+    <input pInputText id="facebook" name="facebook" [(ngModel)]="profile.socials.facebook" />
+    <small id="facebook-help">{{profile.settings.socials}}</small>
+  </div>
+  <div class="social-input-container">
+    <label htmlFor="youtube">Youtube</label>
+    <input pInputText id="youtube" name="youtube" [(ngModel)]="profile.socials.youtube" />
+    <small id="youtube-help">{{profile.settings.socials}}</small>
+  </div>
+  <div class="social-input-container">
+    <label htmlFor="twitter">Twitter</label>
+    <input pInputText id="twitter" name="twitter" [(ngModel)]="profile.socials.twitter" />
+    <small id="twitter-help">{{profile.settings.socials}}</small>
+  </div>
+  <div class="social-input-container">
+    <label htmlFor="jobtitle">Job Title</label>
+    <input pInputText id="jobtitle" name="jobtitle" [(ngModel)]="profile.jobInformations.jobTitle" />
+    <small id="jobtitle-help">{{profile.settings.jobTitle}}</small>
+  </div>
+  <div class="social-input-container">
+    <label htmlFor="company">Company</label>
+    <input pInputText id="company" name="company" [(ngModel)]="profile.jobInformations.company" />
+    <small id="company-help">{{profile.settings.company}}</small>
+  </div>
+  <div class="social-input-container">
+    <label htmlFor="date">Start Date</label>
+    <p-calendar id="date" name="date" [touchUI]="true" [readonlyInput]="true"
+      [(ngModel)]="profile.jobInformations.startDate"></p-calendar>
+    <small id="startDate-started-help">{{profile.settings.startDate}}</small>
+  </div>
+}

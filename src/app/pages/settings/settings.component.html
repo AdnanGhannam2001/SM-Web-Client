@@ -1,0 +1,22 @@
+<div class="container">
+    <social-page-title title="Settings">
+        <p-button
+            label="View Profile"
+            styleClass="p-button-text"
+            routerLink="/"
+        ></p-button>
+    </social-page-title>
+</div>
+<div class="container flex first">
+    <div>
+        <social-list-item
+            *ngFor="let item of items"
+            [label]="item.label"
+            [icon]="item.icon"
+            [url]="item.url"
+        ></social-list-item>
+    </div>
+    <div>
+        <router-outlet></router-outlet>
+    </div>
+</div>

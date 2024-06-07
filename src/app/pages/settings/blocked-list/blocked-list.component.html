@@ -1,0 +1,14 @@
+<div *ngFor="let blocked of blocked.items" class="blocked-members__item">
+    <social-item-showcase
+        class="profile-list-view__userbox"
+        [image]="blocked.blocked?.image"
+        [content]="blocked.blocked?.firstName"
+        size="big"
+        [rounded]="true"
+        [badge]="blocked.blocked?.jobInformations?.jobTitle"
+    ></social-item-showcase>
+    <button pButton
+        type="button"
+        label="Unblock"
+    ></button>
+</div>
