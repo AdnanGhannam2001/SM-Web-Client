@@ -10,5 +10,4 @@ export class ListItemComponent {
   @Input() label: string = "";
   @Input() url?: string;
   @Input() badge?: string;
-  @Input() collapsed: boolean = false;
 }

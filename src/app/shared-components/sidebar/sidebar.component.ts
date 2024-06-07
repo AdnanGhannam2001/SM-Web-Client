@@ -17,23 +17,6 @@ interface ListGroup {
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
-  onToggle() {
-    this.collapsed = !this.collapsed;
-
-    setTimeout(() => {
-      const newWidth = this.elementRef.nativeElement.offsetWidth + 'px';
-      document.documentElement.style.setProperty('--sidebar-width', newWidth);
-    }, 0);
-  }
-
-  constructor(private elementRef: ElementRef) {}
-
-  ngOnInit() {
-    this.onToggle();
-  }
-
-  collapsed = false;
-
   groups: ListGroup[] = [
     {
       name: 'Personal',

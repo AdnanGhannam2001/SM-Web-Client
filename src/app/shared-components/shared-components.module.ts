@@ -10,6 +10,8 @@ import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { InputTextModule } from 'primeng/inputtext';
+import { BadgeModule } from 'primeng/badge';
 import { FollowedBoxComponent } from './followed-box/followed-box.component';
 import { SideboxComponent } from './sidebox/sidebox.component';
 import { GroupsBoxComponent } from './groups-box/groups-box.component';
@@ -58,7 +60,9 @@ import { GroupHeaderComponent } from './group-header/group-header.component';
     ButtonModule,
     DataViewModule,
     OverlayPanelModule,
-    DividerModule
+    DividerModule,
+    InputTextModule,
+    BadgeModule
   ],
   exports: [
     ProfileHeaderComponent,

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SidebarModule } from 'primeng/sidebar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,7 +19,8 @@ import { SharedComponentsModule } from './shared-components/shared-components.mo
     AppRoutingModule,
     ServicesModule,
     SharedComponentsModule,
-    PagesModule
+    PagesModule,
+    SidebarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

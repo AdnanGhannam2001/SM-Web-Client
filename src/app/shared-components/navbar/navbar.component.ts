@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { SidebarService } from '../../services/sidebar.service';
 
 @Component({
   selector: 'social-navbar',
@@ -51,6 +52,10 @@ export class NavbarComponent {
       command: () => { }
     }
   ];
+
+  constructor (private readonly sidebarService: SidebarService) { }
+
+  openSidebar() { this.sidebarService.toggle(); }
 
   // TODO
   loadNotifications() { }

@@ -1,48 +1,38 @@
 @use "../../utilities/mixin.scss";
 
 :host {
-    @include mixin.absolute(0, auto, 0, 0);
-    @include mixin.flex(stretch, flex-start, column);
-    gap: 1em;
-    position: fixed;
-    z-index: 1001;
-    background-color: var(--bg-sidebar);
-    box-shadow: 0px 1px 0px 0px rgba(140, 140, 150, .05),
-                0px 0px 1px 0px rgba(65, 75, 110, .15);
-    padding: 1.25em;
+  gap: 1em;
+  background-color: var(--bg-sidebar);
+  box-shadow: 0px 1px 0px 0px rgba(140, 140, 150, .05),
+              0px 0px 1px 0px rgba(65, 75, 110, .15);
+  padding: 1.25em 0;
+  display: block;
 
-    &:not(.collapsed) {
-        min-width: 230px;
+  .sidebar {
+    &__content {
+      flex: 1;
+      width: 100%;
+      gap: 3em;
     }
 
-    &.collapsed {
-        padding: 1.25em 1em;
+    &__group {
+      &:not(:last-child) {
+        margin-bottom: 1em;
+      }
+
+      &__name {
+        font-weight: 600;
+        text-transform: uppercase;
+        color: var(--clr-faded);
+        margin: .5em 0;
+      }
     }
+  }
 
-    .sidebar {
-        &__content {
-            flex: 1;
-            width: 100%;
-        }
-
-        &__group {
-            &:not(:last-child) {
-                margin-bottom: 1em;
-            }
-
-            &__name {
-                font-weight: 600;
-                text-transform: uppercase;
-                color: var(--clr-faded);
-                margin: .5em 0;
-            }
-        }
+  ::ng-deep {
+    .p-button.p-button-icon-only {
+      padding: .75em 1em;
+      width: auto;
     }
-
-    ::ng-deep {
-        .p-button.p-button-icon-only {
-            padding: .75em 1em;
-            width: auto;
-        }
-    }
+  }
 }

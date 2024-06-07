@@ -1,42 +1,30 @@
 <div class="container">
-    <form class="navbar__search navbar__box" [class.visible]="searching" (submit)="onSubmit()">
-        <span class="p-input-icon-left">
-            <i class="pi pi-search"></i>
-            <input type="text" pInputText name="search" [(ngModel)]="search"/>
-        </span>
-        <p-button
-            icon="pi pi-times"
-            styleClass="p-button-text"
-            (onClick)="searching = false; search = ''"
-        ></p-button>
-    </form>
-    <div class="navbar__main navbar__box" [class.visible]="!searching">
-        <div class="navbar__left">
-            <a routerLink="/" social-logo class="social-link"></a>
-        </div>
-
-        <div class="navbar__right">
-            <p-button
-                icon="pi pi-search"
-                styleClass="p-button-text"
-                (onClick)="searching = true"
-            ></p-button>
-            <p-button
-                (onClick)="op.toggle($event); loadNotifications()"
-                icon="pi pi-bell"
-                styleClass="p-button-text"
-            ></p-button>
-            <p-overlayPanel #op styleClass="custom">
-              <!-- TODO: Display notificaitons here -->
-            </p-overlayPanel>
-            <p-divider layout="vertical"></p-divider>
-            <p-button
-                (onClick)="userMenu.toggle($event)"
-                styleClass="p-button-text navbar__user-btn">
-                <span>John</span>
-                <p-avatar image="/assets/placeholders/user-1.png" shape="circle"></p-avatar>
-            </p-button>
-            <p-menu [style]="{ 'min-width': '250px' }" #userMenu [model]="userMenuItems" [popup]="true"></p-menu>
-        </div>
+  <form class="navbar__search navbar__box" [class.visible]="searching" (submit)="onSubmit()">
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input type="text" pInputText name="search" [(ngModel)]="search" />
+    </span>
+    <p-button icon="pi pi-times" styleClass="p-button-text" (onClick)="searching = false; search = ''"></p-button>
+  </form>
+  <div class="navbar__main navbar__box" [class.visible]="!searching">
+    <div class="navbar__left">
+      <p-button (click)="openSidebar()" icon="pi pi-bars" [text]="true" severity="secondary" />
+      <a routerLink="/" social-logo class="social-link">Logo</a>
     </div>
+
+    <div class="navbar__right">
+      <p-button icon="pi pi-search" styleClass="p-button-text" (onClick)="searching = true"></p-button>
+      <p-button (onClick)="op.toggle($event); loadNotifications()" icon="pi pi-bell"
+        styleClass="p-button-text"></p-button>
+      <p-overlayPanel #op styleClass="custom">
+        <!-- TODO: Display notificaitons here -->
+      </p-overlayPanel>
+      <p-divider layout="vertical"></p-divider>
+      <button (click)="userMenu.toggle($event)" class="navbar__user-btn">
+        <span>John</span>
+        <p-avatar image="/assets/placeholders/user-1.png" shape="circle"></p-avatar>
+      </button>
+      <p-menu [style]="{ 'min-width': '250px' }" #userMenu [model]="userMenuItems" [popup]="true"></p-menu>
+    </div>
+  </div>
 </div>
