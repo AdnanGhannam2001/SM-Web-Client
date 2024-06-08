@@ -1,52 +1,52 @@
 @use "../../utilities/mixin.scss";
 
 :host {
-    $padding: 1em;
-    display: block;
-    background-color: var(--bg-post);
-    border-radius: var(--br-b);
-    overflow: hidden;
-    border: 1px solid var(--clr-border);
+  $padding: 1em;
+  display: block;
+  background-color: var(--bg-post);
+  border-radius: var(--br-b);
+  overflow: hidden;
+  border: 1px solid var(--clr-border);
 
-    &:not(:last-child) {
-        margin-bottom: 1em;
+  &:not(:last-child) {
+    margin-bottom: 1em;
+  }
+
+  .post {
+
+    &__top,
+    &__bottom {
+      @include mixin.flex(flex-start, stretch, column);
+      padding: $padding;
     }
 
-    .post {
-        &__top,
-        &__bottom {
-            @include mixin.flex(flex-start, stretch, column);
-            gap: 1em;
-            padding: $padding;
-        }
-
-        &__bottom {
-            border-top: 1px solid var(--clr-border);
-            background-color: var(--bg-post-comments);
-        }
-
-        &__infobox {
-            >* {
-                display: inline-block;
-            }
-
-            >*:not(:last-child) {
-                &::after {
-                    content: "·";
-                    display: inline-block;
-                    margin: 0 .5em;
-                }
-            }
-        }
-
-        &__add-comment {
-            padding-top: .5em;
-
-            &__top {
-                @include mixin.flex(flex-start);
-                gap: 1em;
-                margin-bottom: .5em;
-            }
-        }
+    &__bottom {
+      border-top: 1px solid var(--clr-border);
+      background-color: var(--bg-post-comments);
     }
+
+    &__infobox {
+      >* {
+        display: inline-block;
+      }
+
+      >*:not(:last-child) {
+        &::after {
+          content: "·";
+          display: inline-block;
+          margin: 0 .5em;
+        }
+      }
+    }
+
+    &__add-comment {
+      padding-top: .5em;
+
+      &__top {
+        @include mixin.flex(flex-start);
+        gap: 1em;
+        margin-bottom: .5em;
+      }
+    }
+  }
 }

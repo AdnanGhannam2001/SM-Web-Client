@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IProfile } from '../../interfaces/profile.interface';
+import { IFollow } from '../../interfaces/profile.interface';
 import { ProfileService } from '../../services/profile.service';
-import { IPage, IPageRequest } from '../../interfaces/page.interface';
+import { IPage } from '../../interfaces/page.interface';
+import { LOGIN_REDIRECT_URI } from '../../constants/apis';
 
 @Component({
   selector: 'social-followed-box',
@@ -9,13 +10,16 @@ import { IPage, IPageRequest } from '../../interfaces/page.interface';
   styleUrl: './followed-box.component.scss'
 })
 export class FollowedBoxComponent {
-  followed: IPage<IProfile> = { items: [], total: 0 };
+  followed: IPage<IFollow> = { items: [], total: 0 };
   showButton = false;
 
   constructor(private profileService: ProfileService) { }
 
   async ngOnInit() {
-    // TODO: handle this
-    // this.followed = await this.profileService.getProfiles({ pageSize: 10 });
+    try {
+      this.followed = await this.profileService.getFollowed({ pageSize: 10 });
+    } catch (error: any) {
+      if (error.url?.startsWith(LOGIN_REDIRECT_URI)) window.location.href = error.url;
+    }
   }
 }

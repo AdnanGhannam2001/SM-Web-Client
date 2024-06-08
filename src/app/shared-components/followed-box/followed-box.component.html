@@ -5,11 +5,11 @@
     seeMoreUrl="/followed">
         <p-avatar
             class="followed-box__avatar"
-            *ngFor="let profile of followed.items"
-            [image]="profile.image"
+            *ngFor="let follow of followed.items"
+            [image]="follow.followed?.image"
             size="large"
             shape="circle"
-            [pTooltip]="profile.firstName"
+            [pTooltip]="follow.followed?.firstName"
             tooltipPosition="bottom"
         ></p-avatar>
 </social-sidebox>

@@ -12,6 +12,8 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { InputTextModule } from 'primeng/inputtext';
 import { BadgeModule } from 'primeng/badge';
+import { FileUploadModule } from 'primeng/fileupload';
+import { DialogModule } from 'primeng/dialog';
 import { FollowedBoxComponent } from './followed-box/followed-box.component';
 import { SideboxComponent } from './sidebox/sidebox.component';
 import { GroupsBoxComponent } from './groups-box/groups-box.component';
@@ -29,6 +31,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ListItemComponent } from './list-item/list-item.component';
 import { PageTitleComponent } from './page-title/page-title.component';
 import { GroupHeaderComponent } from './group-header/group-header.component';
+import { CreateUpdatePostComponent } from './create-update-post/create-update-post.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,7 @@ import { GroupHeaderComponent } from './group-header/group-header.component';
     ListItemComponent,
     PageTitleComponent,
     GroupHeaderComponent,
+    CreateUpdatePostComponent,
   ],
   imports: [
     CommonModule,
@@ -62,7 +66,9 @@ import { GroupHeaderComponent } from './group-header/group-header.component';
     OverlayPanelModule,
     DividerModule,
     InputTextModule,
-    BadgeModule
+    BadgeModule,
+    FileUploadModule,
+    DialogModule
   ],
   exports: [
     ProfileHeaderComponent,
@@ -80,7 +86,8 @@ import { GroupHeaderComponent } from './group-header/group-header.component';
     SidebarComponent,
     ListItemComponent,
     PageTitleComponent,
-    GroupHeaderComponent
+    GroupHeaderComponent,
+    CreateUpdatePostComponent
   ],
 })
 export class SharedComponentsModule { }

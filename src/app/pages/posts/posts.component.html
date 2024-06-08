@@ -1,0 +1,20 @@
+<div class="container flex sides">
+  <div>
+    <social-followed-box></social-followed-box>
+  </div>
+
+  <div>
+    <social-create-update-post
+      image="/assets/placeholders/user-1.png"
+      placeholder="Shared what's in your mind..."
+    ></social-create-update-post>
+    <social-posts-view
+      [posts]="posts"
+      [loading]="loading"
+    ></social-posts-view>
+  </div>
+
+  <div>
+    <social-groups-box></social-groups-box>
+  </div>
+</div>

@@ -25,7 +25,6 @@ export class ProfileComponent {
     this.activatedRoute.paramMap.subscribe(async (param) => {
       const id = param.get('id');
 
-      console.log({ id })
       const promise = id && id !== "profile"
         ? this.profileService.getProfile(id)
         : this.profileService.getPersonalProfile();

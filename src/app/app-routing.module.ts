@@ -14,11 +14,12 @@ import { ImageComponent } from './pages/settings/image/image.component';
 import { CoverImageComponent } from './pages/settings/cover-image/cover-image.component';
 import { BlockedListComponent } from './pages/settings/blocked-list/blocked-list.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { PostsComponent } from './pages/posts/posts.component';
 
 const routes: Routes = [
   {
-    path: 'profiles',
-    redirectTo: 'profiles/profile',
+    path: "",
+    component: PostsComponent
   },
   {
     path: 'profiles/:id',

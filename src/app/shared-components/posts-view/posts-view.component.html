@@ -1,13 +1,13 @@
 <social-message severity="Info" *ngIf="loading">Getting posts...</social-message>
-<social-message severity="Warn" *ngIf="!loading && !posts.total">There is no posts yet!</social-message>
-<p-dataView #dv [value]="posts.items" *ngIf="posts.total">
+<social-message severity="Warn" *ngIf="!loading && !posts.items.length">There is no posts yet!</social-message>
+<p-dataView #dv [value]="posts.items" *ngIf="posts.items.length">
     <ng-template pTemplate="header">
         <div class="posts-view__header">
           <!-- TODO: Add filter here -->
         </div>
     </ng-template>
-    <ng-template let-post pTemplate="listItem">
-        <social-post [post]="post"></social-post>
+    <ng-template let-posts pTemplate="listItem">
+        <social-post *ngFor="let post of posts" [post]="post"></social-post>
     </ng-template>
 </p-dataView>
 

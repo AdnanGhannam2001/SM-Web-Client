@@ -16,7 +16,8 @@ import { GroupsComponent as ProfileGroupsComponent } from './profile/groups/grou
 import { GroupsComponent } from './groups/groups.component';
 import { InformationComponent } from './profile/information/information.component';
 import { InformationComponent as SettingsInformationComponent } from './settings/information/information.component';
-import { PostsComponent } from './profile/posts/posts.component';
+import { PostsComponent as ProfilePostsComponent } from './profile/posts/posts.component';
+import { PostsComponent } from './posts/posts.component';
 import { FormsModule } from '@angular/forms';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { GroupComponent } from './group/group.component';
@@ -36,6 +37,7 @@ import { PrivacyComponent } from './settings/privacy/privacy.component';
     FriendsComponent,
     ProfileGroupsComponent,
     InformationComponent,
+    ProfilePostsComponent,
     PostsComponent,
     GroupsComponent,
     ProfilesComponent,

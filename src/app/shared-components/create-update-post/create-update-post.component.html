@@ -1,0 +1,29 @@
+<div class="cu-post__content" (click)="visible = true">
+    <p-avatar [image]="image" size="large" shape="circle"></p-avatar>
+    <span class="cu-post__placeholder">{{ placeholder }}</span>
+</div>
+
+<p-dialog header="Create a post"
+    [(visible)]="visible"
+    [modal]="true"
+    [style]="{ 'min-width': '50vw' }"
+    [maximizable]="true"
+    [resizable]="false">
+    <p-avatar [image]="image" size="large" shape="circle"></p-avatar>
+    <textarea class="cu-post__textarea"
+        [(ngModel)]="text"
+        id="text-input"
+        [placeholder]="placeholder"
+        rows="10"
+    ></textarea>
+    <p-fileUpload
+        name="demo[]"
+        (onUpload)="onUpload($event)"
+        [multiple]="true"
+        accept="image/*"
+        [maxFileSize]="1000000"
+    ></p-fileUpload>
+    <ng-template pTemplate="footer">
+        <p-button label="Post" [loading]="sending" (onClick)="sendPost()"></p-button>
+    </ng-template>
+</p-dialog>

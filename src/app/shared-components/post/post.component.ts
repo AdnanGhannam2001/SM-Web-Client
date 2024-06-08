@@ -3,7 +3,7 @@ import { MenuItem } from 'primeng/api';
 import { IPost } from '../../interfaces/post.interface';
 
 @Component({
-  selector: 'social-post',
+  selector: 'social-post[post]',
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss'
 })
@@ -27,4 +27,7 @@ export class PostComponent {
     }
   ];
 
+  get createdAtUtc() {
+  return (new Date(this.post.createdAtUtc)).toLocaleDateString();
+  }
 }
