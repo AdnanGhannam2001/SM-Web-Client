@@ -14,6 +14,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { BadgeModule } from 'primeng/badge';
 import { FileUploadModule } from 'primeng/fileupload';
 import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
 import { FollowedBoxComponent } from './followed-box/followed-box.component';
 import { SideboxComponent } from './sidebox/sidebox.component';
 import { GroupsBoxComponent } from './groups-box/groups-box.component';
@@ -32,6 +33,7 @@ import { ListItemComponent } from './list-item/list-item.component';
 import { PageTitleComponent } from './page-title/page-title.component';
 import { GroupHeaderComponent } from './group-header/group-header.component';
 import { CreateUpdatePostComponent } from './create-update-post/create-update-post.component';
+import { CommentsComponent } from './comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,7 @@ import { CreateUpdatePostComponent } from './create-update-post/create-update-po
     PageTitleComponent,
     GroupHeaderComponent,
     CreateUpdatePostComponent,
+    CommentsComponent,
   ],
   imports: [
     CommonModule,
@@ -68,7 +71,8 @@ import { CreateUpdatePostComponent } from './create-update-post/create-update-po
     InputTextModule,
     BadgeModule,
     FileUploadModule,
-    DialogModule
+    DialogModule,
+    DropdownModule
   ],
   exports: [
     ProfileHeaderComponent,

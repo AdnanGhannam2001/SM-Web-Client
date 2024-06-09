@@ -12,6 +12,7 @@
       [posts]="posts"
       [loading]="loading"
     ></social-posts-view>
+    <p-button label="Load more" (onClick)="getPage()" *ngIf="!end"></p-button>
   </div>
 
   <div>

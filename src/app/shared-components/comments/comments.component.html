@@ -1,0 +1,35 @@
+<ul class="comments__comment social-list">
+    <ng-container *ngTemplateOutlet="recursiveList; context:{$implicit: comments}"></ng-container>
+</ul>
+
+<ng-template #recursiveList let-comments>
+    <li *ngFor="let comment of comments">
+        <div class="comments__content">
+            <p-avatar
+                class="comments__avatar"
+                [image]="comment.profile.image"
+                shape="circle"
+            ></p-avatar>
+            <div>
+                <div class="comments__content__top">
+                    <a [routerLink]="'/users/' + comment.profile.id" class="social-link comments__by">
+                        {{ comment.profile.firstName }}
+                    </a>
+                    <small class="time">{{ comment.createdAtUtc | date:'dd-MM-yyyy' }}</small>
+                </div>
+                <div class="comments__content__bottom">
+                    {{comment.content}}
+                </div>
+                <p-button
+                    styleClass="p-button-sm p-button-text"
+                    label="Reply"
+                ></p-button>
+            </div>
+        </div>
+        <ul *ngIf="comment.replies.length > 0" class="comments__replies social-list">
+            <ng-container
+                *ngTemplateOutlet="recursiveList; context:{$implicit: comment.replies}"
+            ></ng-container>
+        </ul>
+    </li>
+</ng-template>

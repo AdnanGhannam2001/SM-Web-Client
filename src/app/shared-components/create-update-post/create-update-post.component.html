@@ -10,6 +10,13 @@
     [maximizable]="true"
     [resizable]="false">
     <p-avatar [image]="image" size="large" shape="circle"></p-avatar>
+    <div>
+      <p-dropdown
+        [options]="visibilities"
+        [(ngModel)]="selected"
+        optionLabel="name"
+        placeholder="Select a City" />
+    </div>
     <textarea class="cu-post__textarea"
         [(ngModel)]="text"
         id="text-input"

@@ -21,6 +21,11 @@ export interface IPost {
   comments : Array<IComment>;
 };
 
+export interface IPostRequest {
+  content: string;
+  visibility: number;
+};
+
 export enum PostVisibilities {
   Public,
   Members,

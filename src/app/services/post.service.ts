@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IPage, IPageRequest } from '../interfaces/page.interface';
-import { IComment, IPost, IReaction, ReactionType } from '../interfaces/post.interface';
+import { IComment, IPost, IPostRequest, IReaction, ReactionType } from '../interfaces/post.interface';
 import { APIS_MAIN } from '../constants/apis';
 import { lastValueFrom } from 'rxjs';
 
@@ -14,7 +14,7 @@ export class PostService {
     return lastValueFrom(this.http.get<IPage<IPost>>(`${APIS_MAIN}/posts`, { withCredentials: true, params: { ...pageRequest } }));
   }
 
-  createPost(post: IPost): Promise<IPost> {
+  createPost(post: IPostRequest): Promise<IPost> {
     return lastValueFrom(this.http.post<IPost>(`${APIS_MAIN}/posts`, post, { withCredentials: true }));
   }
 
@@ -27,10 +27,14 @@ export class PostService {
   }
 
   createComment(postId: string, content: string, parentId?: string): Promise<IComment> {
+    const headers = new HttpHeaders();
+
+    headers.append("Content-Type", "application/json");
+
     return lastValueFrom(
       this.http.post<IComment>(`${APIS_MAIN}/posts/${postId}`,
-        content,
-        { withCredentials: true, params: { ...(parentId ? { parentId }: {}) } }
+        { content },
+        { headers, withCredentials: true, params: { ...(parentId ? { parentId }: {}) } }
       )
     );
   }

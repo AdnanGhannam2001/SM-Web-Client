@@ -14,38 +14,29 @@
                 icon="pi pi-ellipsis-h"
                 class="p-button-text p-button-rounded"
             ></button>
-            <p-menu #menu [model]="items" [popup]="true"></p-menu>
+            <p-menu #menu [model]="items" [popup]="true" appendTo="body"></p-menu>
         </div>
     </social-item-showcase>
 
     <p>{{ post.content }}</p>
-
-    <div class="post__infobox">
-        <span>{{ post.reactions.length }} reacted to this</span>
-        <span>{{ post.comments.length }} Comments</span>
-    </div>
 
     <div class="post__actions">
         <p-button label="Like"
             icon="pi pi-thumbs-up"
             styleClass="p-button-text"
         ></p-button>
-        <p-button label="Dislike"
-            icon="pi pi-thumbs-down"
-            styleClass="p-button-danger p-button-text"
-        ></p-button>
-        <p-button label="Comment"
+        <p-button [label]="'Comments ' + (commentsCount != -1 ? '(' + commentsCount + ')' : '')"
             icon="pi pi-comment"
             styleClass="p-button-success p-button-text"
             (onClick)="opened = !opened"
         ></p-button>
     </div>
 </div>
-<!-- TODO: Add Comment Section -->
-<!--
+
 <div class="post__bottom" *ngIf="post.comments.length || opened">
-    <form *ngIf="opened" class="post__add-comment">
+    <form *ngIf="opened" class="post__add-comment" (ngSubmit)="addComment()">
         <div class="post__add-comment__top">
+          <!-- TODO Use profile image -->
             <p-avatar
                 image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png"
                 shape="circle"
@@ -61,6 +52,8 @@
             label="Post"
             styleClass="p-button-text"
             [disabled]="!comment"
+            [loading]="sendingComment"
+            type="submit"
         ></p-button>
         <p-button
             (onClick)="opened = false; comment = ''"
@@ -72,4 +65,5 @@
     <p-divider *ngIf="post.comments.length && opened"></p-divider>
 
     <social-comments [comments]="post.comments"></social-comments>
-</div> -->
+    <p-button label="Load more" (onClick)="getCommentsPage()" *ngIf="!end"></p-button>
+</div>
