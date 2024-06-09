@@ -3,7 +3,7 @@
 </div>
 
 <div class="profile-header__imgbox">
-    <div class="imgbox" [attr.data-badge]="profile.jobInformations.jobTitle" [class.online]="online">
+    <div class="imgbox" [attr.data-badge]="profile.jobInformations?.jobTitle" [class.online]="online">
         <img [src]="profile.image" class="img"/>
     </div>
 </div>
@@ -23,22 +23,25 @@
         </div>
     </div>
 
-    <p class="profile-header__desc">{{ profile.firstName.toLowerCase() }} • Joined {{ profile.createdAtUtc | date:'M yyyy' }}</p>
+    <p class="profile-header__desc">
+      {{ profile.firstName.toLowerCase() }} {{ profile.lastName?.toLowerCase() }}
+      • Joined {{ profile.createdAtUtc | date:'M yyyy' }}
+    </p>
 
     <div class="profile-header__follow">
         <div>
-            <span>{{ profile.followedBy.length }}</span>
+            <span>{{ profile.followers }}</span>
             <span class="fade"> Followers</span>
         </div>
         <div>
-            <span>{{ profile.following.length }}</span>
+            <span>{{ profile.following }}</span>
             <span class="fade"> Following</span>
         </div>
     </div>
 
-    <div class="profile-header__links" *ngIf="links">
-        <a class="social-link" *ngFor="let profile of links" [pTooltip]="profile" tooltipPosition="bottom">
-            <i [class]="'pi pi-' + profile"></i>
+    <div class="profile-header__links">
+        <a class="social-link" *ngFor="let link of links" [pTooltip]="link[0]" tooltipPosition="bottom" [href]="link[1]">
+            <i [class]="'pi pi-' + link[0]"></i>
         </a>
     </div>
 </div>

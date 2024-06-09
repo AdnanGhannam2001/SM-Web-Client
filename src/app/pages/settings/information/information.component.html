@@ -29,33 +29,33 @@
   </div>
   <div class="social-input-container">
     <label htmlFor="facebook">Facebook</label>
-    <input pInputText id="facebook" name="facebook" [(ngModel)]="profile.socials.facebook" />
+    <input pInputText id="facebook" name="facebook" [(ngModel)]="profile.socials!.facebook" />
     <small id="facebook-help">{{profile.settings.socials}}</small>
   </div>
   <div class="social-input-container">
     <label htmlFor="youtube">Youtube</label>
-    <input pInputText id="youtube" name="youtube" [(ngModel)]="profile.socials.youtube" />
+    <input pInputText id="youtube" name="youtube" [(ngModel)]="profile.socials!.youtube" />
     <small id="youtube-help">{{profile.settings.socials}}</small>
   </div>
   <div class="social-input-container">
     <label htmlFor="twitter">Twitter</label>
-    <input pInputText id="twitter" name="twitter" [(ngModel)]="profile.socials.twitter" />
+    <input pInputText id="twitter" name="twitter" [(ngModel)]="profile.socials!.twitter" />
     <small id="twitter-help">{{profile.settings.socials}}</small>
   </div>
   <div class="social-input-container">
     <label htmlFor="jobtitle">Job Title</label>
-    <input pInputText id="jobtitle" name="jobtitle" [(ngModel)]="profile.jobInformations.jobTitle" />
+    <input pInputText id="jobtitle" name="jobtitle" [(ngModel)]="profile.jobInformations!.jobTitle" />
     <small id="jobtitle-help">{{profile.settings.jobTitle}}</small>
   </div>
   <div class="social-input-container">
     <label htmlFor="company">Company</label>
-    <input pInputText id="company" name="company" [(ngModel)]="profile.jobInformations.company" />
+    <input pInputText id="company" name="company" [(ngModel)]="profile.jobInformations!.company" />
     <small id="company-help">{{profile.settings.company}}</small>
   </div>
   <div class="social-input-container">
     <label htmlFor="date">Start Date</label>
     <p-calendar id="date" name="date" [touchUI]="true" [readonlyInput]="true"
-      [(ngModel)]="profile.jobInformations.startDate"></p-calendar>
+      [(ngModel)]="profile.jobInformations!.startDate"></p-calendar>
     <small id="startDate-started-help">{{profile.settings.startDate}}</small>
   </div>
 }

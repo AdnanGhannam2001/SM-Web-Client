@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { IProfile, InformationVisibility } from '../../interfaces/profile.interface';
+import { IProfileResponse, InformationVisibility } from '../../interfaces/profile.interface';
 
 @Component({
   selector: 'social-profile-header[profile]',
@@ -8,7 +8,7 @@ import { IProfile, InformationVisibility } from '../../interfaces/profile.interf
   styleUrls: ['./profile-header.component.scss']
 })
 export class ProfileHeaderComponent {
-  @Input() profile!: IProfile;
+  @Input() profile!: IProfileResponse;
   @Input() editable = false;
   @Input() online = false;
 
@@ -55,7 +55,7 @@ export class ProfileHeaderComponent {
   }
 
   get links() {
-    if (this.profile.settings.socials == InformationVisibility.Private) return [];
-    return Object.keys(this.profile.socials);
+    if (!this.profile.socials) return [];
+    return Object.entries(this.profile.socials);
   }
 }

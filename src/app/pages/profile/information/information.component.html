@@ -1,7 +1,6 @@
-<!-- TODO: fix display -->
-<!-- <div *ngFor="let group of groups | keyvalue" class="information__group">
+<div class="information__group">
     <div class="information__header">
-        <h3>{{ group.key }}</h3>
+        <h3>General Information</h3>
         <p-button
             *ngIf="editable"
             label="Edit"
@@ -10,9 +9,54 @@
     </div>
     <p-divider></p-divider>
     <div class="information__table">
-        <div class="information__row" *ngFor="let item of group.value | keyvalue">
-            <span>{{ item.key }}</span>
-            <span>{{ item.value }}</span>
+        <div class="information__row">
+            <span>First Name:</span>
+            <span>{{ profile?.firstName }}</span>
+        </div>
+        <div class="information__row" *ngIf="profile?.lastName">
+            <span>Last Name:</span>
+            <span>{{ profile?.lastName }}</span>
+        </div>
+        <div class="information__row" *ngIf="profile?.phoneNumber">
+            <span>PhoneNumber:</span>
+            <span>{{ profile?.phoneNumber?.value }}</span>
+        </div>
+        <div class="information__row" *ngIf="profile?.dateOfBirth">
+            <span>Date of Birth:</span>
+            <span>{{ profile?.dateOfBirth }}</span>
+        </div>
+        <div class="information__row" *ngIf="profile?.gender">
+            <span>Gender:</span>
+            <span>{{ profile?.gender }}</span>
+        </div>
+        <div class="information__row" *ngIf="profile?.bio">
+            <span>Bio:</span>
+            <span>{{ profile?.bio }}</span>
         </div>
     </div>
-</div> -->
+</div>
+<div class="information__group">
+    <div class="information__header">
+        <h3>Job Information</h3>
+        <p-button
+            *ngIf="editable"
+            label="Edit"
+            styleClass="p-button-success"
+        ></p-button>
+    </div>
+    <p-divider></p-divider>
+    <div class="information__table">
+        <div class="information__row">
+            <span>Job Title:</span>
+            <span>{{ profile?.jobInformations?.jobTitle }}</span>
+        </div>
+        <div class="information__row">
+            <span>Company:</span>
+            <span>{{ profile?.jobInformations?.company }}</span>
+        </div>
+        <div class="information__row">
+            <span>Started At:</span>
+            <span>{{ profile?.jobInformations?.startDate }}</span>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IPage, IPageRequest } from '../interfaces/page.interface';
-import { IBlock, IFavoriteDiscussion, IFollow, IFriendship, IFriendshipRequest, IProfile, ISettings } from '../interfaces/profile.interface';
+import { IBlock, IFavoriteDiscussion, IFollow, IFriendship, IFriendshipRequest, IProfile, IProfileResponse, ISettings } from '../interfaces/profile.interface';
 import { HttpClient } from '@angular/common/http';
 import { APIS_MAIN } from '../constants/apis';
 import { lastValueFrom } from 'rxjs';
@@ -15,16 +15,16 @@ export class ProfileService {
     return lastValueFrom(this.http.get<IPage<IProfile>>(`${APIS_MAIN}/profiles`, { withCredentials: true, params: { ...pageRequest } }));
   }
 
-  getPersonalProfile(): Promise<IProfile> {
-    return lastValueFrom(this.http.get<IProfile>(`${APIS_MAIN}/profiles/profile`, { withCredentials: true }));
+  getPersonalProfile(): Promise<IProfileResponse> {
+    return lastValueFrom(this.http.get<IProfileResponse>(`${APIS_MAIN}/profiles/profile`, { withCredentials: true }));
   }
 
   updateProfile(profile: IProfile): Promise<IProfile> {
     return lastValueFrom(this.http.patch<IProfile>(`${APIS_MAIN}/profiles/profile`, profile, { withCredentials: true }));
   }
 
-  getProfile(id: string): Promise<IProfile> {
-    return lastValueFrom(this.http.get<IProfile>(`${APIS_MAIN}/profiles/${id}`, { withCredentials: true }));
+  getProfile(id: string): Promise<IProfileResponse> {
+    return lastValueFrom(this.http.get<IProfileResponse>(`${APIS_MAIN}/profiles/${id}`, { withCredentials: true }));
   }
 
   getSettings(): Promise<ISettings> {
@@ -96,7 +96,11 @@ export class ProfileService {
   }
 
   getPersonalGroups(pageRequest: IPageRequest): Promise<IPage<IGroup>> {
-    return lastValueFrom(this.http.get<IPage<IGroup>>(`${APIS_MAIN}/profiles/groups`, { withCredentials: true, params: { ...pageRequest } }));
+    return lastValueFrom(this.http.get<IPage<IGroup>>(`${APIS_MAIN}/profiles/profile/groups`, { withCredentials: true, params: { ...pageRequest } }));
+  }
+
+  getProfileGroups(id: string, pageRequest: IPageRequest): Promise<IPage<IGroup>> {
+    return lastValueFrom(this.http.get<IPage<IGroup>>(`${APIS_MAIN}/${id}/groups`, { withCredentials: true, params: { ...pageRequest } }));
   }
 
   getReceivedInvites(pageRequest: IPageRequest): Promise<IPage<IInvite>> {

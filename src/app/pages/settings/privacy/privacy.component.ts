@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IProfile } from '../../../interfaces/profile.interface';
+import { IProfileResponse } from '../../../interfaces/profile.interface';
 import { ProfileService } from '../../../services/profile.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { ProfileService } from '../../../services/profile.service';
   styleUrl: './privacy.component.scss'
 })
 export class PrivacyComponent {
-  profile?: IProfile;
+  profile?: IProfileResponse;
 
   constructor(private readonly profileService: ProfileService) { }
 

@@ -1,11 +1,11 @@
 <p-dataView [value]="groups.items" [layout]="layout">
-    <ng-template pTemplate="header">
-        <p-dataViewLayoutOptions [slot]="layout"></p-dataViewLayoutOptions>
-    </ng-template>
-    <ng-template let-group pTemplate="listItem">
-        <social-group-list-view [group]="group"></social-group-list-view>
-    </ng-template>
-    <ng-template let-group pTemplate="gridItem">
-        <social-group-grid-view [group]="group"></social-group-grid-view>
-    </ng-template>
+  <ng-template pTemplate="header">
+    <p-dataViewLayoutOptions [slot]="layout"></p-dataViewLayoutOptions>
+  </ng-template>
+  <ng-template let-groups pTemplate="listItem">
+    <social-group-list-view *ngFor="let group of groups" [group]="group"></social-group-list-view>
+  </ng-template>
+  <ng-template let-groups pTemplate="gridItem">
+    <social-group-grid-view *ngFor="let group of groups" [group]="group"></social-group-grid-view>
+  </ng-template>
 </p-dataView>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ProfileService } from '../../../services/profile.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IProfile } from '../../../interfaces/profile.interface';
+import { IProfileResponse } from '../../../interfaces/profile.interface';
 
 @Component({
   selector: 'social-information',
@@ -10,7 +10,7 @@ import { IProfile } from '../../../interfaces/profile.interface';
 })
 export class InformationComponent {
   editable = false;
-  profile?: IProfile;
+  profile?: IProfileResponse;
 
   constructor(
     private readonly profileService: ProfileService,
@@ -26,11 +26,7 @@ export class InformationComponent {
         ? this.profileService.getProfile(id)
         : this.profileService.getPersonalProfile();
 
-      try {
-        this.profile = await promise;
-      } catch (error) {
-        this.router.navigate(['/not-found']);
-      }
+      this.profile = await promise;
     });
   }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Gender, IProfile } from '../../../interfaces/profile.interface';
+import { Gender, IProfileResponse } from '../../../interfaces/profile.interface';
 import { ProfileService } from '../../../services/profile.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { ProfileService } from '../../../services/profile.service';
 })
 export class InformationComponent {
   Genders = Object.values(Gender);
-  profile?: IProfile;
+  profile?: IProfileResponse;
 
   constructor(private readonly profileService: ProfileService) { }
 

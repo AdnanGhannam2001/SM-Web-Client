@@ -41,6 +41,26 @@ export interface IProfile {
   favoriteDiscussions: Array<IFavoriteDiscussion>;
 };
 
+export interface IProfileResponse {
+  id: string;
+  createdAtUtc: Date;
+  updatedAtUtc: Date;
+
+  firstName       : string;
+  lastName       ?: string;
+  phoneNumber    ?: IPhoneNumber;
+  dateOfBirth    ?: Date;
+  gender         ?: Gender;
+  bio            ?: string;
+  image          ?: string;
+  coverImage     ?: string;
+  jobInformations?: IJobInformations;
+  socials        ?: ISocials;
+  settings        : ISettings;
+  followers       : number;
+  following       : number;
+}
+
 export interface IPhoneNumber {
   value: string;
 };

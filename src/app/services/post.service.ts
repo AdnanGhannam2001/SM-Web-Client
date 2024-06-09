@@ -14,6 +14,14 @@ export class PostService {
     return lastValueFrom(this.http.get<IPage<IPost>>(`${APIS_MAIN}/posts`, { withCredentials: true, params: { ...pageRequest } }));
   }
 
+  getMyProfilePosts(pageRequest: IPageRequest): Promise<IPage<IPost>> {
+    return lastValueFrom(this.http.get<IPage<IPost>>(`${APIS_MAIN}/posts/profile`, { withCredentials: true, params: { ...pageRequest } }));
+  }
+
+  getProfilePosts(id: string, pageRequest: IPageRequest): Promise<IPage<IPost>> {
+    return lastValueFrom(this.http.get<IPage<IPost>>(`${APIS_MAIN}/posts/${id}`, { withCredentials: true, params: { ...pageRequest } }));
+  }
+
   createPost(post: IPostRequest): Promise<IPost> {
     return lastValueFrom(this.http.post<IPost>(`${APIS_MAIN}/posts`, post, { withCredentials: true }));
   }
