@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IPage, IPageRequest } from '../interfaces/page.interface';
-import { IComment, IPost, IPostRequest, IReaction, ReactionType } from '../interfaces/post.interface';
+import { IComment, IPost, IPostRequest, IReaction, PostVisibilities, ReactionType } from '../interfaces/post.interface';
 import { APIS_MAIN } from '../constants/apis';
 import { lastValueFrom } from 'rxjs';
 
@@ -91,5 +91,9 @@ export class PostService {
         { withCredentials: true, params: { ...(parentId ? { parentId }: {}) } }
       )
     );
+  }
+
+  getVisibilities() {
+    return Object.entries(PostVisibilities).filter(([_, value]) => isNaN(Number(value)));
   }
 }

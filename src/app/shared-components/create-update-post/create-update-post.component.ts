@@ -15,15 +15,18 @@ export class CreateUpdatePostComponent {
   mediaType: string = "";
   sending = false;
 
-  visibilities = Object.entries(PostVisibilities).filter(([_, value]) => isNaN(Number(value))).map(([key, value]) => ({ name: value, code: Number(key) }));
-  selected = this.visibilities[0];
+  visibilities;
+  selected;
 
   mediaOptions: any[] = [
     { icon: 'pi pi-camera', tooltip: 'Attach photo', value: "img" },
     { icon: 'pi pi-file', tooltip: 'Attach file', value: "file" }
   ];
 
-  constructor(private readonly postService: PostService) { }
+  constructor(private readonly postService: PostService) {
+    this.visibilities = postService.getVisibilities().map(([key, value]) => ({ name: value, code: Number(key) }));
+    this.selected = this.visibilities[0];
+  }
 
   // TODO
   onUpload(event: any) { }

@@ -41,6 +41,17 @@ export interface IProfile {
   favoriteDiscussions: Array<IFavoriteDiscussion>;
 };
 
+export interface IProfileUpdateRequest {
+  firstName      ?: string;
+  lastName       ?: string;
+  dateOfBirth    ?: Date;
+  gender         ?: Gender;
+  phoneNumber    ?: string;
+  bio            ?: string;
+  jobInformations?: IJobInformations;
+  socials        ?: ISocials;
+}
+
 export interface IProfileResponse {
   id: string;
   createdAtUtc: Date;

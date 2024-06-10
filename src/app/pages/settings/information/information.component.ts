@@ -8,15 +8,34 @@ import { ProfileService } from '../../../services/profile.service';
   styleUrl: './information.component.scss'
 })
 export class InformationComponent {
-  Genders = Object.values(Gender);
   profile?: IProfileResponse;
+  visibilities;
+  genders;
 
-  constructor(private readonly profileService: ProfileService) { }
+  constructor(private readonly profileService: ProfileService) {
+    this.visibilities = profileService.getVisibilities();
+    this.genders = profileService.getGenders().map(([key, value]) => ({ name: value, code: Number(key) }));
+  }
 
   async ngOnInit() {
     this.profile = await this.profileService.getPersonalProfile();
   }
 
-  // TODO
-  onUpdate() { }
+  async onUpdate() {
+    try {
+      await this.profileService.updateProfile({
+        firstName: this.profile?.firstName,
+        lastName: this.profile?.lastName,
+        dateOfBirth: this.profile?.dateOfBirth,
+        gender: this.profile?.gender,
+        phoneNumber: this.profile?.phoneNumber?.value,
+        bio: this.profile?.bio,
+        jobInformations: this.profile?.jobInformations,
+        socials: this.profile?.socials,
+      });
+    } catch (error) {
+      // TODO display validation errors
+      console.warn(error)
+    }
+  }
 }

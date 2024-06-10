@@ -9,10 +9,17 @@ import { ProfileService } from '../../../services/profile.service';
 })
 export class PrivacyComponent {
   profile?: IProfileResponse;
+  visibilities;
 
-  constructor(private readonly profileService: ProfileService) { }
+  constructor(private readonly profileService: ProfileService) {
+    this.visibilities = profileService.getVisibilities().map(([key, value]) => ({ name: value, code: Number(key) }));
+  }
 
   async ngOnInit() {
     this.profile = await this.profileService.getPersonalProfile();
+  }
+
+  onUpdate() {
+    this.profileService.updateSettings(this.profile!.settings);
   }
 }

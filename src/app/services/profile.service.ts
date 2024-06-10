@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IPage, IPageRequest } from '../interfaces/page.interface';
-import { IBlock, IFavoriteDiscussion, IFollow, IFriendship, IFriendshipRequest, IProfile, IProfileResponse, ISettings } from '../interfaces/profile.interface';
+import { Gender, IBlock, IFavoriteDiscussion, IFollow, IFriendship, IFriendshipRequest, IProfile, IProfileResponse, IProfileUpdateRequest, ISettings, InformationVisibility } from '../interfaces/profile.interface';
 import { HttpClient } from '@angular/common/http';
 import { APIS_MAIN } from '../constants/apis';
 import { lastValueFrom } from 'rxjs';
@@ -19,8 +19,8 @@ export class ProfileService {
     return lastValueFrom(this.http.get<IProfileResponse>(`${APIS_MAIN}/profiles/profile`, { withCredentials: true }));
   }
 
-  updateProfile(profile: IProfile): Promise<IProfile> {
-    return lastValueFrom(this.http.patch<IProfile>(`${APIS_MAIN}/profiles/profile`, profile, { withCredentials: true }));
+  updateProfile(profile: IProfileUpdateRequest): Promise<IProfile> {
+    return lastValueFrom(this.http.patch<IProfile>(`${APIS_MAIN}/profiles`, profile, { withCredentials: true }));
   }
 
   getProfile(id: string): Promise<IProfileResponse> {
@@ -117,5 +117,13 @@ export class ProfileService {
 
   deleteFromFavoriteDiscussions(discussionsId: string): Promise<IFavoriteDiscussion> {
     return lastValueFrom(this.http.delete<IFavoriteDiscussion>(`${APIS_MAIN}/profiles/favorite-discussions/${discussionsId}`, { withCredentials: true }));
+  }
+
+  getVisibilities() {
+    return Object.entries(InformationVisibility).filter(([_, value]) => isNaN(Number(value)));
+  }
+
+  getGenders() {
+    return Object.entries(Gender).filter(([_, value]) => isNaN(Number(value)));
   }
 }

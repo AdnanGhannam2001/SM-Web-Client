@@ -32,7 +32,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'settings/',
+    path: 'settings',
     component: SettingsComponent,
     children: [
       { path: '', component: InformationSettingsComponent },
