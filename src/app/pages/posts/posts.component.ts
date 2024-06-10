@@ -5,7 +5,7 @@ import { PostService } from '../../services/post.service';
 import { LOGIN_REDIRECT_URI } from '../../constants/apis';
 
 @Component({
-  selector: 'app-posts',
+  selector: 'social-posts',
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss',
 })

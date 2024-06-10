@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import { ProfileService } from '../../../services/profile.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Inject } from '@angular/core';
 import { IProfileResponse } from '../../../interfaces/profile.interface';
+import { ProfileComponent } from '../profile.component';
 
 @Component({
   selector: 'social-information',
@@ -12,21 +11,9 @@ export class InformationComponent {
   editable = false;
   profile?: IProfileResponse;
 
-  constructor(
-    private readonly profileService: ProfileService,
-    private readonly router: Router,
-    private readonly activatedRoute: ActivatedRoute
-  ) {}
+  constructor(@Inject(ProfileComponent) private readonly parent: ProfileComponent) {}
 
-  async ngOnInit() {
-    this.activatedRoute.paramMap.subscribe(async (param) => {
-      const id = param.get('id');
-
-      const promise = id
-        ? this.profileService.getProfile(id)
-        : this.profileService.getPersonalProfile();
-
-      this.profile = await promise;
-    });
+  async ngAfterViewChecked() {
+    this.profile = this.parent.profile;
   }
 }

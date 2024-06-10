@@ -63,7 +63,7 @@
   --bg-sidebox: var(--white);
 
   --bg-profile-header: var(--white);
-  --clr-profile-header-img-border: var(--white);
+  --clr-profile-header-img-border: var(--gray-400);
   --bg-profile-header-badge: var(--blue-300);
   --clr-profile-header-badge: var(--white);
   --bg-profile-header-online: var(--green-300);
@@ -197,6 +197,10 @@ body {
 .flex {
   @include mixin.flex;
   gap: .5em;
+}
+
+.btn-load-more {
+  width: 100%;
 }
 
 // PrimeNG

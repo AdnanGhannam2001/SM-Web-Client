@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IProfile, IProfileResponse } from '../../interfaces/profile.interface';
+import { IProfileResponse } from '../../interfaces/profile.interface';
 import { ProfileService } from '../../services/profile.service';
 import { TabMenuItem } from '../../ui-components/tab-menu/tab-menu.component';
 import { LOGIN_REDIRECT_URI } from '../../constants/apis';

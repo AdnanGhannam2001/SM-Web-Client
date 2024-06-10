@@ -5,7 +5,7 @@ import { GroupService } from '../../services/group.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-group',
+  selector: 'social-group',
   templateUrl: './group.component.html',
   styleUrl: './group.component.scss'
 })

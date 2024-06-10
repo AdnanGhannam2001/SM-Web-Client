@@ -8,7 +8,7 @@ import { PostService } from '../../services/post.service';
   styleUrl: './create-update-post.component.scss'
 })
 export class CreateUpdatePostComponent {
-  @Input() image = "";
+  image;
   @Input() placeholder = "";
   @Input() text?: string;
   visible = false;
@@ -26,10 +26,11 @@ export class CreateUpdatePostComponent {
   constructor(private readonly postService: PostService) {
     this.visibilities = postService.getVisibilities().map(([key, value]) => ({ name: value, code: Number(key) }));
     this.selected = this.visibilities[0];
+    this.image = sessionStorage.getItem("image") ?? "";
   }
 
   // TODO
-  onUpload(event: any) { }
+  onSelect(event: any) { console.log({ event })}
 
   // TODO
   async sendPost() {

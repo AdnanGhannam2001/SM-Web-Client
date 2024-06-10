@@ -1,15 +1,18 @@
-<social-sidebox
+@if (followed.items.length > 0)
+{
+  <social-sidebox
     title="I'm Following"
     [count]="followed.total"
     [showButton]="showButton"
     seeMoreUrl="/followed">
-        <p-avatar
-            class="followed-box__avatar"
-            *ngFor="let follow of followed.items"
-            [image]="follow.followed?.image"
-            size="large"
-            shape="circle"
-            [pTooltip]="follow.followed?.firstName"
-            tooltipPosition="bottom"
-        ></p-avatar>
-</social-sidebox>
+      <p-avatar
+        class="followed-box__avatar"
+        *ngFor="let follow of followed.items"
+        [image]="follow.followed?.image"
+        size="large"
+        shape="circle"
+        [pTooltip]="follow.followed?.firstName"
+        tooltipPosition="bottom"
+      ></p-avatar>
+  </social-sidebox>
+}

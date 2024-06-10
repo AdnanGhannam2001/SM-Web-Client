@@ -15,6 +15,7 @@
         [options]="visibilities"
         [(ngModel)]="selected"
         optionLabel="name"
+        [style]="{ width: '100%' }"
         placeholder="Select a City" />
     </div>
     <textarea class="cu-post__textarea"
@@ -24,9 +25,11 @@
         rows="10"
     ></textarea>
     <p-fileUpload
+        mode="basic"
+        chooseLabel="Choose Media..."
+        chooseIcon="pi pi-upload"
         name="demo[]"
-        (onUpload)="onUpload($event)"
-        [multiple]="true"
+        (onSelect)="onSelect($event)"
         accept="image/*"
         [maxFileSize]="1000000"
     ></p-fileUpload>

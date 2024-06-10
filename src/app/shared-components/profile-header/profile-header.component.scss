@@ -2,7 +2,8 @@
 
 :host {
     display: block;
-    height: 450px;
+    min-height: 510px;
+    height: 510px;
     background-color: var(--bg-profile-header);
     border: 1px solid var(--clr-border);
     border-radius: var(--br-b);
@@ -36,7 +37,7 @@
 
                 &::after {
                     content: attr(data-badge);
-                    @include mixin.absolute(auto, auto, 0, 50%, -50%);
+                    @include mixin.absolute(auto, auto, -7px, 50%, -50%);
                     text-align: center;
                     background-color: var(--bg-profile-header-badge);
                     color: var(--clr-profile-header-badge);
@@ -48,7 +49,7 @@
                 }
 
                 img {
-                    border: 3px solid var(--clr-profile-header-img-border);
+                    border: 1px solid var(--clr-profile-header-img-border);
                     border-radius: 50%;
                 }
             }
