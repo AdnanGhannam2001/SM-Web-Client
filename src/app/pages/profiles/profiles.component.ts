@@ -14,14 +14,7 @@ export class ProfilesComponent {
   layout: 'list' | 'grid' = "list";
   search = "";
 
-  tabs: TabMenuItem[];
-
-  constructor(private profileService: ProfileService) {
-    this.tabs = [
-      { text: "All Members", url: "/members" },
-      { text: "My Friends", url: "#" },
-    ]
-  }
+  constructor(private profileService: ProfileService) { }
 
   async ngOnInit() {
     // TODO Add Page Request

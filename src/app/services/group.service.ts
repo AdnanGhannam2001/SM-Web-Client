@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IDiscussion, IGroup, IGroupSettings, IInvite, IJoinRequest, IKicked, IMember, MemberRoleType } from '../interfaces/group.interface';
+import { GroupVisibilities, IDiscussion, IGroup, IGroupSettings, IInvite, IJoinRequest, IKicked, IMember, MemberRoleType } from '../interfaces/group.interface';
 import { lastValueFrom } from 'rxjs';
 import { APIS_MAIN } from '../constants/apis';
 import { IPage, IPageRequest } from '../interfaces/page.interface';
@@ -108,5 +108,9 @@ export class GroupService {
 
   deleteDiscussion(id: string, discussionId: string): Promise<IDiscussion> {
     return lastValueFrom(this.http.delete<IDiscussion>(`${APIS_MAIN}/groups/${id}/discussions/${discussionId}`, { withCredentials: true }));
+  }
+
+  getVisibilities() {
+    return Object.entries(GroupVisibilities).filter(([_, value]) => isNaN(Number(value)));
   }
 }

@@ -2,10 +2,10 @@
     <ng-template pTemplate="header">
         <p-dataViewLayoutOptions [slot]="layout"></p-dataViewLayoutOptions>
     </ng-template>
-    <ng-template let-member pTemplate="listItem">
-        <social-profile-list-view [profile]="member.profile"></social-profile-list-view>
+    <ng-template let-members pTemplate="listItem">
+        <social-profile-list-view *ngFor="let member of members" [profile]="member.profile"></social-profile-list-view>
     </ng-template>
-    <ng-template let-member pTemplate="gridItem">
-        <social-profile-grid-view [profile]="member.profile"></social-profile-grid-view>
+    <ng-template let-members pTemplate="gridItem">
+        <social-profile-grid-view *ngFor="let member of members" [profile]="member.profile"></social-profile-grid-view>
     </ng-template>
 </p-dataView>

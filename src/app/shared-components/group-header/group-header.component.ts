@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { IGroup } from '../../interfaces/group.interface';
+import { GroupVisibilities, IGroup } from '../../interfaces/group.interface';
+import { GroupService } from '../../services/group.service';
 
 @Component({
   selector: 'social-group-header[group]',
@@ -8,4 +9,12 @@ import { IGroup } from '../../interfaces/group.interface';
 })
 export class GroupHeaderComponent {
   @Input() group!: IGroup;
+  visibility?: any;
+
+  constructor(private readonly groupService: GroupService) {
+  }
+
+  ngOnInit() {
+    this.visibility = this.groupService.getVisibilities().find(x => Number(x[0]) == this.group.visibility)?.[1];
+  }
 }

@@ -18,7 +18,7 @@ export class MembersComponent {
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.activatedRoute.paramMap.subscribe(async param => {
+    this.activatedRoute.parent?.paramMap.subscribe(async param => {
       const id = param.get("id");
 
       if (!id) {

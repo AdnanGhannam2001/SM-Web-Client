@@ -1,7 +1,7 @@
 <social-item-showcase
     class="profile-list-view__profilebox"
     [image]="profile.image"
-    [content]="profile.firstName"
+    [content]="profile.firstName + ' ' + profile.lastName"
     [description]="profile.createdAtUtc.toString()"
     size="big"
     [rounded]="true"
@@ -39,4 +39,4 @@
     icon="pi pi-ellipsis-h"
     class="p-button-text p-button-rounded"
 ></button>
-<p-menu #menu [model]="items" [popup]="true"></p-menu>
+<p-menu #menu [model]="items" [popup]="true" appendTo="body"></p-menu>

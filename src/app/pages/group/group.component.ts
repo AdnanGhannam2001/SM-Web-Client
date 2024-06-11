@@ -34,12 +34,11 @@ export class GroupComponent {
         this.tabs = [
           {
             url,
-            text: "Timeline",
+            text: "Posts",
           },
           {
             url: url + "members",
             text: "Members",
-            badge: this.group.members?.length + ''
           }
         ];
       } catch (error) {

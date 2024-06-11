@@ -1,25 +1,24 @@
 <div class="container flex last">
     <div>
-        <social-page-title title="Members">
+        <social-page-title title="Profiles">
             <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
                 <input pInputText
                     [ngModel]="search"
                     (change)="onSearch()"
                     icon="pi pi-search"
-                    placeholder="Search Member..." />
+                    placeholder="Search profile..." />
             </span>
         </social-page-title>
-        <social-tab-menu [items]="tabs"></social-tab-menu>
         <p-dataView [value]="profiles.items" [layout]="layout">
             <ng-template pTemplate="header">
                 <p-dataViewLayoutOptions [slot]="layout"></p-dataViewLayoutOptions>
             </ng-template>
-            <ng-template let-profile pTemplate="listItem">
-                <social-profile-list-view [profile]="profile"></social-profile-list-view>
+            <ng-template let-profiles pTemplate="listItem">
+                <social-profile-list-view *ngFor="let profile of profiles" [profile]="profile"></social-profile-list-view>
             </ng-template>
-            <ng-template let-profile pTemplate="gridItem">
-                <social-profile-grid-view [profile]="profile"></social-profile-grid-view>
+            <ng-template let-profiles pTemplate="gridItem">
+                <social-profile-grid-view *ngFor="let profile of profiles" [profile]="profile"></social-profile-grid-view>
             </ng-template>
         </p-dataView>
     </div>

@@ -2,7 +2,7 @@
   <social-item-showcase
       class="profile-grid-view__profilebox"
       [image]="profile.image"
-      [content]="profile.firstName"
+      [content]="profile.firstName + ' ' + profile.lastName"
       [description]="profile.createdAtUtc.toString()"
       size="big"
       direction="column"
@@ -19,7 +19,7 @@
       label="Send Message"
       [disabled]="true"
       icon="pi pi-send"
-      styleClass="p-button-outlined p-button-secondary block      "
+      styleClass="p-button-outlined p-button-secondary block"
   ></p-button>
 
   <!-- FIXME -->
@@ -30,7 +30,7 @@
           icon="pi pi-ellipsis-h"
           class="p-button-text p-button-rounded"
       ></button>
-      <p-menu #menu [model]="items" [popup]="true"></p-menu>
+      <p-menu #menu [model]="items" [popup]="true" appendTo="body"></p-menu>
   </div>
 </div>
 

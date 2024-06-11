@@ -3,7 +3,7 @@ import { IProfile } from '../../interfaces/profile.interface';
 import { MenuItem } from 'primeng/api';
 
 @Component({
-  selector: 'social-profile-list-view',
+  selector: 'social-profile-list-view[profile]',
   templateUrl: './profile-list-view.component.html',
   styleUrl: './profile-list-view.component.scss'
 })

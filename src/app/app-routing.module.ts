@@ -7,6 +7,7 @@ import { GroupsComponent, GroupsComponent as ProfileGroupsComponent } from './pa
 import { PostsComponent as ProfilePostsComponent } from './pages/profile/posts/posts.component';
 import { GroupComponent } from './pages/group/group.component';
 import { MembersComponent } from './pages/group/members/members.component';
+import { PostsComponent as GroupPostsCompoent } from './pages/group/posts/posts.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { InformationComponent as InformationSettingsComponent } from './pages/settings/information/information.component';
 import { PrivacyComponent } from './pages/settings/privacy/privacy.component';
@@ -15,11 +16,16 @@ import { CoverImageComponent } from './pages/settings/cover-image/cover-image.co
 import { BlockedListComponent } from './pages/settings/blocked-list/blocked-list.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PostsComponent } from './pages/posts/posts.component';
+import { ProfilesComponent } from './pages/profiles/profiles.component';
 
 const routes: Routes = [
   {
     path: "",
     component: PostsComponent
+  },
+  {
+    path: 'profiles',
+    component: ProfilesComponent,
   },
   {
     path: 'profiles/:id',
@@ -47,6 +53,7 @@ const routes: Routes = [
     path: 'groups/:id',
     component: GroupComponent,
     children: [
+      { path: '', component: GroupPostsCompoent },
       { path: 'members', component: MembersComponent },
     ],
   },
