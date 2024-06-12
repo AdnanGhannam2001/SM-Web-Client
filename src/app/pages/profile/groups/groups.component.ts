@@ -1,42 +1,33 @@
 import { Component } from '@angular/core';
-import { IGroup } from '../../../interfaces/group.interface';
-import { IPage } from '../../../interfaces/page.interface';
-import { GroupService } from '../../../services/group.service';
 import { ProfileService } from '../../../services/profile.service';
 import { ActivatedRoute } from '@angular/router';
+import { Pagination } from '../../../helpers/pagination';
+import { IGroup } from '../../../interfaces/group.interface';
 
 @Component({
   selector: 'social-groups',
   templateUrl: './groups.component.html',
   styleUrl: './groups.component.scss'
 })
-export class GroupsComponent {
-  groups: IPage<IGroup> = { items: [], total: 0 };
-  layout: 'list' | 'grid' = "list";
-  pageNumber: number = 0;
-  pageSize  : number = 20;
-  search    : string = "";
-  desc      : boolean = true;
+export class GroupsComponent extends Pagination<IGroup> {
+  layout : 'list' | 'grid' = "list";
+  id     : string | null    = null;
 
   constructor(private readonly profileService: ProfileService,
-    private activatedRoute: ActivatedRoute) {}
+    private activatedRoute: ActivatedRoute)
+  {
+    super();
+  }
+
+  override async requestPage() {
+    this.page = this.id && this.id === 'profile'
+      ? await this.profileService.getPersonalGroups(this.pageRequest)
+      : await this.profileService.getProfileGroups(this.id!, this.pageRequest);
+  }
 
   async ngOnInit() {
-    const pageRequest =  {
-      pageNumber: this.pageNumber,
-      pageSize: this.pageSize,
-      search: this.search,
-      desc: this.desc,
-    };
-
-    this.activatedRoute.paramMap.subscribe(async (param) => {
-      const id = param.get('id');
-
-      const personalProfile = id === "profile";
-
-      this.groups = id && !personalProfile
-        ? await this.profileService.getProfileGroups(id, pageRequest)
-        : await this.profileService.getPersonalGroups(pageRequest);
+    this.activatedRoute.parent?.paramMap.subscribe(async (param) => {
+      this.id = param.get('id');
     });
   }
 }

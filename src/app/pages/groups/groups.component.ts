@@ -1,32 +1,34 @@
 import { Component } from '@angular/core';
-import { IPage } from '../../interfaces/page.interface';
 import { IGroup } from '../../interfaces/group.interface';
 import { TabMenuItem } from '../../ui-components/tab-menu/tab-menu.component';
 import { GroupService } from '../../services/group.service';
+import { Pagination } from '../../helpers/pagination';
 
 @Component({
   selector: 'social-groups',
   templateUrl: './groups.component.html',
   styleUrl: './groups.component.scss'
 })
-export class GroupsComponent {
-  groups: IPage<IGroup> = { items: [], total: 0 };
+export class GroupsComponent extends Pagination<IGroup> {
   layout: 'list' | 'grid' = "list";
   tabs: TabMenuItem[];
-  search = "";
+  loading = true;
 
   constructor(private groupService: GroupService) {
+    super();
+
     this.tabs = [
       { text: "All Groups", url: "/groups" },
       { text: "Create a Group", url: "/create-group" },
     ];
   }
 
-  async ngOnInit() {
-    // TODO Add Page Request
-    this.groups = await this.groupService.getGroups({ });
+  override async requestPage() {
+    this.page = await this.groupService.getGroups(this.pageRequest);
   }
 
-  // TODO
-  onSearch() { }
+  async ngOnInit() {
+    await this.requestPage();
+    this.loading = false;
+  }
 }

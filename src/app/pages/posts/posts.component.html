@@ -5,13 +5,13 @@
       placeholder="Shared what's in your mind..."
     ></social-create-update-post>
     <social-posts-view
-      [posts]="posts"
+      [posts]="page"
       [loading]="loading"
     ></social-posts-view>
     <p-button
       styleClass="btn-load-more"
       label="Load more"
-      (onClick)="getPage()"
+      (onClick)="requestPage()"
       *ngIf="!end"
       [text]="true"
     ></p-button>

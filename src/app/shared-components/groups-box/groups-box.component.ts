@@ -11,7 +11,7 @@ import { GroupService } from '../../services/group.service';
 export class GroupsBoxComponent {
   groups: IPage<IGroup> = { items: [], total: 0 };
 
-  constructor(private groupService: GroupService) { }
+  constructor(private readonly groupService: GroupService) { }
 
   async ngOnInit() {
     this.groups = await this.groupService.getGroups({ pageSize: 10 })

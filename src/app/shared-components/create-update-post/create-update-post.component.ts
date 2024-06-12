@@ -26,7 +26,7 @@ export class CreateUpdatePostComponent {
   constructor(private readonly postService: PostService) {
     this.visibilities = postService.getVisibilities().map(([key, value]) => ({ name: value, code: Number(key) }));
     this.selected = this.visibilities[0];
-    this.image = sessionStorage.getItem("image") ?? "";
+    this.image = localStorage.getItem("image") ?? "";
   }
 
   // TODO

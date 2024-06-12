@@ -1,16 +1,17 @@
 <div class="container flex last">
     <div>
         <social-page-title title="Profiles">
-            <span class="p-input-icon-left">
-                <i class="pi pi-search"></i>
+            <p-inputGroup>
                 <input pInputText
-                    [ngModel]="search"
-                    (change)="onSearch()"
+                    [(ngModel)]="pageRequest.search"
                     icon="pi pi-search"
-                    placeholder="Search profile..." />
-            </span>
+                    placeholder="Search profiles..." />
+                <button type="button" pButton icon="pi pi-search" (click)="requestPage()"></button>
+            </p-inputGroup>
         </social-page-title>
-        <p-dataView [value]="profiles.items" [layout]="layout">
+        <social-message severity="Info" *ngIf="loading">Getting profiles...</social-message>
+        <social-message severity="Warn" *ngIf="!loading && !page.items.length">There is no profiles!</social-message>
+        <p-dataView [value]="page.items" [layout]="layout" *ngIf="page.items.length">
             <ng-template pTemplate="header">
                 <p-dataViewLayoutOptions [slot]="layout"></p-dataViewLayoutOptions>
             </ng-template>

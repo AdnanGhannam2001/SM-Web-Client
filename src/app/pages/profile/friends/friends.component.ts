@@ -1,42 +1,33 @@
 import { Component } from '@angular/core';
-import { IPage } from '../../../interfaces/page.interface';
-import { IFriendship } from '../../../interfaces/profile.interface';
 import { ProfileService } from '../../../services/profile.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Pagination } from '../../../helpers/pagination';
+import { IFriendship } from '../../../interfaces/profile.interface';
 
 @Component({
   selector: 'socials-friends',
   templateUrl: './friends.component.html',
   styleUrl: './friends.component.scss'
 })
-export class FriendsComponent {
-  layout     : 'list' | 'grid' = "list";
-  friends    : IPage<IFriendship> = { items: [], total: 0 };
-  pageNumber: number = 0;
-  pageSize  : number = 20;
-  search    : string = "";
-  desc      : boolean = true;
+export class FriendsComponent extends Pagination<IFriendship> {
+  layout : 'list' | 'grid' = "list";
+  id     : string | null    = null;
 
   constructor(private readonly profileService: ProfileService,
-    private activatedRoute: ActivatedRoute) {}
+              private activatedRoute: ActivatedRoute)
+  {
+    super();
+  }
 
+  override async requestPage() {
+    this.page = this.id && this.id === 'profile'
+      ? await this.profileService.getFriends(this.pageRequest)
+      : await this.profileService.getProfileFriends(this.id!, this.pageRequest);
+  }
 
   async ngOnInit() {
-    const pageRequest =  {
-      pageNumber: this.pageNumber,
-      pageSize: this.pageSize,
-      search: this.search,
-      desc: this.desc,
-    };
-
-    this.activatedRoute.paramMap.subscribe(async (param) => {
-      const id = param.get('id');
-
-      const personalProfile = id === "profile";
-
-      this.friends = id && !personalProfile
-        ? await this.profileService.getProfileFriends(id, pageRequest)
-        : await this.profileService.getFriends(pageRequest);
+    this.activatedRoute.parent?.paramMap.subscribe(async (param) => {
+      this.id = param.get('id');
     });
   }
 }

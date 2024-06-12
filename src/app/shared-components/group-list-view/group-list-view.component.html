@@ -3,7 +3,7 @@
     size="big"
     [rounded]="false"
     [badgeColor]="color"
-    [badge]="group.visibility.toString()">
+    [badge]="visibility">
     <h3 [style]="{ 'font-weight': '500' }">{{ group.name }}</h3>
     <small class="group-list-view__desc" footer>
         {{ group.description }}
@@ -11,17 +11,19 @@
     </small>
 </social-item-showcase>
 
-<!-- TODO: Check this -->
-<!-- <p-avatarGroup>
-        <p-avatar
-            *ngFor="let member of group.members"
-            [image]="member.user"
-            shape="circle"
-        ></p-avatar>
-</p-avatarGroup> -->
-
-<p-button
-    label="Join Group"
-    styleClass="p-button-primary"
-    [style]="{ 'white-space': 'nowrap' }"
-></p-button>
+@if (group.members.length > 0)
+{
+  <p-button
+      label="Leave Group"
+      styleClass="p-button-primary"
+      [style]="{ 'white-space': 'nowrap' }"
+  ></p-button>
+}
+@else
+{
+  <p-button
+      label="Join Group"
+      styleClass="p-button-primary"
+      [style]="{ 'white-space': 'nowrap' }"
+  ></p-button>
+}

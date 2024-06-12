@@ -3,39 +3,37 @@ import { IPage, IPageRequest } from '../../../interfaces/page.interface';
 import { IPost } from '../../../interfaces/post.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../../../services/post.service';
+import { Pagination } from '../../../helpers/pagination';
 
 @Component({
   selector: 'social-posts',
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss',
 })
-export class PostsComponent {
-  posts: IPage<IPost> = { items: [], total: 0 };
+export class PostsComponent extends Pagination<IPost> {
   loading = true;
-  currentPage = 0;
-  end = false;
+  end     = false;
+  id : string | null = null;
 
   constructor(
     private postService: PostService,
-    private activatedRoute: ActivatedRoute
-  ) {}
-
-  ngOnInit() {
-    this.getPage();
+    private activatedRoute: ActivatedRoute)
+  {
+    super();
   }
 
-  getPage() {
+  ngOnInit() {
     this.activatedRoute.paramMap.subscribe(async (param) => {
-      const id = param.get('id');
+      this.id = param.get('id');
 
-      const personalProfile = id === 'profile';
+      await this.requestPage();
+    });
+  }
 
-      const pageRequest: IPageRequest = { pageNumber: this.currentPage };
-
-      const promise =
-        id && !personalProfile
-          ? this.postService.getProfilePosts(id, pageRequest)
-          : this.postService.getMyProfilePosts(pageRequest);
+  override async requestPage() {
+      const promise = this.id && this.id === 'profile'
+          ? this.postService.getMyProfilePosts(this.pageRequest)
+          : this.postService.getProfilePosts(this.id!, this.pageRequest);
 
       const postsPage = await promise;
 
@@ -44,9 +42,8 @@ export class PostsComponent {
         return;
       }
 
-      this.posts.items.push(...postsPage.items);
+      this.page.items.push(...postsPage.items);
       this.loading = false;
-      this.currentPage++;
-    });
+      (this.pageRequest.pageNumber!)++;
   }
 }

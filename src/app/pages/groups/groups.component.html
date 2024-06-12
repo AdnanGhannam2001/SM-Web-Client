@@ -1,27 +1,36 @@
 <div class="container flex last">
     <div>
         <social-page-title title="Groups">
-            <span class="p-input-icon-left">
-                <i class="pi pi-search"></i>
+            <p-inputGroup>
                 <input pInputText
-                    [ngModel]="search"
-                    (change)="onSearch()"
+                    [(ngModel)]="pageRequest.search"
                     icon="pi pi-search"
-                    placeholder="Search group..." />
-            </span>
+                    placeholder="Search groups..." />
+                <button type="button" pButton icon="pi pi-search" (click)="requestPage()"></button>
+            </p-inputGroup>
         </social-page-title>
         <social-tab-menu [items]="tabs"></social-tab-menu>
-        <p-dataView [value]="groups.items" [layout]="layout">
+        <social-message severity="Info" *ngIf="loading">Getting groups...</social-message>
+        <social-message severity="Warn" *ngIf="!loading && !page.items.length">There is no groups!</social-message>
+        <p-dataView [value]="page.items" [layout]="layout" *ngIf="page.items.length">
             <ng-template pTemplate="header">
                 <p-dataViewLayoutOptions [slot]="layout"></p-dataViewLayoutOptions>
             </ng-template>
-            <ng-template let-group pTemplate="listItem">
-                <social-group-list-view [group]="group"></social-group-list-view>
+            <ng-template let-groups pTemplate="listItem">
+                <social-group-list-view *ngFor="let group of groups" [group]="group"></social-group-list-view>
             </ng-template>
-            <ng-template let-group pTemplate="gridItem">
-                <social-group-grid-view [group]="group"></social-group-grid-view>
+            <ng-template let-groups pTemplate="gridItem">
+                <social-group-grid-view *ngFor="let group of groups" [group]="group"></social-group-grid-view>
             </ng-template>
         </p-dataView>
+        @if (page.items.length)
+        {
+          <p-paginator
+            (onPageChange)="onPageChange($event)"
+            [first]="pageRequest.pageNumber ?? 0"
+            [rows]="pageRequest.pageSize"
+            [totalRecords]="page.total" />
+        }
     </div>
     <div>
         <social-followed-box></social-followed-box>

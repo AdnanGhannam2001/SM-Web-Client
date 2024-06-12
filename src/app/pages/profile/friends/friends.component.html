@@ -1,4 +1,4 @@
-<p-dataView [value]="friends.items" [layout]="layout">
+<p-dataView [value]="page.items" [layout]="layout">
     <ng-template pTemplate="header">
         <p-dataViewLayoutOptions [slot]="layout"></p-dataViewLayoutOptions>
     </ng-template>
@@ -15,3 +15,11 @@
         ></social-profile-grid-view>
     </ng-template>
 </p-dataView>
+@if (page.items.length)
+{
+  <p-paginator
+    (onPageChange)="onPageChange($event)"
+    [first]="pageRequest.pageNumber ?? 0"
+    [rows]="pageRequest.pageSize"
+    [totalRecords]="page.total" />
+}

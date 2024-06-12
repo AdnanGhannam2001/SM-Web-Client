@@ -12,19 +12,23 @@ export class NavbarComponent {
   searching = false;
   loading = true;
 
+  loggedIn = false;
+  firstname;
+  image;
+
   userMenuItems: MenuItem[] = [
     {
       label: "Profile",
       icon: "pi pi-user",
-      url: "/profile"
+      url: "/profiles/profile"
     },
     {
       label: "Account",
       icon: "pi pi-id-card",
-      url: "/account"
+      url: "#"
     },
     {
-      label: "Timeline",
+      label: "Posts",
       icon: "pi pi-home",
       url: "/"
     },
@@ -36,7 +40,7 @@ export class NavbarComponent {
     {
       label: "Friends",
       icon: "pi pi-users",
-      url: "/friends"
+      url: "/profiles/profile/friends"
     },
     {
       label: "Settings",
@@ -53,7 +57,11 @@ export class NavbarComponent {
     }
   ];
 
-  constructor (private readonly sidebarService: SidebarService) { }
+  constructor (private readonly sidebarService: SidebarService) {
+    this.loggedIn = localStorage.getItem("id") != undefined;
+    this.firstname = localStorage.getItem("firstName") ?? "";
+    this.image = localStorage.getItem("image") ?? "";
+  }
 
   openSidebar() { this.sidebarService.toggle(); }
 

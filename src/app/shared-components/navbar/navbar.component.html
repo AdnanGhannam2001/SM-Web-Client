@@ -20,11 +20,14 @@
         <!-- TODO: Display notificaitons here -->
       </p-overlayPanel>
       <p-divider layout="vertical"></p-divider>
-      <button (click)="userMenu.toggle($event)" class="navbar__user-btn">
-        <span>John</span>
-        <p-avatar image="/assets/placeholders/user-1.png" shape="circle"></p-avatar>
-      </button>
-      <p-menu [style]="{ 'min-width': '250px' }" #userMenu [model]="userMenuItems" [popup]="true"></p-menu>
+      @if (loggedIn)
+      {
+        <button (click)="userMenu.toggle($event)" class="navbar__user-btn">
+          <span>{{ firstname }}</span>
+          <p-avatar [image]="image" shape="circle"></p-avatar>
+        </button>
+        <p-menu [style]="{ 'min-width': '250px' }" #userMenu [model]="userMenuItems" [popup]="true"></p-menu>
+      }
     </div>
   </div>
 </div>

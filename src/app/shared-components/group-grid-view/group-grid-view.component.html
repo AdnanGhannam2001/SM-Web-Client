@@ -12,22 +12,22 @@
           {{ group.name }}
       </a>
   </strong>
-  <small class="group-grid-view__type">{{ group.visibility }}</small>
+  <small class="group-grid-view__type">{{ visibility }}</small>
 
-  <!-- TODO: Check this -->
-  <!-- <div class="group-grid-view__bottom">
-      <p-avatarGroup>
-              <p-avatar
-                  *ngFor="let member of group.members"
-                  [image]="member.user"
-                  shape="circle"
-              ></p-avatar>
-      </p-avatarGroup>
-
-      <p-button
-          label="Join Group"
-          styleClass="p-button-primary"
-          [style]="{ 'white-space': 'nowrap' }"
-      ></p-button>
-  </div> -->
+  @if (group.members.length > 0)
+  {
+    <p-button
+        label="Leave Group"
+        styleClass="p-button-primary"
+        [style]="{ 'white-space': 'nowrap' }"
+    ></p-button>
+  }
+  @else
+  {
+    <p-button
+        label="Join Group"
+        styleClass="p-button-primary"
+        [style]="{ 'white-space': 'nowrap' }"
+    ></p-button>
+  }
 </div>

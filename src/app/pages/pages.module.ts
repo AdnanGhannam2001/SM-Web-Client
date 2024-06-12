@@ -7,7 +7,9 @@ import { DropdownModule } from "primeng/dropdown";
 import { CalendarModule } from "primeng/calendar";
 import { FileUploadModule } from "primeng/fileupload";
 import { TableModule } from "primeng/table";
+import { PaginatorModule } from "primeng/paginator";
 import { InputTextModule } from "primeng/inputtext";
+import { InputGroupModule } from "primeng/inputgroup";
 import { ProfileComponent } from './profile/profile.component';
 import { UiComponentsModule } from '../ui-components/ui-components.module';
 import { AppRoutingModule } from '../app-routing.module';
@@ -65,7 +67,9 @@ import { PrivacyComponent } from './settings/privacy/privacy.component';
     CalendarModule,
     FileUploadModule,
     TableModule,
-    InputTextModule
+    InputTextModule,
+    PaginatorModule,
+    InputGroupModule
   ]
 })
 export class PagesModule { }

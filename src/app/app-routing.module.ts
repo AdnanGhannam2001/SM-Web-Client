@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { InformationComponent } from './pages/profile/information/information.component';
 import { FriendsComponent } from './pages/profile/friends/friends.component';
-import { GroupsComponent, GroupsComponent as ProfileGroupsComponent } from './pages/profile/groups/groups.component';
+import { GroupsComponent as ProfileGroupsComponent } from './pages/profile/groups/groups.component';
 import { PostsComponent as ProfilePostsComponent } from './pages/profile/posts/posts.component';
 import { GroupComponent } from './pages/group/group.component';
 import { MembersComponent } from './pages/group/members/members.component';
@@ -17,6 +17,7 @@ import { BlockedListComponent } from './pages/settings/blocked-list/blocked-list
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PostsComponent } from './pages/posts/posts.component';
 import { ProfilesComponent } from './pages/profiles/profiles.component';
+import { GroupsComponent } from './pages/groups/groups.component';
 
 const routes: Routes = [
   {

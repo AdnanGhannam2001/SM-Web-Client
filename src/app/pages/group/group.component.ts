@@ -42,7 +42,7 @@ export class GroupComponent {
           }
         ];
       } catch (error) {
-        this.router.navigate(['/not-found']);
+        console.warn({ error });
       }
     });
   }
