@@ -2,18 +2,18 @@
     <ng-template pTemplate="header">
         <p-dataViewLayoutOptions [slot]="layout"></p-dataViewLayoutOptions>
     </ng-template>
-    <ng-template let-friendships pTemplate="listItem">
+    <ng-template let-following pTemplate="listItem">
         <social-profile-list-view
-          *ngFor="let friendship of friendships"
-          [profile]="friendship.friend"
-          [isFriend]="true"
+          *ngFor="let follow of following"
+          [profile]="follow.followed"
+          [isFollowed]="true"
         ></social-profile-list-view>
     </ng-template>
-    <ng-template let-friendships pTemplate="gridItem">
+    <ng-template let-following pTemplate="gridItem">
         <social-profile-grid-view
-          *ngFor="let friendship of friendships"
-          [profile]="friendship.friend"
-          [isFriend]="true"
+          *ngFor="let follow of following"
+          [profile]="follow.followed"
+          [isFollowed]="true"
         ></social-profile-grid-view>
     </ng-template>
 </p-dataView>

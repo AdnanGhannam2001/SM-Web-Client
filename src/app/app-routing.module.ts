@@ -18,6 +18,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PostsComponent } from './pages/posts/posts.component';
 import { ProfilesComponent } from './pages/profiles/profiles.component';
 import { GroupsComponent } from './pages/groups/groups.component';
+import { FollowingComponent } from './pages/profile/following/following.component';
+import { FollowedComponent } from './pages/profile/followed/followed.component';
 
 const routes: Routes = [
   {
@@ -36,6 +38,8 @@ const routes: Routes = [
       { path: 'info', component: InformationComponent },
       { path: 'friends', component: FriendsComponent },
       { path: 'groups', component: ProfileGroupsComponent },
+      { path: 'following', component: FollowingComponent },
+      { path: 'followed', component: FollowedComponent },
     ],
   },
   {

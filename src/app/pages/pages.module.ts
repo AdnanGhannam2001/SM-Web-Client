@@ -31,6 +31,8 @@ import { ImageComponent } from './settings/image/image.component';
 import { CoverImageComponent } from './settings/cover-image/cover-image.component';
 import { BlockedListComponent } from './settings/blocked-list/blocked-list.component';
 import { PrivacyComponent } from './settings/privacy/privacy.component';
+import { FollowingComponent } from './profile/following/following.component';
+import { FollowedComponent } from './profile/followed/followed.component';
 
 
 
@@ -52,7 +54,9 @@ import { PrivacyComponent } from './settings/privacy/privacy.component';
     ImageComponent,
     CoverImageComponent,
     BlockedListComponent,
-    PrivacyComponent
+    PrivacyComponent,
+    FollowingComponent,
+    FollowedComponent
   ],
   imports: [
     CommonModule,

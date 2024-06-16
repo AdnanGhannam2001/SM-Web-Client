@@ -9,6 +9,15 @@ import { MenuItem } from 'primeng/api';
 })
 export class ProfileListViewComponent {
   @Input() profile!: IProfile;
+  @Input() isFriend = false;
+  @Input() isFollowed = false;
+
+  constructor() { }
+
+  ngOnInit() {
+    this.isFriend = this.isFriend ?? this.profile.friends.length > 0;
+    this.isFollowed = this.isFollowed ?? this.profile.followedBy.length > 0;
+  }
 
   items: MenuItem[] = [
     {

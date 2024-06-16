@@ -51,8 +51,8 @@ export class ProfileService {
     return lastValueFrom(this.http.get<IPage<IFollow>>(`${APIS_MAIN}/profiles/followed`, { withCredentials: true, params: { ...pageRequest } }));
   }
 
-  getFollowing(pageRequest: IPageRequest): Promise<IPage<IFollow>> {
-    return lastValueFrom(this.http.get<IPage<IFollow>>(`${APIS_MAIN}/profiles/following`, { withCredentials: true, params: { ...pageRequest } }));
+  getFollowing(id: string, pageRequest: IPageRequest): Promise<IPage<IFollow>> {
+    return lastValueFrom(this.http.get<IPage<IFollow>>(`${APIS_MAIN}/profiles/${id}/following`, { withCredentials: true, params: { ...pageRequest } }));
   }
 
   follow(id: string): Promise<IFollow> {

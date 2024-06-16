@@ -9,6 +9,15 @@ import { IProfile } from '../../interfaces/profile.interface';
 })
 export class ProfileGridViewComponent {
   @Input() profile!: IProfile;
+  @Input() isFriend = false;
+  @Input() isFollowed = false;
+
+  constructor() { }
+
+  ngOnInit() {
+    this.isFriend = this.isFriend ?? this.profile.friends.length > 0;
+    this.isFollowed = this.isFollowed ?? this.profile.followedBy.length > 0;
+  }
 
   items: MenuItem[] = [
     {

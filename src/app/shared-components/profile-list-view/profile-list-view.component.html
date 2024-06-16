@@ -15,14 +15,16 @@
 
 <div class="profile-list-view__column">
     <p-button
-        icon="pi pi-heart"
+        [icon]="isFollowed ? 'pi pi-heart-fill' : 'pi pi-heart'"
         styleClass="p-button-rounded p-button-text"
-        pTooltip="Follow" tooltipPosition="bottom"
+        [pTooltip]="isFollowed ? 'Following' : 'Follow'"
+        tooltipPosition="bottom"
     ></p-button>
     <p-button
-        icon="pi pi-user-plus"
+        [icon]="isFriend ? 'pi pi-users' : 'pi pi-user-plus'"
         styleClass="p-button-rounded p-button-text"
-        pTooltip="Send a Friend Request" tooltipPosition="bottom"
+        [pTooltip]="isFriend ? 'Friend' : 'Send a Friend Request'"
+        tooltipPosition="bottom"
     ></p-button>
 </div>
 

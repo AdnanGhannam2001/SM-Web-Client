@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
+import { Pagination } from '../../../helpers/pagination';
+import { IFollow } from '../../../interfaces/profile.interface';
 import { ProfileService } from '../../../services/profile.service';
 import { ActivatedRoute } from '@angular/router';
-import { Pagination } from '../../../helpers/pagination';
-import { IFriendship } from '../../../interfaces/profile.interface';
 
 @Component({
-  selector: 'socials-friends',
-  templateUrl: './friends.component.html',
-  styleUrl: './friends.component.scss'
+  selector: 'social-following',
+  templateUrl: './following.component.html',
+  styleUrl: './following.component.scss'
 })
-export class FriendsComponent extends Pagination<IFriendship> {
+export class FollowingComponent extends Pagination<IFollow> {
   layout : 'list' | 'grid' = "list";
   id     : string | null    = null;
 
@@ -20,9 +20,8 @@ export class FriendsComponent extends Pagination<IFriendship> {
   }
 
   override async requestPage() {
-    this.page = this.id && this.id === 'profile'
-      ? await this.profileService.getFriends(this.pageRequest)
-      : await this.profileService.getProfileFriends(this.id!, this.pageRequest);
+    const id = this.id !== "profile" ? this.id : localStorage.getItem("id");
+    this.page = await this.profileService.getFollowing(id!, this.pageRequest);
   }
 
   async ngOnInit() {

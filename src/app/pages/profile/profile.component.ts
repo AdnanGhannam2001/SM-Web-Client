@@ -34,13 +34,6 @@ export class ProfileComponent {
       try {
         this.profile = await promise;
 
-        if (personalProfile) {
-          localStorage.setItem("id", this.profile.id);
-          localStorage.setItem("firstName", this.profile.firstName);
-          localStorage.setItem("lastName", this.profile.lastName!);
-          localStorage.setItem("image", this.profile.image ?? "");
-        }
-
         const url = `/profiles/${id}/`;
 
         this.tabs = [
@@ -55,14 +48,24 @@ export class ProfileComponent {
           {
             url: url + 'friends',
             text: 'Friends',
-            // badge: this.profile.friends?.length + '',
           },
           {
             url: url + 'groups',
             text: 'Groups',
-            // badge: this.profile.memberOf?.length + '',
+          },
+          {
+            url: url + 'following',
+            text: 'Following',
           },
         ];
+
+        if (personalProfile) {
+          localStorage.setItem("id", this.profile.id);
+          localStorage.setItem("firstName", this.profile.firstName);
+          localStorage.setItem("lastName", this.profile.lastName!);
+          localStorage.setItem("image", this.profile.image ?? "");
+          this.tabs.push({ url: url + 'followed', text: "Followed" });
+        }
       } catch (error: any) {
         if (error.url?.startsWith(LOGIN_REDIRECT_URI)) window.location.href = error.url;
         this.router.navigate(['/not-found']);
