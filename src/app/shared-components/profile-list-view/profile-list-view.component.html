@@ -19,12 +19,14 @@
         styleClass="p-button-rounded p-button-text"
         [pTooltip]="isFollowed ? 'Following' : 'Follow'"
         tooltipPosition="bottom"
+        (onClick)="followBtnClicked()"
     ></p-button>
     <p-button
         [icon]="isFriend ? 'pi pi-users' : 'pi pi-user-plus'"
         styleClass="p-button-rounded p-button-text"
         [pTooltip]="isFriend ? 'Friend' : 'Send a Friend Request'"
         tooltipPosition="bottom"
+        (onClick)="friendBtnClicked()"
     ></p-button>
 </div>
 
@@ -42,3 +44,5 @@
     class="p-button-text p-button-rounded"
 ></button>
 <p-menu #menu [model]="items" [popup]="true" appendTo="body"></p-menu>
+
+<p-toast />

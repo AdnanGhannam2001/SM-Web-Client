@@ -14,6 +14,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { BadgeModule } from 'primeng/badge';
 import { FileUploadModule } from 'primeng/fileupload';
 import { DialogModule } from 'primeng/dialog';
+import { ToastModule } from 'primeng/toast';
 import { DropdownModule } from 'primeng/dropdown';
 import { FollowedBoxComponent } from './followed-box/followed-box.component';
 import { SideboxComponent } from './sidebox/sidebox.component';
@@ -34,6 +35,7 @@ import { PageTitleComponent } from './page-title/page-title.component';
 import { GroupHeaderComponent } from './group-header/group-header.component';
 import { CreateUpdatePostComponent } from './create-update-post/create-update-post.component';
 import { CommentsComponent } from './comments/comments.component';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,8 @@ import { CommentsComponent } from './comments/comments.component';
     BadgeModule,
     FileUploadModule,
     DialogModule,
-    DropdownModule
+    DropdownModule,
+    ToastModule
   ],
   exports: [
     ProfileHeaderComponent,
@@ -93,5 +96,6 @@ import { CommentsComponent } from './comments/comments.component';
     GroupHeaderComponent,
     CreateUpdatePostComponent
   ],
+  providers: [MessageService]
 })
 export class SharedComponentsModule { }

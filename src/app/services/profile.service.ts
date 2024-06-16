@@ -76,11 +76,11 @@ export class ProfileService {
   }
 
   cancelRequest(id: string): Promise<IFriendshipRequest> {
-    return lastValueFrom(this.http.delete<IFriendshipRequest>(`${APIS_MAIN}/profile/${id}/request`, { withCredentials: true }));
+    return lastValueFrom(this.http.delete<IFriendshipRequest>(`${APIS_MAIN}/profiles/${id}/request`, { withCredentials: true }));
   }
 
   respond(id: string, accept: boolean): Promise<{}> {
-    return lastValueFrom(this.http.delete<{}>(`${APIS_MAIN}/profile/${id}/respond`, { withCredentials: true, params: { accept } }));
+    return lastValueFrom(this.http.delete<{}>(`${APIS_MAIN}/profiles/${id}/respond`, { withCredentials: true, params: { accept } }));
   }
 
   getFriends(pageRequest: IPageRequest): Promise<IPage<IFriendship>> {
