@@ -1,0 +1,18 @@
+@use "../../../utilities/mixin.scss";
+
+:host {
+    border: 1px solid var(--clr-border);
+    border-radius: var(--br-b);
+    background-color: var(--bg-blocked-members);
+
+    .requests {
+        &__item {
+            @include mixin.flex(space-between);
+            padding: 1em;
+
+            &:not(:last-child) {
+                border-bottom: 1px solid var(--clr-border);
+            }
+        }
+    }
+}

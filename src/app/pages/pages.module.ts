@@ -10,6 +10,7 @@ import { TableModule } from "primeng/table";
 import { PaginatorModule } from "primeng/paginator";
 import { InputTextModule } from "primeng/inputtext";
 import { InputGroupModule } from "primeng/inputgroup";
+import { ButtonGroupModule } from "primeng/buttongroup";
 import { ToastModule } from "primeng/toast";
 import { ProfileComponent } from './profile/profile.component';
 import { UiComponentsModule } from '../ui-components/ui-components.module';
@@ -34,8 +35,8 @@ import { BlockedListComponent } from './settings/blocked-list/blocked-list.compo
 import { PrivacyComponent } from './settings/privacy/privacy.component';
 import { FollowingComponent } from './profile/following/following.component';
 import { FollowedComponent } from './profile/followed/followed.component';
-
-
+import { SentFriendshipRequestsComponent } from './settings/sent-friendship-requests/sent-friendship-requests.component';
+import { ReceivedFriendshipRequestsComponent } from './settings/received-friendship-requests/received-friendship-requests.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,9 @@ import { FollowedComponent } from './profile/followed/followed.component';
     BlockedListComponent,
     PrivacyComponent,
     FollowingComponent,
-    FollowedComponent
+    FollowedComponent,
+    SentFriendshipRequestsComponent,
+    ReceivedFriendshipRequestsComponent,
   ],
   imports: [
     CommonModule,
@@ -75,7 +78,8 @@ import { FollowedComponent } from './profile/followed/followed.component';
     InputTextModule,
     PaginatorModule,
     InputGroupModule,
-    ToastModule
-  ]
+    ToastModule,
+    ButtonGroupModule,
+  ],
 })
-export class PagesModule { }
+export class PagesModule {}

@@ -80,7 +80,7 @@ export class ProfileService {
   }
 
   respond(id: string, accept: boolean): Promise<{}> {
-    return lastValueFrom(this.http.delete<{}>(`${APIS_MAIN}/profiles/${id}/respond`, { withCredentials: true, params: { accept } }));
+    return lastValueFrom(this.http.post<{}>(`${APIS_MAIN}/profiles/${id}/respond`, {}, { withCredentials: true, params: { accept } }));
   }
 
   getFriends(pageRequest: IPageRequest): Promise<IPage<IFriendship>> {

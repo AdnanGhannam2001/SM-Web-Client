@@ -20,6 +20,8 @@ import { ProfilesComponent } from './pages/profiles/profiles.component';
 import { GroupsComponent } from './pages/groups/groups.component';
 import { FollowingComponent } from './pages/profile/following/following.component';
 import { FollowedComponent } from './pages/profile/followed/followed.component';
+import { SentFriendshipRequestsComponent } from './pages/settings/sent-friendship-requests/sent-friendship-requests.component';
+import { ReceivedFriendshipRequestsComponent } from './pages/settings/received-friendship-requests/received-friendship-requests.component';
 
 const routes: Routes = [
   {
@@ -51,6 +53,8 @@ const routes: Routes = [
       { path: 'image', component: ImageComponent },
       { path: 'cover-image', component: CoverImageComponent },
       { path: 'blocked', component: BlockedListComponent },
+      { path: 'sent-friendship-requests', component: SentFriendshipRequestsComponent },
+      { path: 'recevied-friendship-requests', component: ReceivedFriendshipRequestsComponent },
     ],
   },
   { path: 'groups', component: GroupsComponent },
