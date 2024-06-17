@@ -10,6 +10,7 @@ import { TableModule } from "primeng/table";
 import { PaginatorModule } from "primeng/paginator";
 import { InputTextModule } from "primeng/inputtext";
 import { InputGroupModule } from "primeng/inputgroup";
+import { ToastModule } from "primeng/toast";
 import { ProfileComponent } from './profile/profile.component';
 import { UiComponentsModule } from '../ui-components/ui-components.module';
 import { AppRoutingModule } from '../app-routing.module';
@@ -73,7 +74,8 @@ import { FollowedComponent } from './profile/followed/followed.component';
     TableModule,
     InputTextModule,
     PaginatorModule,
-    InputGroupModule
+    InputGroupModule,
+    ToastModule
   ]
 })
 export class PagesModule { }

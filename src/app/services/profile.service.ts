@@ -40,7 +40,7 @@ export class ProfileService {
   }
 
   block(id: string, reason?: string): Promise<IBlock> {
-    return lastValueFrom(this.http.post<IBlock>(`${APIS_MAIN}/profiles/${id}/block`, reason, { withCredentials: true }));
+    return lastValueFrom(this.http.post<IBlock>(`${APIS_MAIN}/profiles/${id}/block`, { reason }, { withCredentials: true }));
   }
 
   unblock(id: string): Promise<IBlock> {

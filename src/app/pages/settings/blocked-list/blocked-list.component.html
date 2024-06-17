@@ -1,4 +1,4 @@
-<div *ngFor="let blocked of blocked.items" class="blocked-members__item">
+<div *ngFor="let blocked of page.items" class="blocked-members__item">
     <social-item-showcase
         class="profile-list-view__userbox"
         [image]="blocked.blocked?.image"
@@ -7,8 +7,19 @@
         [rounded]="true"
         [badge]="blocked.blocked?.jobInformations?.jobTitle"
     ></social-item-showcase>
-    <button pButton
+    <p-button
         type="button"
         label="Unblock"
-    ></button>
+        (onClick)="unblock(blocked.blockedId)"
+    ></p-button>
 </div>
+@if (page.items.length)
+{
+  <p-paginator
+    (onPageChange)="onPageChange($event)"
+    [first]="pageRequest.pageNumber ?? 0"
+    [rows]="pageRequest.pageSize"
+    [totalRecords]="page.total" />
+}
+
+<p-toast />

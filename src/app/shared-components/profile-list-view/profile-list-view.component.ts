@@ -6,34 +6,45 @@ import { ProfileService } from '../../services/profile.service';
 @Component({
   selector: 'social-profile-list-view[profile]',
   templateUrl: './profile-list-view.component.html',
-  styleUrl: './profile-list-view.component.scss'
+  styleUrl: './profile-list-view.component.scss',
 })
 export class ProfileListViewComponent {
   @Input() profile!: IProfile;
   @Input() isFriend = false;
   @Input() isFollowed = false;
-  // TODO fix this in the BE
   @Input() isPending = false;
+  isBlocked = false;
 
   items: MenuItem[] = [
     {
-      label: "Block",
-      icon: "pi pi-flag",
-      command: () => { }
-    },
-    {
-      label: "Report",
-      icon: "pi pi-exclamation-circle",
-      command: () => { }
+      label: this.isBlocked ? 'Unblock' : 'Block',
+      icon: 'pi pi-flag',
+      command: async () => await this.block(),
     }
   ];
 
-  constructor(private readonly messageService: MessageService, private readonly profileService: ProfileService) { }
+  constructor(
+    private readonly messageService: MessageService,
+    private readonly profileService: ProfileService
+  ) {}
 
   ngOnInit() {
-    this.isFriend = this.isFriend ?? this.profile.friends.length > 0;
-    this.isFollowed = this.isFollowed ?? this.profile.followedBy.length > 0;
-    this.isPending = this.isPending ?? this.profile.sentRequests.length > 0;
+    this.isFriend = this.isFriend || this.profile.friends.length > 0;
+    this.isFollowed = this.isFollowed || this.profile.followedBy.length > 0;
+    this.isPending =
+      this.isPending ||
+      this.profile.sentRequests.length > 0 ||
+      this.profile.receivedRequests.length > 0;
+  }
+
+  async block() {
+    if (!this.isBlocked) {
+      await this.profileService.block(this.profile.id);
+    } else {
+      await this.profileService.unblock(this.profile.id);
+    }
+
+    this.isBlocked = !this.isBlocked;
   }
 
   async followBtnClicked() {
@@ -60,16 +71,16 @@ export class ProfileListViewComponent {
 
       this.messageService.add({
         severity: 'success',
-        summary: "Success",
-        detail: "Sent a friendship request"
+        summary: 'Success',
+        detail: 'Sent a friendship request',
       });
 
       this.isPending = true;
     } catch (error) {
       this.messageService.add({
         severity: 'danger',
-        summary: "Failed",
-        detail: "Couldn't send a request"
+        summary: 'Failed',
+        detail: "Couldn't send a request",
       });
     }
   }
@@ -80,16 +91,16 @@ export class ProfileListViewComponent {
 
       this.messageService.add({
         severity: 'success',
-        summary: "Success",
-        detail: "Friendship request cancelled"
+        summary: 'Success',
+        detail: 'Friendship request cancelled',
       });
 
       this.isPending = false;
     } catch (error) {
       this.messageService.add({
         severity: 'danger',
-        summary: "Failed",
-        detail: "Couldn't cancel the request"
+        summary: 'Failed',
+        detail: "Couldn't cancel the request",
       });
     }
   }
@@ -100,8 +111,8 @@ export class ProfileListViewComponent {
 
       this.messageService.add({
         severity: 'success',
-        summary: "Success",
-        detail: "Friendship cancelled"
+        summary: 'Success',
+        detail: 'Friendship cancelled',
       });
 
       this.isPending = false;
@@ -109,8 +120,8 @@ export class ProfileListViewComponent {
     } catch (error) {
       this.messageService.add({
         severity: 'danger',
-        summary: "Failed",
-        detail: "Couldn't cancel friendship"
+        summary: 'Failed',
+        detail: "Couldn't cancel friendship",
       });
     }
   }
@@ -121,16 +132,16 @@ export class ProfileListViewComponent {
 
       this.messageService.add({
         severity: 'success',
-        summary: "Success",
-        detail: "Start following user"
+        summary: 'Success',
+        detail: 'Start following user',
       });
 
       this.isFollowed = true;
     } catch (error) {
       this.messageService.add({
         severity: 'danger',
-        summary: "Failed",
-        detail: "Couldn't follow user"
+        summary: 'Failed',
+        detail: "Couldn't follow user",
       });
     }
   }
@@ -141,16 +152,16 @@ export class ProfileListViewComponent {
 
       this.messageService.add({
         severity: 'success',
-        summary: "Success",
-        detail: "Unfollowed user"
+        summary: 'Success',
+        detail: 'Unfollowed user',
       });
 
       this.isFollowed = false;
     } catch (error) {
       this.messageService.add({
         severity: 'danger',
-        summary: "Failed",
-        detail: "Couldn't unfollow user"
+        summary: 'Failed',
+        detail: "Couldn't unfollow user",
       });
     }
   }
