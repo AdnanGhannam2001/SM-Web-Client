@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { Component, Input, input } from '@angular/core';
+import { MenuItem, MessageService } from 'primeng/api';
 import { IPost } from '../../interfaces/post.interface';
 import { PostService } from '../../services/post.service';
 
@@ -10,6 +10,10 @@ import { PostService } from '../../services/post.service';
 })
 export class PostComponent {
   @Input() post!: IPost;
+  @Input() hidable = false;
+  @Input() updatable = false;
+  @Input() deletable = false;
+  @Input() hidden = false;
 
   commentsCount = -1;
   currentCommentsPage = -1;
@@ -29,7 +33,37 @@ export class PostComponent {
   comment = "";
   sendingComment = false;
 
-  constructor(private readonly postService: PostService) { }
+  items: MenuItem[] = [];
+
+  constructor(private readonly postService: PostService,
+              private readonly messageService: MessageService
+  ) { }
+
+  ngOnInit() {
+    if (this.hidable) {
+      this.items.push({
+        label: 'Hide',
+        icon: 'pi pi-eye-slash',
+        command: async () => await this.hide()
+      });
+    }
+
+    if (this.updatable) {
+      this.items.push({
+        label: 'Edit',
+        icon: 'pi pi-pencil',
+        command: async () => await this.update()
+      });
+    }
+
+    if (this.deletable) {
+      this.items.push({
+        label: "Delete",
+        icon: "pi pi-trash",
+        command: async () => await this.delete()
+      });
+    }
+  }
 
   async getCommentsPage() {
     const page = await this.postService.getComments(this.post.id, { pageSize: 5, pageNumber: this.currentCommentsPage });
@@ -44,19 +78,6 @@ export class PostComponent {
     this.currentCommentsPage++;
   }
 
-  items: MenuItem[] = [
-    {
-      label: "Edit",
-      icon: "pi pi-pencil",
-      url: "#"
-    },
-    {
-      label: "Delete",
-      icon: "pi pi-trash",
-      url: "#"
-    }
-  ];
-
   get createdAtUtc() {
     return (new Date(this.post.createdAtUtc)).toLocaleDateString();
   }
@@ -66,5 +87,34 @@ export class PostComponent {
     const comment = await this.postService.createComment(this.post.id, this.comment);
     this.post.comments.unshift(comment);
     this.sendingComment = false;
+  }
+
+  async hide() {
+    await this.postService.hide(this.post.id);
+    this.hidden = true;
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Post is hidden',
+    });
+  }
+
+  async update() {
+    // await this.postService.updatePost(this.post.id, this.post);
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Post is updated',
+    });
+  }
+
+  async delete() {
+    await this.postService.deletePost(this.post.id);
+    this.hidden = true;
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Post is deleted',
+    });
   }
 }

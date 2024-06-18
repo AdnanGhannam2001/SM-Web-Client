@@ -9,12 +9,7 @@ import { GroupService } from '../../services/group.service';
 })
 export class GroupHeaderComponent {
   @Input() group!: IGroup;
-  visibility?: any;
+  get visibility() { return this.groupService.getVisibilities().find(x => Number(x[0]) == this.group.visibility)?.[1]; }
 
-  constructor(private readonly groupService: GroupService) {
-  }
-
-  ngOnInit() {
-    this.visibility = this.groupService.getVisibilities().find(x => Number(x[0]) == this.group.visibility)?.[1];
-  }
+  constructor(private readonly groupService: GroupService) { }
 }

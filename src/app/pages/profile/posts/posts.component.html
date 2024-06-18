@@ -1,2 +1,8 @@
 <social-posts-view [posts]="page" [loading]="loading"></social-posts-view>
-<p-button label="Load more" (onClick)="requestPage()" *ngIf="!end"></p-button>
+<p-button
+  styleClass="btn-load-more"
+  label="Load more"
+  [text]="true"
+  (onClick)="requestPage()"
+  *ngIf="!end"
+></p-button>

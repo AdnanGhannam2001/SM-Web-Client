@@ -22,6 +22,7 @@ import { GroupsComponent } from './groups/groups.component';
 import { InformationComponent } from './profile/information/information.component';
 import { InformationComponent as SettingsInformationComponent } from './settings/information/information.component';
 import { PostsComponent as ProfilePostsComponent } from './profile/posts/posts.component';
+import { PostsComponent as GroupPostsComponent } from './group/posts/posts.component';
 import { PostsComponent } from './posts/posts.component';
 import { FormsModule } from '@angular/forms';
 import { ProfilesComponent } from './profiles/profiles.component';
@@ -45,6 +46,7 @@ import { ReceivedFriendshipRequestsComponent } from './settings/received-friends
     ProfileGroupsComponent,
     InformationComponent,
     ProfilePostsComponent,
+    GroupPostsComponent,
     PostsComponent,
     GroupsComponent,
     ProfilesComponent,

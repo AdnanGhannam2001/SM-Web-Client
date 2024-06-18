@@ -1,69 +1,74 @@
-<div class="post__top">
-    <social-item-showcase
-        [image]="post.profile.image"
-        [url]="'/users/' + post.profile.id"
-        [description]="createdAtUtc"
-        [rounded]="true">
-        <a [routerLink]="'/users/' + post.profile.id" class="social-link">
-            {{ post.profile.firstName }} {{ post.profile.lastName }}
-        </a>
-        <div toolbar>
-            <button pButton
-                type="button"
-                (click)="menu.toggle($event)"
-                icon="pi pi-ellipsis-h"
-                class="p-button-text p-button-rounded"
-            ></button>
-            <p-menu #menu [model]="items" [popup]="true" appendTo="body"></p-menu>
-        </div>
-    </social-item-showcase>
+@if(!hidden)
+{
+  <div class="post__top">
+      <social-item-showcase
+          [image]="post.profile.image"
+          [url]="'/users/' + post.profile.id"
+          [description]="createdAtUtc"
+          [rounded]="true">
+          <a [routerLink]="'/users/' + post.profile.id" class="social-link">
+              {{ post.profile.firstName }} {{ post.profile.lastName }}
+          </a>
+          <div toolbar *ngIf="items.length">
+              <button pButton
+                  type="button"
+                  (click)="menu.toggle($event)"
+                  icon="pi pi-ellipsis-h"
+                  class="p-button-text p-button-rounded"
+              ></button>
+              <p-menu #menu [model]="items" [popup]="true" appendTo="body"></p-menu>
+          </div>
+      </social-item-showcase>
 
-    <p>{{ post.content }}</p>
+      <p>{{ post.content }}</p>
 
-    <div class="post__actions">
-        <p-button label="Like"
-            icon="pi pi-thumbs-up"
-            styleClass="p-button-text"
-        ></p-button>
-        <p-button [label]="'Comments ' + (commentsCount != -1 ? '(' + commentsCount + ')' : '')"
-            icon="pi pi-comment"
-            styleClass="p-button-success p-button-text"
-            (onClick)="opened = !opened"
-        ></p-button>
-    </div>
-</div>
+      <div class="post__actions">
+          <p-button label="Like"
+              icon="pi pi-thumbs-up"
+              styleClass="p-button-text"
+          ></p-button>
+          <p-button [label]="'Comments ' + (commentsCount != -1 ? '(' + commentsCount + ')' : '')"
+              icon="pi pi-comment"
+              styleClass="p-button-success p-button-text"
+              (onClick)="opened = !opened"
+          ></p-button>
+      </div>
+  </div>
 
-<div class="post__bottom" *ngIf="post.comments.length || opened">
-    <form *ngIf="opened" class="post__add-comment" (ngSubmit)="addComment()">
-        <div class="post__add-comment__top">
-          <!-- TODO Use profile image -->
-            <p-avatar
-                image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png"
-                shape="circle"
-            ></p-avatar>
-            <input pInputText
-                type="text"
-                name="comment"
-                placeholder="Write you comment here..."
-                [(ngModel)]="comment"
-                style="flex: 1" />
-        </div>
-        <p-button
-            label="Post"
-            styleClass="p-button-text"
-            [disabled]="!comment"
-            [loading]="sendingComment"
-            type="submit"
-        ></p-button>
-        <p-button
-            (onClick)="opened = false; comment = ''"
-            label="Cencel"
-            styleClass="p-button-text p-button-danger"
-        ></p-button>
-    </form>
+  <div class="post__bottom" *ngIf="post.comments.length || opened">
+      <form *ngIf="opened" class="post__add-comment" (ngSubmit)="addComment()">
+          <div class="post__add-comment__top">
+            <!-- TODO Use profile image -->
+              <p-avatar
+                  image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png"
+                  shape="circle"
+              ></p-avatar>
+              <input pInputText
+                  type="text"
+                  name="comment"
+                  placeholder="Write you comment here..."
+                  [(ngModel)]="comment"
+                  style="flex: 1" />
+          </div>
+          <p-button
+              label="Post"
+              styleClass="p-button-text"
+              [disabled]="!comment"
+              [loading]="sendingComment"
+              type="submit"
+          ></p-button>
+          <p-button
+              (onClick)="opened = false; comment = ''"
+              label="Cencel"
+              styleClass="p-button-text p-button-danger"
+          ></p-button>
+      </form>
 
-    <p-divider *ngIf="post.comments.length && opened"></p-divider>
+      <p-divider *ngIf="post.comments.length && opened"></p-divider>
 
-    <social-comments [comments]="post.comments"></social-comments>
-    <p-button label="Load more" (onClick)="getCommentsPage()" *ngIf="!end"></p-button>
-</div>
+      <social-comments [comments]="post.comments"></social-comments>
+      <p-button label="Load more" (onClick)="getCommentsPage()" *ngIf="!end"></p-button>
+  </div>
+}
+
+<p-toast />

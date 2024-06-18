@@ -4,6 +4,7 @@ import { GroupVisibilities, IDiscussion, IGroup, IGroupSettings, IInvite, IJoinR
 import { lastValueFrom } from 'rxjs';
 import { APIS_MAIN } from '../constants/apis';
 import { IPage, IPageRequest } from '../interfaces/page.interface';
+import { IPost } from '../interfaces/post.interface';
 
 @Injectable()
 export class GroupService {
@@ -32,6 +33,10 @@ export class GroupService {
 
   updateGroupSettings(id: string, settings: IGroupSettings): Promise<IGroupSettings> {
     return lastValueFrom(this.http.patch<IGroupSettings>(`${APIS_MAIN}/groups/${id}/settings`, settings, { withCredentials: true }));
+  }
+
+  getGroupPosts(id: string, pageRequest: IPageRequest) : Promise<IPage<IPost>> {
+    return lastValueFrom(this.http.get<IPage<IPost>>(`${APIS_MAIN}/groups/${id}/posts`, { withCredentials: true, params: { ...pageRequest } }));
   }
 
   getMembers(id: string, pageRequest: IPageRequest): Promise<IPage<IMember>> {
