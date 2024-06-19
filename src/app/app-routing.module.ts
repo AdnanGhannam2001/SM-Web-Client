@@ -17,6 +17,8 @@ import { BlockedListComponent } from './pages/settings/blocked-list/blocked-list
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PostsComponent } from './pages/posts/posts.component';
 import { FollowedComponent as  FollowedPostsComponent } from './pages/posts/followed/followed.component';
+import { FriendsComponent as  FriendsPostsComponent } from './pages/posts/friends/friends.component';
+import { HiddenComponent as HiddenPostsComponent } from './pages/posts/hidden/hidden.component';
 import { ProfilesComponent } from './pages/profiles/profiles.component';
 import { GroupsComponent } from './pages/groups/groups.component';
 import { FollowingComponent } from './pages/profile/following/following.component';
@@ -29,7 +31,9 @@ const routes: Routes = [
     path: "",
     component: PostsComponent,
     children: [
-      { path: "", component: FollowedPostsComponent }
+      { path: "", component: FollowedPostsComponent },
+      { path: "friends-posts", component: FriendsPostsComponent },
+      { path: "hidden-posts", component: HiddenPostsComponent }
     ]
   },
   {

@@ -25,6 +25,7 @@ import { PostsComponent as ProfilePostsComponent } from './profile/posts/posts.c
 import { PostsComponent as GroupPostsComponent } from './group/posts/posts.component';
 import { PostsComponent } from './posts/posts.component';
 import { FollowedComponent as  FollowedPostsComponent } from './posts/followed/followed.component';
+import { FriendsComponent as  FriendsPostsComponent } from './posts/friends/friends.component';
 import { FormsModule } from '@angular/forms';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { GroupComponent } from './group/group.component';
@@ -39,6 +40,8 @@ import { FollowingComponent } from './profile/following/following.component';
 import { FollowedComponent } from './profile/followed/followed.component';
 import { SentFriendshipRequestsComponent } from './settings/sent-friendship-requests/sent-friendship-requests.component';
 import { ReceivedFriendshipRequestsComponent } from './settings/received-friendship-requests/received-friendship-requests.component';
+import { HiddenComponent } from './posts/hidden/hidden.component';
+import { FavoritesComponent } from './posts/favorites/favorites.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +68,9 @@ import { ReceivedFriendshipRequestsComponent } from './settings/received-friends
     SentFriendshipRequestsComponent,
     ReceivedFriendshipRequestsComponent,
     FollowedPostsComponent,
+    FriendsPostsComponent,
+    HiddenComponent,
+    FavoritesComponent
   ],
   imports: [
     CommonModule,

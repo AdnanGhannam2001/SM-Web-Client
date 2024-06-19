@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
+import { LOGIN_REDIRECT_URI } from '../../../constants/apis';
 import { Pagination } from '../../../helpers/pagination';
 import { IPost } from '../../../interfaces/post.interface';
 import { PostService } from '../../../services/post.service';
-import { LOGIN_REDIRECT_URI } from '../../../constants/apis';
 
 @Component({
-  selector: 'app-followed',
-  templateUrl: './followed.component.html',
-  styleUrl: './followed.component.scss'
+  selector: 'app-favorites',
+  templateUrl: './favorites.component.html',
+  styleUrl: './favorites.component.scss'
 })
-export class FollowedComponent extends Pagination<IPost> {
+export class FavoritesComponent extends Pagination<IPost> {
   loading = true;
   end = false;
 
@@ -21,7 +21,7 @@ export class FollowedComponent extends Pagination<IPost> {
 
   override async requestPage() {
     try {
-      const postPage = await this.postService.getFollowedPosts(this.pageRequest);
+      const postPage = await this.postService.getFavoritePosts(this.pageRequest);
       this.loading = false;
 
       if (postPage.items.length == 0) {
@@ -36,3 +36,4 @@ export class FollowedComponent extends Pagination<IPost> {
     }
   }
 }
+

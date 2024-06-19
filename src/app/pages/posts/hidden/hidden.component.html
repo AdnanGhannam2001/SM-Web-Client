@@ -1,0 +1,12 @@
+<social-posts-view
+  [posts]="page"
+  [loading]="loading"
+  [hidable]="true"
+></social-posts-view>
+<p-button
+  styleClass="btn-load-more"
+  label="Load more"
+  (onClick)="requestPage()"
+  *ngIf="!end"
+  [text]="true"
+></p-button>

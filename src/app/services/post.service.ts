@@ -10,8 +10,16 @@ export class PostService {
 
   constructor(private readonly http: HttpClient) { }
 
-  getPosts(pageRequest: IPageRequest): Promise<IPage<IPost>> {
+  getFollowedPosts(pageRequest: IPageRequest): Promise<IPage<IPost>> {
     return lastValueFrom(this.http.get<IPage<IPost>>(`${APIS_MAIN}/posts`, { withCredentials: true, params: { ...pageRequest } }));
+  }
+
+  getFriendsPosts(pageRequest: IPageRequest): Promise<IPage<IPost>> {
+    return lastValueFrom(this.http.get<IPage<IPost>>(`${APIS_MAIN}/posts/friends`, { withCredentials: true, params: { ...pageRequest } }));
+  }
+
+  getFavoritePosts(pageRequest: IPageRequest): Promise<IPage<IPost>> {
+    return lastValueFrom(this.http.get<IPage<IPost>>(`${APIS_MAIN}/posts/favorites`, { withCredentials: true, params: { ...pageRequest } }));
   }
 
   getMyProfilePosts(pageRequest: IPageRequest): Promise<IPage<IPost>> {
@@ -47,7 +55,7 @@ export class PostService {
     );
   }
 
-  getHidden(pageRequest: IPageRequest): Promise<IPage<IPost>> {
+  getHiddenPosts(pageRequest: IPageRequest): Promise<IPage<IPost>> {
     return lastValueFrom(this.http.get<IPage<IPost>>(`${APIS_MAIN}/posts/hidden`, { withCredentials: true, params: { ...pageRequest } }));
   }
 
