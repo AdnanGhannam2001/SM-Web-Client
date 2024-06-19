@@ -15,6 +15,8 @@ export class PostComponent {
   @Input() deletable = false;
   @Input() hidden = false;
 
+  editing = false;
+
   commentsCount = -1;
   currentCommentsPage = -1;
   end = false;
@@ -52,7 +54,7 @@ export class PostComponent {
       this.items.push({
         label: 'Edit',
         icon: 'pi pi-pencil',
-        command: async () => await this.update()
+        command: async () => await this.startUpdating()
       });
     }
 
@@ -99,13 +101,8 @@ export class PostComponent {
     });
   }
 
-  async update() {
-    // await this.postService.updatePost(this.post.id, this.post);
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Success',
-      detail: 'Post is updated',
-    });
+  startUpdating() {
+    this.editing = true;
   }
 
   async delete() {

@@ -1,21 +1,9 @@
 <div class="container flex last">
   <div>
-    <social-create-update-post
-      image="/assets/placeholders/user-1.png"
-      placeholder="Shared what's in your mind..."
-    ></social-create-update-post>
-    <social-posts-view
-      [posts]="page"
-      [loading]="loading"
-      [hidable]="true"
-    ></social-posts-view>
-    <p-button
-      styleClass="btn-load-more"
-      label="Load more"
-      (onClick)="requestPage()"
-      *ngIf="!end"
-      [text]="true"
-    ></p-button>
+    <social-create-post></social-create-post>
+    <social-tab-menu [items]="tabs"></social-tab-menu>
+
+    <router-outlet></router-outlet>
   </div>
 
   <div>

@@ -69,6 +69,8 @@
       <social-comments [comments]="post.comments"></social-comments>
       <p-button label="Load more" (onClick)="getCommentsPage()" *ngIf="!end"></p-button>
   </div>
+
+  <social-create-update-post [(visible)]="editing" [post]="post"></social-create-update-post>
 }
 
 <p-toast />

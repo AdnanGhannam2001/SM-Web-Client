@@ -36,6 +36,7 @@ import { GroupHeaderComponent } from './group-header/group-header.component';
 import { CreateUpdatePostComponent } from './create-update-post/create-update-post.component';
 import { CommentsComponent } from './comments/comments.component';
 import { MessageService } from 'primeng/api';
+import { CreatePostComponent } from './create-post/create-post.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { MessageService } from 'primeng/api';
     GroupHeaderComponent,
     CreateUpdatePostComponent,
     CommentsComponent,
+    CreatePostComponent,
   ],
   imports: [
     CommonModule,
@@ -94,6 +96,7 @@ import { MessageService } from 'primeng/api';
     ListItemComponent,
     PageTitleComponent,
     GroupHeaderComponent,
+    CreatePostComponent,
     CreateUpdatePostComponent
   ],
   providers: [MessageService]

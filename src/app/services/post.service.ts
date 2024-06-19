@@ -26,7 +26,7 @@ export class PostService {
     return lastValueFrom(this.http.post<IPost>(`${APIS_MAIN}/posts`, post, { withCredentials: true }));
   }
 
-  updatePost(id: string, post: IPost): Promise<IPost> {
+  updatePost(id: string, post: IPostRequest): Promise<IPost> {
     return lastValueFrom(this.http.patch<IPost>(`${APIS_MAIN}/posts/${id}`, post, { withCredentials: true }));
   }
 

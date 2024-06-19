@@ -1,0 +1,30 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+  display: block;
+  background-color: var(--bg-cu);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--br-b);
+
+  .create-post {
+    &__content {
+      @include mixin.flex(flex-start);
+      gap: 1em;
+      padding: 1.5em;
+      cursor: pointer;
+    }
+
+    &__placeholder {
+      color: var(--clr-faded);
+    }
+
+    &__textarea {
+      all: unset;
+      display: block;
+      width: 100%;
+      font: inherit;
+      margin: 1.5em 0;
+      word-wrap: break-word;
+    }
+  }
+}

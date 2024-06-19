@@ -16,6 +16,7 @@ import { CoverImageComponent } from './pages/settings/cover-image/cover-image.co
 import { BlockedListComponent } from './pages/settings/blocked-list/blocked-list.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PostsComponent } from './pages/posts/posts.component';
+import { FollowedComponent as  FollowedPostsComponent } from './pages/posts/followed/followed.component';
 import { ProfilesComponent } from './pages/profiles/profiles.component';
 import { GroupsComponent } from './pages/groups/groups.component';
 import { FollowingComponent } from './pages/profile/following/following.component';
@@ -26,7 +27,10 @@ import { ReceivedFriendshipRequestsComponent } from './pages/settings/received-f
 const routes: Routes = [
   {
     path: "",
-    component: PostsComponent
+    component: PostsComponent,
+    children: [
+      { path: "", component: FollowedPostsComponent }
+    ]
   },
   {
     path: 'profiles',
