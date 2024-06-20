@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IGroup } from '../../interfaces/group.interface';
+import { IGroup, IMember, MemberRoleType } from '../../interfaces/group.interface';
 import { TabMenuItem } from '../../ui-components/tab-menu/tab-menu.component';
 import { GroupService } from '../../services/group.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class GroupComponent {
   group?: IGroup;
   tabs: TabMenuItem[] = [];
+  membership?: IMember;
 
   constructor(private groupService: GroupService,
               private router: Router,
@@ -28,6 +29,7 @@ export class GroupComponent {
 
       try {
         this.group = await this.groupService.getGroup(id);
+        this.membership = this.group.members[0];
 
         const url = `/groups/${id}/`;
 

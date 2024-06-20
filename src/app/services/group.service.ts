@@ -118,4 +118,8 @@ export class GroupService {
   getVisibilities() {
     return Object.entries(GroupVisibilities).filter(([_, value]) => isNaN(Number(value)));
   }
+
+  getRoles() {
+    return Object.entries(MemberRoleType).filter(([_, value]) => isNaN(Number(value)));
+  }
 }

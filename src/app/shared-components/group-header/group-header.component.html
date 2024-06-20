@@ -18,11 +18,15 @@
       <div>
         @if (group.members.length > 0)
         {
-          <p-button label="Leave Group" styleClass="p-button-danger"></p-button>
+          <p-button label="Leave Group" (onClick)="leave()" styleClass="p-button-danger"></p-button>
+        }
+        @else if (group.joinRequests.length > 0)
+        {
+          <p-button label="Cancel Join Request" (onClick)="cancelRequest()" styleClass="p-button-danger"></p-button>
         }
         @else
         {
-          <p-button label="Join Group" styleClass="p-button-primary"></p-button>
+          <p-button label="Join Group" (onClick)="join()" styleClass="p-button-primary"></p-button>
         }
       </div>
     </div>
@@ -32,3 +36,5 @@
     </p>
   </div>
 </div>
+
+<p-toast />

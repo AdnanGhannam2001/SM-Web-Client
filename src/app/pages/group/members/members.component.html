@@ -3,7 +3,7 @@
         <p-dataViewLayoutOptions [slot]="layout"></p-dataViewLayoutOptions>
     </ng-template>
     <ng-template let-members pTemplate="listItem">
-        <social-profile-list-view *ngFor="let member of members" [profile]="member.profile"></social-profile-list-view>
+        <social-profile-list-view [profileRole]="member.role" [membership]="membership" *ngFor="let member of members" [profile]="member.profile"></social-profile-list-view>
     </ng-template>
     <ng-template let-members pTemplate="gridItem">
         <social-profile-grid-view *ngFor="let member of members" [profile]="member.profile"></social-profile-grid-view>

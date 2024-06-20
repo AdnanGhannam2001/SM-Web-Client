@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { IPage } from '../../../interfaces/page.interface';
-import { IMember } from '../../../interfaces/group.interface';
+import { IMember, MemberRoleType } from '../../../interfaces/group.interface';
 import { GroupService } from '../../../services/group.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GroupComponent } from '../group.component';
 
 @Component({
   selector: 'social-members',
@@ -13,8 +14,11 @@ export class MembersComponent {
   members: IPage<IMember> = { items: [], total: 0 }
   layout: 'list' | 'grid' = "list";
 
+  membership?: IMember;
+
   constructor(private groupService: GroupService,
               private router: Router,
+              @Inject(GroupComponent) private readonly parent: GroupComponent,
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -33,5 +37,9 @@ export class MembersComponent {
         this.router.navigate(['/not-found']);
       }
     });
+  }
+
+  ngAfterViewChecked() {
+    this.membership = this.parent.membership;
   }
 }

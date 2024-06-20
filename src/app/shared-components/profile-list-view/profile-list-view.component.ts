@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { IProfile } from '../../interfaces/profile.interface';
 import { MenuItem, MessageService } from 'primeng/api';
 import { ProfileService } from '../../services/profile.service';
+import { IMember, MemberRoleType } from '../../interfaces/group.interface';
+import { GroupService } from '../../services/group.service';
 
 @Component({
   selector: 'social-profile-list-view[profile]',
@@ -13,6 +15,8 @@ export class ProfileListViewComponent {
   @Input() isFriend = false;
   @Input() isFollowed = false;
   @Input() isPending = false;
+  @Input() profileRole?: MemberRoleType;
+  @Input() membership?: IMember;
   isBlocked = false;
 
   items: MenuItem[] = [
@@ -25,8 +29,9 @@ export class ProfileListViewComponent {
 
   constructor(
     private readonly messageService: MessageService,
-    private readonly profileService: ProfileService
-  ) {}
+    private readonly profileService: ProfileService,
+    private readonly groupService: GroupService
+  ) { }
 
   ngOnInit() {
     this.isFriend = this.isFriend || this.profile.friends.length > 0;
@@ -35,6 +40,57 @@ export class ProfileListViewComponent {
       this.isPending ||
       this.profile.sentRequests.length > 0 ||
       this.profile.receivedRequests.length > 0;
+
+    if (this.profileRole !== undefined && this.membership !== undefined && this.membership.role <= this.profileRole) {
+      this.items.push(...[
+        {
+          label: "Kick",
+          icon: "pi pi-ban",
+          command: async () => await this.kick()
+        },
+        {
+          label: "Remove",
+          icon: "pi pi-minus",
+          command: async () => this.removeMember()
+        }
+      ]);
+    }
+  }
+
+  async kick() {
+    try {
+      await this.groupService.kick(this.membership!.groupId, this.profile.id, "");
+
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Member is kicked',
+      });
+    } catch(error: any) {
+      this.messageService.add({
+        severity: 'danger',
+        summary: 'Failed',
+        detail: error.error.Message,
+      });
+    }
+  }
+
+  async removeMember() {
+    try {
+      await this.groupService.removeMember(this.membership!.groupId, this.profile.id)
+
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Member is removed',
+      });
+    } catch(error: any) {
+      this.messageService.add({
+        severity: 'danger',
+        summary: 'Failed',
+        detail: error.error.Message,
+      });
+    }
   }
 
   async block() {
@@ -164,5 +220,10 @@ export class ProfileListViewComponent {
         detail: "Couldn't unfollow user",
       });
     }
+  }
+
+  getBadge() {
+    if (this.profileRole !== undefined) return this.groupService.getRoles().find(x => Number(x[0]) == this.profileRole)?.[1].toString();
+    return undefined;
   }
 }

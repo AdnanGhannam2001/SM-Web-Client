@@ -9,6 +9,7 @@ import { IProfile } from '../../interfaces/profile.interface';
 })
 export class ProfileGridViewComponent {
   @Input() profile!: IProfile;
+  @Input() badge?: string;
   @Input() isFriend = false;
   @Input() isFollowed = false;
 
