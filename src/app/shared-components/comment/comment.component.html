@@ -1,0 +1,36 @@
+@if (!deleted)
+{
+  <p-avatar
+      class="avatar"
+      [image]="comment.profile?.image"
+      shape="circle"
+  ></p-avatar>
+  <div class="center">
+      <div class="top">
+          <a [routerLink]="'/users/' + comment.profile?.id" class="social-link by">
+              {{ comment.profile?.firstName }}
+          </a>
+          <small class="time">{{ comment.createdAtUtc | date:'dd-MM-yyyy' }}</small>
+      </div>
+      <div class="bottom">
+          {{comment.content}}
+      </div>
+  </div>
+
+  <div toolbar *ngIf="items.length">
+      <button pButton
+          type="button"
+          (click)="menu.toggle($event)"
+          icon="pi pi-ellipsis-h"
+          class="p-button-text p-button-rounded"
+      ></button>
+      <p-menu #menu [model]="items" [popup]="true" appendTo="body"></p-menu>
+  </div>
+
+  <p-dialog header="Edit Profile" [modal]="true" [(visible)]="editing" [style]="{ 'min-width': '50vw' }">
+    <input pInputText [(ngModel)]="content" [style]="{ width: '100%' }"/>
+    <ng-template pTemplate="footer">
+        <p-button label="Post" [loading]="sending" (onClick)="update()"></p-button>
+    </ng-template>
+  </p-dialog>
+}

@@ -13,6 +13,8 @@ export class PostsViewComponent {
   @Input() loading: boolean = true;
   @Input() role?: MemberRoleType;
   @Input() hidable = false;
+  @Input() hiddenPost = false;
+  @Input() shouldHide = true;
 
   isUpdatable(profileId: string) {
     return profileId == localStorage.getItem("id");

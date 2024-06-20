@@ -8,22 +8,6 @@
     }
 
     .comments {
-        &__content {
-            @include mixin.flex(flex-start, flex-start);
-            gap: .75em;
-            margin: .5em 0;
-
-            &__top {
-                .time {
-                    color: var(--clr-faded);
-                }
-            }
-        }
-
-        &__by {
-            font-weight: 500;
-        }
-
         &__replies {
             margin-left: 1.75em;
         }

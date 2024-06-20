@@ -93,6 +93,15 @@ export class PostService {
     );
   }
 
+  updateComment(postId: string, commentId: string, content: string) : Promise<IComment> {
+    return lastValueFrom(
+      this.http.patch<IComment>(`${APIS_MAIN}/posts/${postId}/comments/${commentId}`,
+        { content },
+        { withCredentials: true }
+      )
+    );
+  }
+
   deleteComment(postId: string, commentId: string, parentId?: string): Promise<IComment> {
     return lastValueFrom(
       this.http.delete<IComment>(`${APIS_MAIN}/posts/${postId}/comments/${commentId}`,

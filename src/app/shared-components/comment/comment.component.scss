@@ -1,0 +1,21 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+  @include mixin.flex(flex-start, flex-start);
+  gap: .75em;
+  margin: .5em 0;
+
+  .center {
+    flex: 1;
+  }
+
+  .top {
+    .time {
+      color: var(--clr-faded);
+    }
+  }
+
+  .by {
+    font-weight: 500;
+  }
+}

@@ -13,7 +13,8 @@ export class PostComponent {
   @Input() hidable = false;
   @Input() updatable = false;
   @Input() deletable = false;
-  @Input() hidden = false;
+  @Input() hiddenPost = false;
+  @Input() shouldHide = true;
 
   editing = false;
 
@@ -43,11 +44,20 @@ export class PostComponent {
 
   ngOnInit() {
     if (this.hidable) {
-      this.items.push({
-        label: 'Hide',
-        icon: 'pi pi-eye-slash',
-        command: async () => await this.hide()
-      });
+      if (!this.hiddenPost) {
+        this.items.push({
+          label: 'Hide',
+          icon: 'pi pi-eye-slash',
+          command: async () => await this.hide()
+        });
+      }
+      else {
+        this.items.push({
+          label: 'Unhide',
+          icon: 'pi pi-eye',
+          command: async () => await this.unhide()
+        });
+      }
     }
 
     if (this.updatable) {
@@ -93,11 +103,21 @@ export class PostComponent {
 
   async hide() {
     await this.postService.hide(this.post.id);
-    this.hidden = true;
+    this.hiddenPost = true;
     this.messageService.add({
       severity: 'success',
       summary: 'Success',
       detail: 'Post is hidden',
+    });
+  }
+
+  async unhide() {
+    await this.postService.unhide(this.post.id);
+    this.hiddenPost = false;
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Post is not hidden any more',
     });
   }
 
@@ -107,7 +127,7 @@ export class PostComponent {
 
   async delete() {
     await this.postService.deletePost(this.post.id);
-    this.hidden = true;
+    this.hiddenPost = true;
     this.messageService.add({
       severity: 'success',
       summary: 'Success',

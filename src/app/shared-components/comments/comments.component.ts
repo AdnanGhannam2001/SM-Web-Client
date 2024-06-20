@@ -8,4 +8,5 @@ import { IComment } from '../../interfaces/post.interface';
 })
 export class CommentsComponent {
   @Input() comments: Array<IComment> = [];
+  @Input() deletable = false;
 }

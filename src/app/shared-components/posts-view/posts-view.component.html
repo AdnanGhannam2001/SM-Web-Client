@@ -7,6 +7,8 @@
       [updatable]="isUpdatable(post.profile?.id)"
       [deletable]="isDeletable(post.profile?.id)"
       [post]="post"
+      [hiddenPost]="hiddenPost"
+      [shouldHide]="shouldHide"
       *ngFor="let post of posts"
     ></social-post>
   </ng-template>

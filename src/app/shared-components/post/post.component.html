@@ -1,4 +1,4 @@
-@if(!hidden)
+@if(!hiddenPost || (hiddenPost && !shouldHide))
 {
   <div class="post__top">
       <social-item-showcase
@@ -66,7 +66,7 @@
 
       <p-divider *ngIf="post.comments.length && opened"></p-divider>
 
-      <social-comments [comments]="post.comments"></social-comments>
+      <social-comments [comments]="post.comments" [deletable]="deletable"></social-comments>
       <p-button label="Load more" (onClick)="getCommentsPage()" *ngIf="!end"></p-button>
   </div>
 

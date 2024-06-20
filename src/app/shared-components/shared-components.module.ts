@@ -37,6 +37,7 @@ import { CreateUpdatePostComponent } from './create-update-post/create-update-po
 import { CommentsComponent } from './comments/comments.component';
 import { MessageService } from 'primeng/api';
 import { CreatePostComponent } from './create-post/create-post.component';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
     CreateUpdatePostComponent,
     CommentsComponent,
     CreatePostComponent,
+    CommentComponent,
   ],
   imports: [
     CommonModule,
