@@ -42,6 +42,7 @@ import { SentFriendshipRequestsComponent } from './settings/sent-friendship-requ
 import { ReceivedFriendshipRequestsComponent } from './settings/received-friendship-requests/received-friendship-requests.component';
 import { HiddenComponent } from './posts/hidden/hidden.component';
 import { FavoritesComponent } from './posts/favorites/favorites.component';
+import { JoinRequestsComponent } from './group/join-requests/join-requests.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { FavoritesComponent } from './posts/favorites/favorites.component';
     FollowedPostsComponent,
     FriendsPostsComponent,
     HiddenComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    JoinRequestsComponent
   ],
   imports: [
     CommonModule,

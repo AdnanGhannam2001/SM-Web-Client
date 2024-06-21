@@ -19,6 +19,14 @@
       [style]="{ 'white-space': 'nowrap' }"
   ></p-button>
 }
+@else if (group.joinRequests.length > 0)
+{
+  <p-button
+      label="Cancel Join Request"
+      styleClass="p-button-primary"
+      [style]="{ 'white-space': 'nowrap' }"
+  ></p-button>
+}
 @else
 {
   <p-button

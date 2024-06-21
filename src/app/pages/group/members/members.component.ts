@@ -1,17 +1,17 @@
 import { Component, Inject } from '@angular/core';
-import { IPage } from '../../../interfaces/page.interface';
-import { IMember, MemberRoleType } from '../../../interfaces/group.interface';
+import { IMember } from '../../../interfaces/group.interface';
 import { GroupService } from '../../../services/group.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GroupComponent } from '../group.component';
+import { Pagination } from '../../../helpers/pagination';
 
 @Component({
   selector: 'social-members',
   templateUrl: './members.component.html',
   styleUrl: './members.component.scss'
 })
-export class MembersComponent {
-  members: IPage<IMember> = { items: [], total: 0 }
+export class MembersComponent extends Pagination<IMember> {
+  id?: string;
   layout: 'list' | 'grid' = "list";
 
   membership?: IMember;
@@ -19,20 +19,23 @@ export class MembersComponent {
   constructor(private groupService: GroupService,
               private router: Router,
               @Inject(GroupComponent) private readonly parent: GroupComponent,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute) { super(); }
+
+  override async requestPage() {
+    this.page = await this.groupService.getMembers(this.id!, this.pageRequest);
+  }
 
   ngOnInit() {
     this.activatedRoute.parent?.paramMap.subscribe(async param => {
-      const id = param.get("id");
+      this.id = param.get("id") ?? undefined;
 
-      if (!id) {
+      if (!this.id) {
         this.router.navigate(['/not-found']);
         return;
       }
 
       try {
-        // TODO: add page request
-        this.members = await this.groupService.getMembers(id, {});
+        await this.requestPage();
       } catch (error) {
         this.router.navigate(['/not-found']);
       }

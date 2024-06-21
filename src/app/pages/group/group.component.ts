@@ -41,8 +41,15 @@ export class GroupComponent {
           {
             url: url + "members",
             text: "Members",
-          }
+          },
         ];
+
+        if (this.membership.role == MemberRoleType.Admin) {
+          this.tabs.push({
+            url: url + "join-requests",
+            text: "Join Requests",
+          });
+        }
       } catch (error) {
         console.warn({ error });
       }

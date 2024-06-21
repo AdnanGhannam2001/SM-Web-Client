@@ -1,0 +1,10 @@
+@use "../../../utilities/mixin.scss";
+
+:host {
+  .join-requests {
+    &__item {
+      @include mixin.flex(space-between, center, row);
+      padding: 1em;
+    }
+  }
+}

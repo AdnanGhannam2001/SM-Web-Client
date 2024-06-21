@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UiComponentsModule } from '../ui-components/ui-components.module';
 import { ProfileHeaderComponent } from './profile-header/profile-header.component';
-
 import { TooltipModule } from 'primeng/tooltip';
 import { DataViewModule } from 'primeng/dataview';
 import { MenuModule } from 'primeng/menu';
@@ -15,6 +14,7 @@ import { BadgeModule } from 'primeng/badge';
 import { FileUploadModule } from 'primeng/fileupload';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
+import { SplitButtonModule } from 'primeng/splitbutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { FollowedBoxComponent } from './followed-box/followed-box.component';
 import { SideboxComponent } from './sidebox/sidebox.component';
@@ -79,7 +79,8 @@ import { CommentComponent } from './comment/comment.component';
     FileUploadModule,
     DialogModule,
     DropdownModule,
-    ToastModule
+    ToastModule,
+    SplitButtonModule
   ],
   exports: [
     ProfileHeaderComponent,

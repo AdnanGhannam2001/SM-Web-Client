@@ -25,6 +25,7 @@ import { FollowingComponent } from './pages/profile/following/following.componen
 import { FollowedComponent } from './pages/profile/followed/followed.component';
 import { SentFriendshipRequestsComponent } from './pages/settings/sent-friendship-requests/sent-friendship-requests.component';
 import { ReceivedFriendshipRequestsComponent } from './pages/settings/received-friendship-requests/received-friendship-requests.component';
+import { JoinRequestsComponent } from './pages/group/join-requests/join-requests.component';
 
 const routes: Routes = [
   {
@@ -72,6 +73,7 @@ const routes: Routes = [
     children: [
       { path: '', component: GroupPostsCompoent },
       { path: 'members', component: MembersComponent },
+      { path: 'join-requests', component: JoinRequestsComponent },
     ],
   },
   { path: 'not-found', component: NotFoundComponent },
