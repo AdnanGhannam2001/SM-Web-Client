@@ -23,10 +23,30 @@
       <p>{{ post.content }}</p>
 
       <div class="post__actions">
-          <p-button label="Like"
+          <p-button label="React"
               icon="pi pi-thumbs-up"
-              styleClass="p-button-text"
+              [text]="post.reactions.length > 0 ? false : true"
+              (onClick)="op.toggle($event)"
           ></p-button>
+          <p-overlayPanel #op>
+            <div [style]="{ 'display': 'flex', 'gap': '.5em' }">
+              <p-button [text]="true" (onClick)="react(0)">
+                <p-avatar [size]="post.reactions.at(0)?.type == 0 ? 'large' : 'normal'" label="LK" shape="circle" />
+              </p-button>
+              <p-button [text]="true" (onClick)="react(1)">
+                <p-avatar [size]="post.reactions.at(0)?.type == 1 ? 'large' : 'normal'" label="D" shape="circle" />
+              </p-button>
+              <p-button [text]="true" (onClick)="react(2)">
+                <p-avatar [size]="post.reactions.at(0)?.type == 2 ? 'large' : 'normal'" label="A" shape="circle" />
+              </p-button>
+              <p-button [text]="true" (onClick)="react(3)">
+                <p-avatar [size]="post.reactions.at(0)?.type == 3 ? 'large' : 'normal'" label="H" shape="circle" />
+              </p-button>
+              <p-button [text]="true" (onClick)="react(4)">
+                <p-avatar [size]="post.reactions.at(0)?.type == 4 ? 'large' : 'normal'" label="S" shape="circle" />
+              </p-button>
+            </div>
+          </p-overlayPanel>
           <p-button [label]="'Comments ' + (commentsCount != -1 ? '(' + commentsCount + ')' : '')"
               icon="pi pi-comment"
               styleClass="p-button-success p-button-text"

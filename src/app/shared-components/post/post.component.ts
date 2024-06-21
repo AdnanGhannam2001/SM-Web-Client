@@ -1,6 +1,6 @@
 import { Component, Input, input } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
-import { IPost } from '../../interfaces/post.interface';
+import { IPost, ReactionType } from '../../interfaces/post.interface';
 import { PostService } from '../../services/post.service';
 
 @Component({
@@ -133,5 +133,14 @@ export class PostComponent {
       summary: 'Success',
       detail: 'Post is deleted',
     });
+  }
+
+  async react(type: ReactionType) {
+    if (this.post.reactions.length == 0 || this.post.reactions[0].type != type) {
+      this.post.reactions[0] = await this.postService.react(this.post.id, type);
+    } else {
+      await this.postService.unreact(this.post.id);
+      this.post.reactions.pop();
+    }
   }
 }
