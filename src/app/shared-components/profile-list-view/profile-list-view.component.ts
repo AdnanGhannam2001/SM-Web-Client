@@ -54,6 +54,23 @@ export class ProfileListViewComponent {
           command: async () => this.removeMember()
         }
       ]);
+
+      if (this.membership.role === MemberRoleType.Admin) {
+        if (this.profileRole > MemberRoleType.Admin) {
+          this.items.push({
+            label: "Premote",
+            icon: "pi pi-angle-double-up",
+            command: async () => await this.changeRole(--(this.profileRole!))
+          });
+        }
+        if (this.profileRole < MemberRoleType.Normal) {
+          this.items.push({
+            label: "Demote",
+            icon: "pi pi-angle-double-down",
+            command: async () => await this.changeRole(++(this.profileRole!))
+          });
+        }
+      }
     }
   }
 
@@ -225,5 +242,15 @@ export class ProfileListViewComponent {
   getBadge() {
     if (this.profileRole !== undefined) return this.groupService.getRoles().find(x => Number(x[0]) == this.profileRole)?.[1].toString();
     return undefined;
+  }
+
+  async changeRole(role: MemberRoleType) {
+    await this.groupService.changeRole(this.membership!.groupId, this.profile.id, role);
+
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Role was updated',
+    });
   }
 }
