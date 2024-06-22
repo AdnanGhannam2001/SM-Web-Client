@@ -26,6 +26,7 @@ import { FollowedComponent } from './pages/profile/followed/followed.component';
 import { SentFriendshipRequestsComponent } from './pages/settings/sent-friendship-requests/sent-friendship-requests.component';
 import { ReceivedFriendshipRequestsComponent } from './pages/settings/received-friendship-requests/received-friendship-requests.component';
 import { JoinRequestsComponent } from './pages/group/join-requests/join-requests.component';
+import { CreateGroupComponent } from './pages/create-group/create-group.component';
 
 const routes: Routes = [
   {
@@ -76,6 +77,7 @@ const routes: Routes = [
       { path: 'join-requests', component: JoinRequestsComponent },
     ],
   },
+  { path: 'create-group', component: CreateGroupComponent },
   { path: 'not-found', component: NotFoundComponent },
 ];
 

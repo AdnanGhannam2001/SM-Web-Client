@@ -9,6 +9,7 @@ import { FileUploadModule } from "primeng/fileupload";
 import { TableModule } from "primeng/table";
 import { PaginatorModule } from "primeng/paginator";
 import { InputTextModule } from "primeng/inputtext";
+import { StepperModule } from "primeng/stepper";
 import { InputGroupModule } from "primeng/inputgroup";
 import { ButtonGroupModule } from "primeng/buttongroup";
 import { ToastModule } from "primeng/toast";
@@ -43,6 +44,7 @@ import { ReceivedFriendshipRequestsComponent } from './settings/received-friends
 import { HiddenComponent } from './posts/hidden/hidden.component';
 import { FavoritesComponent } from './posts/favorites/favorites.component';
 import { JoinRequestsComponent } from './group/join-requests/join-requests.component';
+import { CreateGroupComponent } from './create-group/create-group.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,8 @@ import { JoinRequestsComponent } from './group/join-requests/join-requests.compo
     FriendsPostsComponent,
     HiddenComponent,
     FavoritesComponent,
-    JoinRequestsComponent
+    JoinRequestsComponent,
+    CreateGroupComponent
   ],
   imports: [
     CommonModule,
@@ -92,6 +95,7 @@ import { JoinRequestsComponent } from './group/join-requests/join-requests.compo
     InputGroupModule,
     ToastModule,
     ButtonGroupModule,
+    StepperModule
   ],
 })
 export class PagesModule {}

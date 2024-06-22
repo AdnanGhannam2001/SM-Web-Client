@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GroupVisibilities, IDiscussion, IGroup, IGroupSettings, IInvite, IJoinRequest, IKicked, IMember, MemberRoleType } from '../interfaces/group.interface';
+import { GroupVisibilities, IDiscussion, IGroup, IGroupRequest, IGroupSettings, IInvite, IJoinRequest, IKicked, IMember, MemberRoleType } from '../interfaces/group.interface';
 import { lastValueFrom } from 'rxjs';
 import { APIS_MAIN } from '../constants/apis';
 import { IPage, IPageRequest } from '../interfaces/page.interface';
@@ -11,7 +11,7 @@ export class GroupService {
 
   constructor(private readonly http: HttpClient) { }
 
-  createGroup(group: IGroup): Promise<IGroup> {
+  createGroup(group: IGroupRequest): Promise<IGroup> {
     return lastValueFrom(this.http.post<IGroup>(`${APIS_MAIN}/groups`, group, { withCredentials: true }));
   }
 

@@ -1,0 +1,49 @@
+<p-stepper>
+  <p-stepperPanel header="Header II">
+    <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback" let-index="index">
+      <div class="flex align-items-center gap-3 mb-3">
+        <label for="username" class="font-semibold w-6rem">Name</label>
+        <input pInputText id="username" class="flex-auto" autocomplete="off" [(ngModel)]="this.group.name" />
+      </div>
+      <div class="flex align-items-center gap-3 mb-5">
+        <label for="email" class="font-semibold w-6rem">Description</label>
+        <input pInputText id="username" class="flex-auto" autocomplete="off" [(ngModel)]="this.group.description" />
+      </div>
+      <div class="flex align-items-center gap-3 mb-5">
+        <label for="email" class="font-semibold w-6rem">Visibility</label>
+        <p-dropdown [style]="{ 'width': '100%' }" optionLabel="name" optionValue="code" [options]="visibilities"
+          [(ngModel)]="group.visibility" appendTo="body" optionLabel="name"></p-dropdown>
+      </div>
+
+      <div class="flex pt-4 justify-content-between">
+        <p-button label="Next" icon="pi pi-arrow-right" iconPos="right" (onClick)="nextCallback.emit()" />
+      </div>
+    </ng-template>
+  </p-stepperPanel>
+  <p-stepperPanel header="Header II">
+    <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback" let-index="index">
+      <div class="flex align-items-center gap-3 mb-5">
+        <label for="email" class="font-semibold w-6rem">Inviting Role</label>
+        <p-dropdown [style]="{ 'width': '100%' }" optionLabel="name" optionValue="code" [options]="roles"
+          [(ngModel)]="group.settings.inviterRole" appendTo="body" optionLabel="name"></p-dropdown>
+      </div>
+
+      <div class="flex align-items-center gap-3 mb-5">
+        <label for="email" class="font-semibold w-6rem">Posting Role</label>
+        <p-dropdown [style]="{ 'width': '100%' }" optionLabel="name" optionValue="code" [options]="roles"
+          [(ngModel)]="group.settings.postingRole" appendTo="body" optionLabel="name"></p-dropdown>
+      </div>
+
+      <div class="flex align-items-center gap-3 mb-5">
+        <label for="email" class="font-semibold w-6rem">Updating Role</label>
+        <p-dropdown [style]="{ 'width': '100%' }" optionLabel="name" optionValue="code" [options]="roles"
+          [(ngModel)]="group.settings.editDetailsRole" appendTo="body" optionLabel="name"></p-dropdown>
+      </div>
+
+      <div class="flex pt-4 justify-content-between">
+        <p-button label="Back" icon="pi pi-arrow-left" (onClick)="prevCallback.emit()" />
+        <p-button label="Create" (onClick)="create()" />
+      </div>
+    </ng-template>
+  </p-stepperPanel>
+</p-stepper>

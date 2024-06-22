@@ -21,6 +21,13 @@ export interface IGroup {
   posts       : Array<IPost>;
 };
 
+export interface IGroupRequest {
+  name       ?: string;
+  description?: string;
+  visibility  : GroupVisibilities;
+  settings    : IGroupSettings;
+}
+
 export enum GroupVisibilities {
   Public,
   Private,
