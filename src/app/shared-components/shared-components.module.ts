@@ -38,6 +38,7 @@ import { CommentsComponent } from './comments/comments.component';
 import { MessageService } from 'primeng/api';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { CommentComponent } from './comment/comment.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { CommentComponent } from './comment/comment.component';
     CommentsComponent,
     CreatePostComponent,
     CommentComponent,
+    ChatComponent,
   ],
   imports: [
     CommonModule,
@@ -100,7 +102,8 @@ import { CommentComponent } from './comment/comment.component';
     PageTitleComponent,
     GroupHeaderComponent,
     CreatePostComponent,
-    CreateUpdatePostComponent
+    CreateUpdatePostComponent,
+    ChatComponent,
   ],
   providers: [MessageService]
 })

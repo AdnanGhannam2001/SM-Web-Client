@@ -1,0 +1,10 @@
+@if (id)
+{
+  @for (message of page.items; track message.id)
+  {
+    <h5>{{message.senderId}} -- {{message.content}}</h5>
+  }
+
+  <input pInputText [(ngModel)]="message"/>
+  <p-button label="Send" (onClick)="sendMessage()"></p-button>
+}

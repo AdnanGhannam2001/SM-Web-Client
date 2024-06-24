@@ -1,0 +1,37 @@
+<social-chat [id]="chat?.id"></social-chat>
+
+<p-button (click)="showDialog()" label="Show" />
+
+<p-dialog
+  header="Edit Profile"
+  [modal]="true"
+  [(visible)]="visible"
+  position="bottomright"
+  [style]="{ width: '25rem' }">
+  <div *ngFor="let chat of page.items" (click)="open(chat.id)">
+    @if (chat.isGroup)
+    {
+      <social-item-showcase
+        class="profile-list-view__profilebox"
+        [image]="chat.group!.image"
+        [content]="chat.group!.name"
+        size="medium"
+        [rounded]="true"
+      ></social-item-showcase>
+    }
+    @else
+    {
+      <social-item-showcase
+        class="profile-list-view__profilebox"
+        [image]="chat.user!.image"
+        [content]="chat.user!.firstName + ' ' + chat.user!.lastName"
+        size="medium"
+        [rounded]="true"
+      ></social-item-showcase>
+    }
+  </div>
+  @if (!end)
+  {
+    <p-button label="Load More" styleClass="btn-load-more" [text]="true" (onClick)="requestPage()"></p-button>
+  }
+</p-dialog>

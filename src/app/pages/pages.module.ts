@@ -13,6 +13,7 @@ import { StepperModule } from "primeng/stepper";
 import { InputGroupModule } from "primeng/inputgroup";
 import { ButtonGroupModule } from "primeng/buttongroup";
 import { ToastModule } from "primeng/toast";
+import { DialogModule } from "primeng/dialog";
 import { ProfileComponent } from './profile/profile.component';
 import { UiComponentsModule } from '../ui-components/ui-components.module';
 import { AppRoutingModule } from '../app-routing.module';
@@ -45,6 +46,7 @@ import { HiddenComponent } from './posts/hidden/hidden.component';
 import { FavoritesComponent } from './posts/favorites/favorites.component';
 import { JoinRequestsComponent } from './group/join-requests/join-requests.component';
 import { CreateGroupComponent } from './create-group/create-group.component';
+import { ChatsComponent } from './chats/chats.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,8 @@ import { CreateGroupComponent } from './create-group/create-group.component';
     HiddenComponent,
     FavoritesComponent,
     JoinRequestsComponent,
-    CreateGroupComponent
+    CreateGroupComponent,
+    ChatsComponent
   ],
   imports: [
     CommonModule,
@@ -95,7 +98,8 @@ import { CreateGroupComponent } from './create-group/create-group.component';
     InputGroupModule,
     ToastModule,
     ButtonGroupModule,
-    StepperModule
+    StepperModule,
+    DialogModule
   ],
 })
 export class PagesModule {}

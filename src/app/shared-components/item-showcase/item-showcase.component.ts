@@ -12,7 +12,7 @@ export type Size = "big" | "medium" | "small";
 })
 export class ItemShowcaseComponent {
   @Input() image? = "";
-  @Input() url = "";
+  @Input() url? = "";
   @Input() content?: string;
   @Input() description?: string;
   @Input() badge?: string;

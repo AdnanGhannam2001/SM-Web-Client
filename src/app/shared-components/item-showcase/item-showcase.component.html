@@ -7,11 +7,19 @@
 
 <div class="item-showcase__middle">
     <div class="item-showcase__content">
+      @if (content && url)
+      {
         <a
             class="social-link item-showcase__text"
             [routerLink]="url"
-            *ngIf="content"
         >{{ content }}</a>
+      }
+      @else
+      {
+        <span
+            class="social-link item-showcase__text"
+        >{{ content }}</span>
+      }
         <ng-content *ngIf="!content"></ng-content>
         <div *ngIf="badge && direction == 'row'" class="item-showcase__badge" [style]="{ 'background-color': badgeColor }">
             {{ badge }}
