@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { ServicesModule } from './services/services.module';
 import { PagesModule } from './pages/pages.module';
 import { SharedComponentsModule } from './shared-components/shared-components.module';
+import { TemplatesModule } from './templates/templates.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SharedComponentsModule } from './shared-components/shared-components.mo
     ServicesModule,
     SharedComponentsModule,
     PagesModule,
-    SidebarModule
+    SidebarModule,
+    TemplatesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

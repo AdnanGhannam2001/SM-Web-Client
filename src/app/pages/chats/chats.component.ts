@@ -21,6 +21,7 @@ export class ChatsComponent extends Pagination<IChat> {
   { super(); }
 
   override async requestPage() {
+    this.pageRequest.desc = false;
     const response = await this.chatService.getChats(this.pageRequest);
 
     if (response.items.length == 0) {
@@ -51,6 +52,7 @@ export class ChatsComponent extends Pagination<IChat> {
 
   async ngOnInit() {
     await this.requestPage();
+    this.chat = this.page.items[0];
   }
 
   showDialog() {

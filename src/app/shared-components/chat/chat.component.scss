@@ -1,0 +1,47 @@
+@use ".././../utilities/mixin.scss";
+
+:host {
+  @include mixin.flex(stretch, stretch, column);
+  flex: 1;
+  overflow: auto;
+
+  .chat {
+    &__messages {
+      @include mixin.flex(stretch, stretch, column-reverse);
+      padding: 1em;
+      flex: 1;
+      overflow: auto;
+    }
+
+    &__input-box {
+      @include mixin.flex(stretch, stretch);
+      padding: 1em;
+      gap: 1em;
+
+      .input {
+        flex: 1;
+      }
+    }
+
+    &__message {
+      &.reverse {
+        flex-direction: row-reverse;
+        text-align: right;
+      }
+
+      @include mixin.flex(stretch, stretch);
+      gap: .5em;
+      margin: .75em 0;
+
+      &__box {
+        background-color: var(--green-300);
+        padding: .5em 1em;
+        border-radius: 5px;
+
+        .content {
+          margin: .5em 0 0;
+        }
+      }
+    }
+  }
+}

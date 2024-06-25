@@ -11,13 +11,15 @@ import { ChatService } from '../../services/chat.service';
 export class ChatComponent extends Pagination<IMessage> {
   @Input() id?: string;
   message = "";
+  currentUserId: string | null;
 
-  constructor(private readonly chatService: ChatService) { super(); }
+  constructor(private readonly chatService: ChatService) {
+    super();
+    this.currentUserId = localStorage.getItem("id");
+  }
 
   override async requestPage() {
-    console.warn(this.id)
     this.page = await this.chatService.getMessages(this.id!, this.pageRequest);
-    console.info(this.page)
   }
 
   async ngOnChanges(changes: SimpleChanges) {
@@ -30,5 +32,9 @@ export class ChatComponent extends Pagination<IMessage> {
     const message = await this.chatService.sendMessage(this.id!, this.message);
     this.page.items.unshift(message);
     this.message = "";
+  }
+
+  isUser(id: string) {
+    return id == this.currentUserId;
   }
 }

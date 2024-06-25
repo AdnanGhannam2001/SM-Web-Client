@@ -1,10 +1,24 @@
 @if (id)
 {
-  @for (message of page.items; track message.id)
-  {
-    <h5>{{message.senderId}} -- {{message.content}}</h5>
-  }
+  <div class="chat__messages">
+    @for (message of page.items; track message.id)
+    {
+      <div [class]="'chat__message' + (isUser(message.senderId) ? ' reverse' : '')">
+        <p-avatar
+          image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png"
+          styleClass="mr-2"
+          size="large"
+          shape="circle" />
+        <div class="chat__message__box">
+          <small>{{message.senderId}}</small>
+          <p class="content">{{message.content}}</p>
+        </div>
+      </div>
+    }
+  </div>
 
-  <input pInputText [(ngModel)]="message"/>
-  <p-button label="Send" (onClick)="sendMessage()"></p-button>
+  <div class="chat__input-box">
+    <input pInputText [(ngModel)]="message" class="input"/>
+    <p-button  icon="pi pi-send" (onClick)="sendMessage()"></p-button>
+  </div>
 }

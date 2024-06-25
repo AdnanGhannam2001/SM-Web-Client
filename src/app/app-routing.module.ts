@@ -28,59 +28,73 @@ import { ReceivedFriendshipRequestsComponent } from './pages/settings/received-f
 import { JoinRequestsComponent } from './pages/group/join-requests/join-requests.component';
 import { CreateGroupComponent } from './pages/create-group/create-group.component';
 import { ChatsComponent } from './pages/chats/chats.component';
+import { ChatTemplateComponent } from './templates/chat-template/chat-template.component';
+import { MainTemplateComponent } from './templates/main-template/main-template.component';
 
 const routes: Routes = [
   {
-    path: "",
-    component: PostsComponent,
+    path: "chats",
+    component: ChatTemplateComponent,
     children: [
-      { path: "", component: FollowedPostsComponent },
-      { path: "friends-posts", component: FriendsPostsComponent },
-      { path: "hidden-posts", component: HiddenPostsComponent }
+      { path: "", component: ChatsComponent }
     ]
   },
   {
-    path: 'profiles',
-    component: ProfilesComponent,
-  },
-  {
-    path: 'profiles/:id',
-    component: ProfileComponent,
+    path: "",
+    component: MainTemplateComponent,
     children: [
-      { path: '', component: ProfilePostsComponent },
-      { path: 'info', component: InformationComponent },
-      { path: 'friends', component: FriendsComponent },
-      { path: 'groups', component: ProfileGroupsComponent },
-      { path: 'following', component: FollowingComponent },
-      { path: 'followed', component: FollowedComponent },
-    ],
-  },
-  {
-    path: 'settings',
-    component: SettingsComponent,
-    children: [
-      { path: '', component: InformationSettingsComponent },
-      { path: 'privacy', component: PrivacyComponent },
-      { path: 'image', component: ImageComponent },
-      { path: 'cover-image', component: CoverImageComponent },
-      { path: 'blocked', component: BlockedListComponent },
-      { path: 'sent-friendship-requests', component: SentFriendshipRequestsComponent },
-      { path: 'recevied-friendship-requests', component: ReceivedFriendshipRequestsComponent },
-    ],
-  },
-  { path: 'groups', component: GroupsComponent },
-  {
-    path: 'groups/:id',
-    component: GroupComponent,
-    children: [
-      { path: '', component: GroupPostsCompoent },
-      { path: 'members', component: MembersComponent },
-      { path: 'join-requests', component: JoinRequestsComponent },
-    ],
-  },
-  { path: 'create-group', component: CreateGroupComponent },
-  { path: 'chats', component: ChatsComponent },
-  { path: 'not-found', component: NotFoundComponent },
+      {
+        path: "",
+        component: PostsComponent,
+        children: [
+          { path: "", component: FollowedPostsComponent },
+          { path: "friends-posts", component: FriendsPostsComponent },
+          { path: "hidden-posts", component: HiddenPostsComponent }
+        ]
+      },
+      {
+        path: 'profiles',
+        component: ProfilesComponent,
+      },
+      {
+        path: 'profiles/:id',
+        component: ProfileComponent,
+        children: [
+          { path: '', component: ProfilePostsComponent },
+          { path: 'info', component: InformationComponent },
+          { path: 'friends', component: FriendsComponent },
+          { path: 'groups', component: ProfileGroupsComponent },
+          { path: 'following', component: FollowingComponent },
+          { path: 'followed', component: FollowedComponent },
+        ],
+      },
+      {
+        path: 'settings',
+        component: SettingsComponent,
+        children: [
+          { path: '', component: InformationSettingsComponent },
+          { path: 'privacy', component: PrivacyComponent },
+          { path: 'image', component: ImageComponent },
+          { path: 'cover-image', component: CoverImageComponent },
+          { path: 'blocked', component: BlockedListComponent },
+          { path: 'sent-friendship-requests', component: SentFriendshipRequestsComponent },
+          { path: 'recevied-friendship-requests', component: ReceivedFriendshipRequestsComponent },
+        ],
+      },
+      { path: 'groups', component: GroupsComponent },
+      {
+        path: 'groups/:id',
+        component: GroupComponent,
+        children: [
+          { path: '', component: GroupPostsCompoent },
+          { path: 'members', component: MembersComponent },
+          { path: 'join-requests', component: JoinRequestsComponent },
+        ],
+      },
+      { path: 'create-group', component: CreateGroupComponent },
+      { path: 'not-found', component: NotFoundComponent },
+    ]
+  }
 ];
 
 @NgModule({
