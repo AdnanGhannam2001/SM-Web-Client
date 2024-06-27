@@ -24,8 +24,8 @@ export class ChatService {
     return lastValueFrom(this.http.post<IMessage>(`${APIS_CHATS}/chats/${id}`, { content }, { withCredentials: true }));
   }
 
-  joinChat(id: string): Promise<void> {
-    return lastValueFrom(this.http.get<void>(`${APIS_CHATS}/chats/${id}/join`, { withCredentials: true }));
+  joinChat(id: string, connectionId: string): Promise<void> {
+    return lastValueFrom(this.http.post<void>(`${APIS_CHATS}/chats/${id}/join`, {}, { withCredentials: true, params: { connectionId } }));
   }
 
   updateMessage(id: string, messageId: string, content: string): Promise<void> {
