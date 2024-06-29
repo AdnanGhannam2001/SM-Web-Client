@@ -10,7 +10,6 @@
     </a>
     <small class="group-list-view__desc" footer>
         {{ group.description }}
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi explicabo perferendis corrupti minima impedit qui alias recusandae, autem exercitationem non deleniti nulla! Repudiandae harum enim cupiditate molestias voluptates eaque odio?
     </small>
 </social-item-showcase>
 
@@ -20,6 +19,7 @@
       label="Leave Group"
       styleClass="p-button-primary"
       [style]="{ 'white-space': 'nowrap' }"
+      (onClick)="leave()"
   ></p-button>
 }
 @else if (group.joinRequests.length > 0)
@@ -28,6 +28,7 @@
       label="Cancel Join Request"
       styleClass="p-button-primary"
       [style]="{ 'white-space': 'nowrap' }"
+      (onClick)="cancelRequest()"
   ></p-button>
 }
 @else
@@ -36,5 +37,6 @@
       label="Join Group"
       styleClass="p-button-primary"
       [style]="{ 'white-space': 'nowrap' }"
+      (onClick)="join()"
   ></p-button>
 }

@@ -20,6 +20,16 @@
         label="Leave Group"
         styleClass="p-button-primary"
         [style]="{ 'white-space': 'nowrap' }"
+        (onClick)="leave()"
+    ></p-button>
+  }
+  @else if (group.joinRequests.length > 0)
+  {
+    <p-button
+        label="Cancel Join Request"
+        styleClass="p-button-primary"
+        [style]="{ 'white-space': 'nowrap' }"
+        (onClick)="cancelRequest()"
     ></p-button>
   }
   @else
@@ -28,6 +38,8 @@
         label="Join Group"
         styleClass="p-button-primary"
         [style]="{ 'white-space': 'nowrap' }"
+        (onClick)="join()"
     ></p-button>
   }
+
 </div>
