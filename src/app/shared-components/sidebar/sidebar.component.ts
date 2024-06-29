@@ -22,15 +22,14 @@ export class SidebarComponent {
       name: 'Personal',
       items: [
         {
+          icon: 'pi pi-home',
+          label: 'Home',
+          url: '/',
+        },
+        {
           icon: 'pi pi-user',
           label: 'My Profile',
           url: '/profile',
-        },
-        {
-          icon: 'pi pi-home',
-          label: 'My Timeline',
-          url: '/',
-          badge: '10',
         },
       ],
     },
@@ -38,12 +37,12 @@ export class SidebarComponent {
       name: 'Community',
       items: [
         {
-          label: 'My Friends',
+          label: 'Users',
           icon: 'pi pi-users',
-          url: '/friends',
+          url: '/profiles',
         },
         {
-          label: 'My Groups',
+          label: 'Groups',
           icon: 'pi pi-users',
           url: '/groups',
         },

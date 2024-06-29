@@ -3,8 +3,11 @@
     size="big"
     [rounded]="false"
     [badgeColor]="color"
+    [url]="'/groups/' + group.id"
     [badge]="visibility">
-    <h3 [style]="{ 'font-weight': '500' }">{{ group.name }}</h3>
+    <a [routerLink]="'/groups/' + group.id" class="social-link">
+      <h3 [style]="{ 'font-weight': '500' }">{{ group.name }}</h3>
+    </a>
     <small class="group-list-view__desc" footer>
         {{ group.description }}
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi explicabo perferendis corrupti minima impedit qui alias recusandae, autem exercitationem non deleniti nulla! Repudiandae harum enim cupiditate molestias voluptates eaque odio?

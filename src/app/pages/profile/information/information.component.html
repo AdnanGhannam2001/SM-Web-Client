@@ -35,28 +35,31 @@
         </div>
     </div>
 </div>
-<div class="information__group">
-    <div class="information__header">
-        <h3>Job Information</h3>
-        <p-button
-            *ngIf="editable"
-            label="Edit"
-            styleClass="p-button-success"
-        ></p-button>
-    </div>
-    <p-divider></p-divider>
-    <div class="information__table">
-        <div class="information__row">
-            <span>Job Title:</span>
-            <span>{{ profile?.jobInformations?.jobTitle }}</span>
+@if (profile?.jobInformations?.company || profile?.jobInformations?.jobTitle || profile?.jobInformations?.startDate)
+{
+  <div class="information__group">
+      <div class="information__header">
+          <h3>Job Information</h3>
+          <p-button
+              *ngIf="editable"
+              label="Edit"
+              styleClass="p-button-success"
+          ></p-button>
+      </div>
+        <p-divider></p-divider>
+        <div class="information__table">
+            <div class="information__row" *ngIf="profile?.jobInformations?.jobTitle">
+                <span>Job Title:</span>
+                <span>{{ profile?.jobInformations?.jobTitle }}</span>
+            </div>
+            <div class="information__row" *ngIf="profile?.jobInformations?.company">
+                <span>Company:</span>
+                <span>{{ profile?.jobInformations?.company }}</span>
+            </div>
+            <div class="information__row" *ngIf="profile?.jobInformations?.startDate">
+                <span>Started At:</span>
+                <span>{{ profile?.jobInformations?.startDate }}</span>
+            </div>
         </div>
-        <div class="information__row">
-            <span>Company:</span>
-            <span>{{ profile?.jobInformations?.company }}</span>
-        </div>
-        <div class="information__row">
-            <span>Started At:</span>
-            <span>{{ profile?.jobInformations?.startDate }}</span>
-        </div>
-    </div>
-</div>
+  </div>
+}

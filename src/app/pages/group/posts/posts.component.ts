@@ -25,6 +25,7 @@ export class PostsComponent extends Pagination<IPost> {
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(async (param) => {
+      this.error = undefined;
       const id = param.get('id');
 
       if (id != this.id) this.page.items = [];

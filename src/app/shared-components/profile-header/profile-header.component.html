@@ -40,8 +40,11 @@
     </div>
 
     <div class="profile-header__links">
-        <a class="social-link" *ngFor="let link of links" [pTooltip]="link[0]" tooltipPosition="bottom" [href]="link[1]">
+      @for (link of links; track $index)
+      {
+        <a class="social-link" *ngIf="link[1]" [pTooltip]="link[0]" tooltipPosition="bottom" [href]="link[1]">
             <i [class]="'pi pi-' + link[0]"></i>
         </a>
+      }
     </div>
 </div>

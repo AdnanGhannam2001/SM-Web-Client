@@ -14,13 +14,16 @@
             [routerLink]="url"
         >{{ content }}</a>
       }
-      @else
+      @else if (content)
       {
         <span
             class="social-link item-showcase__text"
         >{{ content }}</span>
       }
+      @else
+      {
         <ng-content *ngIf="!content"></ng-content>
+      }
         <div *ngIf="badge && direction == 'row'" class="item-showcase__badge" [style]="{ 'background-color': badgeColor }">
             {{ badge }}
         </div>

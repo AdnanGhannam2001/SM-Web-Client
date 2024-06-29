@@ -34,6 +34,7 @@ export class ProfileHeaderComponent {
         }
       ];
     } else {
+      // TODO: Fix & Add Commands
       this.items = [
         {
           label: "Send Request",

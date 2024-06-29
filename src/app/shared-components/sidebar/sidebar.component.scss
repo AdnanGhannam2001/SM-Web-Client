@@ -1,12 +1,10 @@
 @use "../../utilities/mixin.scss";
 
 :host {
+  @include mixin.flex(space-between, stretch, column);
   gap: 1em;
   background-color: var(--bg-sidebar);
-  box-shadow: 0px 1px 0px 0px rgba(140, 140, 150, .05),
-              0px 0px 1px 0px rgba(65, 75, 110, .15);
-  padding: 1.25em 0;
-  display: block;
+  height: 100%;
 
   .sidebar {
     &__content {
