@@ -3,7 +3,7 @@ import { IPage, IPageRequest } from '../../../interfaces/page.interface';
 import { IPost } from '../../../interfaces/post.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../../../services/post.service';
-import { Pagination } from '../../../helpers/pagination';
+import { Pagination } from '../../../bases/pagination';
 
 @Component({
   selector: 'social-posts',

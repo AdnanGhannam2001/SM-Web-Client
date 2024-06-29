@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ProfileService } from '../../../services/profile.service';
 import { ActivatedRoute } from '@angular/router';
-import { Pagination } from '../../../helpers/pagination';
+import { Pagination } from '../../../bases/pagination';
 import { IGroup } from '../../../interfaces/group.interface';
 
 @Component({

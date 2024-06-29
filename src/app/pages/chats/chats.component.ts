@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Pagination } from '../../helpers/pagination';
+import { Pagination } from '../../bases/pagination';
 import { IChat } from '../../interfaces/chat.interface';
 import { ChatService } from '../../services/chat.service';
 import { GroupService } from '../../services/group.service';

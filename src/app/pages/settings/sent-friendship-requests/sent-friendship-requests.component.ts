@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Pagination } from '../../../helpers/pagination';
+import { Pagination } from '../../../bases/pagination';
 import { IFriendshipRequest } from '../../../interfaces/profile.interface';
 import { ProfileService } from '../../../services/profile.service';
 import { MessageService } from 'primeng/api';

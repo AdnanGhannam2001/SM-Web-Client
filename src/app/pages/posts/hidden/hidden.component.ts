@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Pagination } from '../../../helpers/pagination';
+import { Pagination } from '../../../bases/pagination';
 import { IPost } from '../../../interfaces/post.interface';
 import { PostService } from '../../../services/post.service';
 

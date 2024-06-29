@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IFollow } from '../../../interfaces/profile.interface';
-import { Pagination } from '../../../helpers/pagination';
+import { Pagination } from '../../../bases/pagination';
 import { ProfileService } from '../../../services/profile.service';
 import { ActivatedRoute } from '@angular/router';
 

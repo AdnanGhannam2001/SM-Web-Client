@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Pagination } from '../../../helpers/pagination';
+import { Pagination } from '../../../bases/pagination';
 import { IJoinRequest } from '../../../interfaces/group.interface';
 import { GroupService } from '../../../services/group.service';
 

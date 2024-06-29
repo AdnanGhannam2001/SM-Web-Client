@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IProfile } from '../../interfaces/profile.interface';
 import { ProfileService } from '../../services/profile.service';
-import { Pagination } from '../../helpers/pagination';
+import { Pagination } from '../../bases/pagination';
 
 @Component({
   selector: 'social-profiles',

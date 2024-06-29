@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Pagination } from '../../../helpers/pagination';
+import { Pagination } from '../../../bases/pagination';
 import { IFollow } from '../../../interfaces/profile.interface';
 import { ProfileService } from '../../../services/profile.service';
 import { ActivatedRoute } from '@angular/router';

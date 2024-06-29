@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { GroupService } from '../../../services/group.service';
 import { ActivatedRoute } from '@angular/router';
 import { IPost } from '../../../interfaces/post.interface';
-import { Pagination } from '../../../helpers/pagination';
+import { Pagination } from '../../../bases/pagination';
 import { MessageService } from 'primeng/api';
 
 @Component({

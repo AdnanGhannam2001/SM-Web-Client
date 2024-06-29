@@ -3,7 +3,7 @@ import { IMember } from '../../../interfaces/group.interface';
 import { GroupService } from '../../../services/group.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GroupComponent } from '../group.component';
-import { Pagination } from '../../../helpers/pagination';
+import { Pagination } from '../../../bases/pagination';
 
 @Component({
   selector: 'social-members',

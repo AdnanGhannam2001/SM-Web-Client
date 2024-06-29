@@ -7,7 +7,7 @@
       size="big"
       direction="column"
       [rounded]="true"
-      [badge]="badge"
+      [badge]="getBadge()"
   ></social-item-showcase>
 
   <div class="profile-grid-view__row">
@@ -33,20 +33,23 @@
   </div>
 </div>
 
-
 <div class="profile-grid-view__bottom">
   <div>
-      <p-button
-          icon="pi pi-heart"
-          styleClass="p-button-text"
-          pTooltip="Follow" tooltipPosition="bottom"
-      ></p-button>
+    <p-button
+        [icon]="isFollowed ? 'pi pi-heart-fill' : 'pi pi-heart'"
+        styleClass="p-button-rounded p-button-text"
+        [pTooltip]="isFollowed ? 'Following' : 'Follow'"
+        tooltipPosition="bottom"
+        (onClick)="followBtnClicked()"
+    ></p-button>
   </div>
   <div>
-      <p-button
-          icon="pi pi-user-plus"
-          styleClass="p-button-text"
-          pTooltip="Send a Friend Request" tooltipPosition="bottom"
-      ></p-button>
+    <p-button
+        [icon]="isFriend ? 'pi pi-users' : 'pi pi-user-plus'"
+        styleClass="p-button-rounded p-button-text"
+        [pTooltip]="isFriend ? 'Friend' : 'Send a Friend Request'"
+        tooltipPosition="bottom"
+        (onClick)="friendBtnClicked()"
+    ></p-button>
   </div>
 </div>

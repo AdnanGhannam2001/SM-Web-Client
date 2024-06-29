@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IGroup } from '../../interfaces/group.interface';
 import { TabMenuItem } from '../../ui-components/tab-menu/tab-menu.component';
 import { GroupService } from '../../services/group.service';
-import { Pagination } from '../../helpers/pagination';
+import { Pagination } from '../../bases/pagination';
 
 @Component({
   selector: 'social-groups',

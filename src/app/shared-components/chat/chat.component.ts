@@ -1,5 +1,5 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
-import { Pagination } from '../../helpers/pagination';
+import { Pagination } from '../../bases/pagination';
 import { IMessage } from '../../interfaces/chat.interface';
 import { ChatService } from '../../services/chat.service';
 import { HttpClient, HubConnectionBuilder } from '@aspnet/signalr';

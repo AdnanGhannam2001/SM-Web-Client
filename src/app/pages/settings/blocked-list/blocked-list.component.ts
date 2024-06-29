@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IBlock } from '../../../interfaces/profile.interface';
 import { ProfileService } from '../../../services/profile.service';
-import { Pagination } from '../../../helpers/pagination';
+import { Pagination } from '../../../bases/pagination';
 import { MessageService } from 'primeng/api';
 
 @Component({
