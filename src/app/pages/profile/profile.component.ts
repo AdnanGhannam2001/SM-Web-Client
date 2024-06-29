@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IProfileResponse } from '../../interfaces/profile.interface';
 import { ProfileService } from '../../services/profile.service';
 import { TabMenuItem } from '../../ui-components/tab-menu/tab-menu.component';
-import { LOGIN_REDIRECT_URI } from '../../constants/apis';
 
 @Component({
   selector: 'social-profile',
@@ -67,7 +66,6 @@ export class ProfileComponent {
           this.tabs.push({ url: url + 'followed', text: "Followed" });
         }
       } catch (error: any) {
-        if (error.url?.startsWith(LOGIN_REDIRECT_URI)) window.location.href = error.url;
         this.router.navigate(['/not-found']);
       }
     });

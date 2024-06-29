@@ -78,7 +78,7 @@ import { ChatsComponent } from './chats/chats.component';
     FavoritesComponent,
     JoinRequestsComponent,
     CreateGroupComponent,
-    ChatsComponent
+    ChatsComponent,
   ],
   imports: [
     CommonModule,
