@@ -1,0 +1,34 @@
+<div [class]="'chat-message' + (isSameUser(message.senderId) ? ' reverse' : '')">
+  <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png" styleClass="mr-2" size="large"
+    shape="circle" />
+  <div class="chat-message__box">
+    <small>{{message.senderId}}</small>
+    <p class="content">{{message.content}}</p>
+  </div>
+  @if (items.length)
+  {
+    <div>
+      <p-button icon="pi pi-ellipsis-v" [rounded]="true" [text]="true" (onClick)="menu.toggle($event)"></p-button>
+      <p-menu #menu [model]="items" [popup]="true" appendTo="body"></p-menu>
+    </div>
+  }
+</div>
+
+<p-dialog
+  header="Edit Message"
+  [style]="{ minWidth: '25rem' }"
+  [modal]="true"
+  [visible]="updatingMessage !== undefined"
+  (visibleChange)="updatingMessage = undefined">
+    <div class="flex align-items-center gap-3 mb-5">
+      <textarea
+        pInputTextarea
+        rows="5" cols="30"
+        [(ngModel)]="updatingMessage">
+      </textarea>
+    </div>
+    <div class="flex justify-content-end gap-2">
+        <p-button label="Cancel" severity="secondary" (click)="updatingMessage = undefined" />
+        <p-button label="Save" (click)="update()" />
+    </div>
+</p-dialog>

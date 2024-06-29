@@ -1,9 +1,8 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { Pagination } from '../../bases/pagination';
-import { IMessage } from '../../interfaces/chat.interface';
+import { IChat, IMessage } from '../../interfaces/chat.interface';
 import { ChatService } from '../../services/chat.service';
-import { HttpClient, HubConnectionBuilder } from '@aspnet/signalr';
-import { APIS_CHATS } from '../../constants/apis';
+import { HubConnectionBuilder } from '@aspnet/signalr';
 import { HUBS_CHAT } from '../../constants/hubs';
 
 @Component({
@@ -12,27 +11,40 @@ import { HUBS_CHAT } from '../../constants/hubs';
   styleUrl: './chat.component.scss'
 })
 export class ChatComponent extends Pagination<IMessage> {
-  @Input() id?: string;
+  @Input() chat?: IChat;
+  @Output() onChatsButtonClick = new EventEmitter<MouseEvent>();
+
   message = "";
-  currentUserId: string | null;
 
   hubConnection;
   connectionId?: string;
 
   constructor(private readonly chatService: ChatService) {
     super();
-    this.currentUserId = localStorage.getItem("id");
 
     this.hubConnection = new HubConnectionBuilder()
       .withUrl(`${HUBS_CHAT}/websocket/chat`)
       .build();
 
-    this.hubConnection.on("MessageSent", (message: IMessage) =>
-    {
-      if (message.senderId != this.currentUserId) {
-        this.page.items.unshift(message);
+    this.hubConnection.on("MessageSent", (message: IMessage) => {
+      this.page.items.unshift(message);
+    });
+
+    this.hubConnection.on("MessageUpdated", (messageId: string, content: string) => {
+      const message = this.page.items.find(x => x.id == messageId)
+      if (message) {
+        message.content = content;
       }
     });
+
+    this.hubConnection.on("MessageDeleted", (messageId: string) => {
+      this.page.items.find(x => x.id == messageId)
+      this.page.items = this.page.items.filter(x => x.id != messageId);
+    });
+  }
+
+  chatsButtonClick(event: MouseEvent) {
+    this.onChatsButtonClick.emit(event);
   }
 
   async ngOnInit() {
@@ -47,28 +59,31 @@ export class ChatComponent extends Pagination<IMessage> {
   }
 
   override async requestPage() {
-    this.page = await this.chatService.getMessages(this.id!, this.pageRequest);
+    this.page = await this.chatService.getMessages(this.chat!.id, this.pageRequest);
   }
 
   async ngOnChanges(changes: SimpleChanges) {
-    if (changes["id"]?.currentValue) {
+    if (changes["chat"]?.currentValue) {
       this.pageRequest = { pageSize: 10, pageNumber: 0 };
 
       if (!this.connectionId) throw new Error("No Connection Id");
 
-      await this.chatService.joinChat(this.id!, this.connectionId);
+      await this.chatService.joinChat(this.chat!.id, this.connectionId);
 
       await this.requestPage();
     }
   }
 
   async sendMessage() {
-    const message = await this.chatService.sendMessage(this.id!, this.message);
-    this.page.items.unshift(message);
+    await this.chatService.sendMessage(this.chat!.id, this.message);
     this.message = "";
   }
 
-  isUser(id: string) {
-    return id == this.currentUserId;
+  async updateMessage(id: string, content: string) {
+    await this.chatService.updateMessage(this.chat!.id, id, content);
+  }
+
+  async deleteMessage(id: string) {
+    await this.chatService.deleteMessage(this.chat!.id, id);
   }
 }

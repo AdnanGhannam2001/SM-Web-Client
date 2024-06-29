@@ -1,33 +1,4 @@
-<header class="chats__header">
-  <div class="chats__header__info">
-    @if(chat)
-    {
-      @if (chat.isGroup)
-      {
-        <social-item-showcase
-          class="profile-list-view__profilebox"
-          [image]="chat.group!.image"
-          [content]="chat.group!.name"
-          size="big"
-          [rounded]="true"
-        ></social-item-showcase>
-      }
-      @else
-      {
-        <social-item-showcase
-          class="profile-list-view__profilebox"
-          [image]="chat.user!.image"
-          [content]="chat.user!.firstName + ' ' + chat.user!.lastName"
-          size="big"
-          [rounded]="true"
-        ></social-item-showcase>
-      }
-    }
-  </div>
-  <p-button [text]="true" class="chats__header__btn" (click)="showDialog()" icon="pi pi-comments" />
-  <p-button [text]="true" class="chats__header__btn" routerLink="/" icon="pi pi-home" />
-</header>
-<social-chat [id]="chat?.id"></social-chat>
+<social-chat [chat]="selected !== undefined ? page.items[selected] : undefined" (onChatsButtonClick)="showDialog()"></social-chat>
 
 <p-dialog
   header="Edit Profile"

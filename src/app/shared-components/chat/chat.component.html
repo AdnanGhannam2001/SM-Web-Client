@@ -1,19 +1,44 @@
-@if (id)
+<header class="chat__header">
+  <div class="chat__header__info">
+    @if(chat)
+    {
+      @if (chat.isGroup)
+      {
+        <social-item-showcase
+          class="profile-list-view__profilebox"
+          [image]="chat.group!.image"
+          [content]="chat.group!.name"
+          size="big"
+          [rounded]="true"
+        ></social-item-showcase>
+      }
+      @else
+      {
+        <social-item-showcase
+          class="profile-list-view__profilebox"
+          [image]="chat.user!.image"
+          [content]="chat.user!.firstName + ' ' + chat.user!.lastName"
+          size="big"
+          [rounded]="true"
+        ></social-item-showcase>
+      }
+    }
+  </div>
+  <p-button [text]="true" class="chat__header__btn" (click)="chatsButtonClick($event)" icon="pi pi-comments" />
+  <p-button [text]="true" class="chat__header__btn" routerLink="/" icon="pi pi-home" />
+</header>
+
+@if (chat)
 {
   <div class="chat__messages">
     @for (message of page.items; track message.id)
     {
-      <div [class]="'chat__message' + (isUser(message.senderId) ? ' reverse' : '')">
-        <p-avatar
-          image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png"
-          styleClass="mr-2"
-          size="large"
-          shape="circle" />
-        <div class="chat__message__box">
-          <small>{{message.senderId}}</small>
-          <p class="content">{{message.content}}</p>
-        </div>
-      </div>
+      <social-chat-message
+        [message]="message"
+        [role]="chat.group?.members?.at(0)?.role"
+        (onUpdate)="updateMessage(message.id, $event)"
+        (onDelete)="deleteMessage(message.id)"
+      ></social-chat-message>
     }
   </div>
 

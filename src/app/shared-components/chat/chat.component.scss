@@ -6,6 +6,17 @@
   overflow: auto;
 
   .chat {
+    &__header {
+      background-color: var(--white);
+      padding: 1em .75em;
+      @include mixin.flex(flex-start, center, row);
+      gap: 1em;
+
+      &__info {
+        flex: 1;
+      }
+    }
+
     &__messages {
       @include mixin.flex(stretch, stretch, column-reverse);
       padding: 1em;
@@ -20,27 +31,6 @@
 
       .input {
         flex: 1;
-      }
-    }
-
-    &__message {
-      &.reverse {
-        flex-direction: row-reverse;
-        text-align: right;
-      }
-
-      @include mixin.flex(stretch, stretch);
-      gap: .5em;
-      margin: .75em 0;
-
-      &__box {
-        background-color: var(--green-300);
-        padding: .5em 1em;
-        border-radius: 5px;
-
-        .content {
-          margin: .5em 0 0;
-        }
       }
     }
   }

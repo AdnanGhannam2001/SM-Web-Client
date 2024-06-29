@@ -12,9 +12,9 @@ import { ProfileService } from '../../services/profile.service';
 })
 export class ChatsComponent extends Pagination<IChat> {
   visible: boolean = false;
-  chat?: IChat;
   end = false;
   loading = true;
+  selected?: number;
 
   constructor(private readonly chatService: ChatService,
               private readonly groupService: GroupService,
@@ -58,7 +58,7 @@ export class ChatsComponent extends Pagination<IChat> {
   async ngOnInit() {
     await this.requestPage();
     this.loading = false;
-    this.chat = this.page.items[0];
+    this.selected = 0;
   }
 
   showDialog() {
@@ -66,7 +66,8 @@ export class ChatsComponent extends Pagination<IChat> {
   }
 
   async open(id: string) {
-    this.chat = this.page.items.find(chat => chat.id == id);
+    this.selected = this.page.items.findIndex(chat => chat.id == id);
+    console.log(this.selected)
     this.visible = false;
   }
 }

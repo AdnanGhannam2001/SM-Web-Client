@@ -5,17 +5,4 @@
   flex-direction: column;
   flex: 1;
   overflow: hidden;
-
-  .chats {
-    &__header {
-      background-color: var(--white);
-      padding: 1em .75em;
-      @include mixin.flex(flex-start, center, row);
-      gap: 1em;
-
-      &__info {
-        flex: 1;
-      }
-    }
-  }
 }
