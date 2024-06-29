@@ -9,3 +9,11 @@
         <social-profile-grid-view *ngFor="let member of members" [profile]="member.profile"></social-profile-grid-view>
     </ng-template>
 </p-dataView>
+@if (page.items.length)
+{
+  <p-paginator
+    (onPageChange)="onPageChange($event)"
+    [first]="pageRequest.pageNumber ?? 0"
+    [rows]="pageRequest.pageSize"
+    [totalRecords]="page.total" />
+}
