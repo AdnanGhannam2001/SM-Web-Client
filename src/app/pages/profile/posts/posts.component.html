@@ -4,5 +4,5 @@
   label="Load more"
   [text]="true"
   (onClick)="requestPage()"
-  *ngIf="!end"
+  *ngIf="!loading && !end"
 ></p-button>

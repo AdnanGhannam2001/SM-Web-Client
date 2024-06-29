@@ -14,6 +14,7 @@ export class ChatsComponent extends Pagination<IChat> {
   visible: boolean = false;
   chat?: IChat;
   end = false;
+  loading = true;
 
   constructor(private readonly chatService: ChatService,
               private readonly groupService: GroupService,
@@ -48,10 +49,15 @@ export class ChatsComponent extends Pagination<IChat> {
     this.page.items.push(...response.items);
     this.page.total = response.total;
     (this.pageRequest.pageNumber!)++;
+
+    if (response.items.length < this.pageRequest.pageSize!) {
+      this.end = true;
+    }
   }
 
   async ngOnInit() {
     await this.requestPage();
+    this.loading = false;
     this.chat = this.page.items[0];
   }
 

@@ -57,8 +57,11 @@
       ></social-item-showcase>
     }
   </div>
-  @if (!end)
-  {
-    <p-button label="Load More" styleClass="btn-load-more" [text]="true" (onClick)="requestPage()"></p-button>
-  }
+    <p-button
+      label="Load More"
+      styleClass="btn-load-more"
+      *ngIf="!loading && !end"
+      [text]="true"
+      (onClick)="requestPage()"
+    ></p-button>
 </p-dialog>

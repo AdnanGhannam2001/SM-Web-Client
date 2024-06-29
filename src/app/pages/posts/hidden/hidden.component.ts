@@ -29,6 +29,10 @@ export class HiddenComponent extends Pagination<IPost> {
 
     this.page.items.push(...postPage.items);
     (this.pageRequest.pageNumber!)++;
+
+    if (postPage.items.length < this.pageRequest.pageSize!) {
+      this.end = true;
+    }
   }
 }
 

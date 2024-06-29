@@ -7,7 +7,7 @@
   styleClass="btn-load-more"
   label="Load more"
   (onClick)="requestPage()"
-  *ngIf="!end"
+  *ngIf="!loading && !end"
   [text]="true"
 ></p-button>
 

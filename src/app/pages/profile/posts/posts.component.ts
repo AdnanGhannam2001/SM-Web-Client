@@ -45,5 +45,9 @@ export class PostsComponent extends Pagination<IPost> {
       this.page.items.push(...postsPage.items);
       this.loading = false;
       (this.pageRequest.pageNumber!)++;
+
+      if (postsPage.items.length < this.pageRequest.pageSize!) {
+        this.end = true;
+      }
   }
 }
