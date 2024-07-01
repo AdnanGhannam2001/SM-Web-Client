@@ -11,6 +11,12 @@ export class GroupService {
 
   constructor(private readonly http: HttpClient) { }
 
+  getGroupsNamesByIds(ids: Array<string>): Promise<Array<IGroup>> {
+    const headers = new HttpHeaders({ ids });
+
+    return lastValueFrom(this.http.get<Array<IGroup>>(`${APIS_MAIN}/groups/ids`, { withCredentials: true, headers }));
+  }
+
   createGroup(group: IGroupRequest): Promise<IGroup> {
     return lastValueFrom(this.http.post<IGroup>(`${APIS_MAIN}/groups`, group, { withCredentials: true }));
   }

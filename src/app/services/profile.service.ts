@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IPage, IPageRequest } from '../interfaces/page.interface';
 import { Gender, IBlock, IFavoriteDiscussion, IFollow, IFriendship, IFriendshipRequest, IProfile, IProfileResponse, IProfileUpdateRequest, ISettings, InformationVisibility } from '../interfaces/profile.interface';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { APIS_MAIN } from '../constants/apis';
 import { lastValueFrom } from 'rxjs';
 import { IDiscussion, IGroup, IInvite } from '../interfaces/group.interface';
@@ -13,6 +13,12 @@ export class ProfileService {
 
   getProfiles(pageRequest: IPageRequest): Promise<IPage<IProfile>> {
     return lastValueFrom(this.http.get<IPage<IProfile>>(`${APIS_MAIN}/profiles`, { withCredentials: true, params: { ...pageRequest } }));
+  }
+
+  getProfilesNamesByIds(ids: Array<string>): Promise<Array<IProfileResponse>> {
+    const headers = new HttpHeaders({ ids });
+
+    return lastValueFrom(this.http.get<Array<IProfileResponse>>(`${APIS_MAIN}/profiles/ids`, { withCredentials: true, headers }));
   }
 
   getPersonalProfile(): Promise<IProfileResponse> {

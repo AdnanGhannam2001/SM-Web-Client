@@ -4,6 +4,7 @@ import { IChat, IMessage } from '../../interfaces/chat.interface';
 import { ChatService } from '../../services/chat.service';
 import { HubConnectionBuilder } from '@aspnet/signalr';
 import { HUBS_CHAT } from '../../constants/hubs';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'social-chat',
@@ -19,7 +20,9 @@ export class ChatComponent extends Pagination<IMessage> {
   hubConnection;
   connectionId?: string;
 
-  constructor(private readonly chatService: ChatService) {
+  constructor(private readonly chatService: ChatService,
+              private readonly profileService: ProfileService
+  ) {
     super();
 
     this.hubConnection = new HubConnectionBuilder()
@@ -59,7 +62,20 @@ export class ChatComponent extends Pagination<IMessage> {
   }
 
   override async requestPage() {
-    this.page = await this.chatService.getMessages(this.chat!.id, this.pageRequest);
+    const response = await this.chatService.getMessages(this.chat!.id, this.pageRequest);
+
+    const ids: Array<string> = [];
+    for (let chat of response.items) {
+      ids.push(chat.senderId);
+    }
+
+    const profiles = await this.profileService.getProfilesNamesByIds(ids);
+
+    for (let chat of response.items) {
+      chat.sender = profiles.find(x => x.id == chat.senderId);
+    }
+
+    this.page = response;
   }
 
   async ngOnChanges(changes: SimpleChanges) {

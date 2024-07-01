@@ -2,7 +2,9 @@
   <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png" styleClass="mr-2" size="large"
     shape="circle" />
   <div class="chat-message__box">
-    <small>{{message.senderId}}</small>
+    <a [routerLink]="'/profiles/' + message.senderId" class="social-link">
+      <small>{{message.sender?.firstName + " " + message.sender?.lastName}}</small>
+    </a>
     <p class="content">{{message.content}}</p>
   </div>
   @if (items.length)

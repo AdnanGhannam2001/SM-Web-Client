@@ -17,6 +17,7 @@ export interface IChat {
 export interface IMessage {
   id          : string;
   senderId    : string;
+  sender     ?: IProfileResponse;
   chatId      : string;
   sentAt      : Date;
   content     : string;

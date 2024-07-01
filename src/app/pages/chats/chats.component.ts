@@ -30,23 +30,38 @@ export class ChatsComponent extends Pagination<IChat> {
       return;
     }
 
+    const groupsIds: Array<string> = [];
+    const profilesIds: Array<string> = [];
+
     for (let chat of response.items) {
       if (chat.isGroup) {
-        chat.group = await this.groupService.getGroup(chat.id);
+        groupsIds.push(chat.id);
       } else {
         const myid = localStorage.getItem("id");
         const ids = chat.id.split('|');
 
         for (let id of ids) {
           if (id != myid) {
-            chat.user = await this.profileService.getProfile(id);
+            profilesIds.push(id);
             break;
           }
         }
       }
     }
 
+    const groupsNames = await this.groupService.getGroupsNamesByIds(groupsIds);
+    const profilesNames = await this.profileService.getProfilesNamesByIds(profilesIds);
+
+    for (let chat of response.items) {
+      if (chat.isGroup) {
+        chat.group = groupsNames.find(x => x.id == chat.id)
+      } else {
+        chat.user = profilesNames.find(x => chat.id.includes(x.id));
+      }
+    }
+
     this.page.items.push(...response.items);
+
     this.page.total = response.total;
     (this.pageRequest.pageNumber!)++;
 
