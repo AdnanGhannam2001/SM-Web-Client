@@ -13,12 +13,16 @@
     </div>
 
     <div class="navbar__right">
+      <!-- TODO: Add Global Search -->
       <p-button icon="pi pi-search" styleClass="p-button-text" (onClick)="searching = true"></p-button>
-      <p-button (onClick)="op.toggle($event); loadNotifications()" icon="pi pi-bell"
-        styleClass="p-button-text"></p-button>
-      <p-overlayPanel #op styleClass="custom">
-        <!-- TODO: Display notificaitons here -->
-      </p-overlayPanel>
+      @if (loggedIn)
+      {
+        <p-button (onClick)="op.toggle($event); loadNotifications()" icon="pi pi-bell"
+          styleClass="p-button-text"></p-button>
+        <p-overlayPanel #op styleClass="custom">
+          <social-notifications></social-notifications>
+        </p-overlayPanel>
+      }
       <p-divider layout="vertical"></p-divider>
       @if (loggedIn)
       {

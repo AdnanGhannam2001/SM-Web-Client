@@ -1,0 +1,42 @@
+@use "../../utilities/mixin.scss";
+
+:host {
+    display: block;
+    max-width: 400px;
+
+    >* {
+        padding: 1em;
+    }
+
+    .notifications {
+        &__header {
+            @include mixin.flex(space-between);
+            gap: 1em;
+            border-bottom: 1px solid var(--clr-border);
+        }
+
+        &__content {
+            @include mixin.flex;
+            gap: .5em;
+
+            &__text {
+                flex: 1;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin: .5em 0;
+            }
+        }
+
+        &__footer {
+            border-top: 1px solid var(--clr-border);
+        }
+
+        &__link {
+            @include mixin.flex;
+            gap: .25em;
+        }
+    }
+}

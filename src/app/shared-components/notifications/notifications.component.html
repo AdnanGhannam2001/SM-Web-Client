@@ -1,0 +1,54 @@
+<div class="notifications__header">
+    <h3 style="margin: 0;">Notifications</h3>
+</div>
+
+<div class="notifications__content" *ngFor="let notification of page.items">
+    <div>
+        <a [routerLink]="notification.link" class="notifications__content__text social-link">
+          {{ notification.content }}
+        </a>
+    </div>
+    <div toolbar>
+        @if (notification.isRead)
+        {
+          <p-button
+              icon="pi pi-eye-slash"
+              styleClass="p-button-text"
+              pTooltip="Mark as unread"
+              tooltipPosition="bottom"
+              (onClick)="markAs(notification.id, false)"
+          ></p-button>
+        }
+        @else
+        {
+          <p-button
+              icon="pi pi-eye"
+              styleClass="p-button-text"
+              pTooltip="Mark as read"
+              tooltipPosition="bottom"
+              (onClick)="markAs(notification.id, true)"
+          ></p-button>
+        }
+    </div>
+    <div toolbar>
+      <p-button
+          icon="pi pi-times-circle"
+          styleClass="p-button-text"
+          pTooltip="Delete"
+          tooltipPosition="bottom"
+          (onClick)="deleteNotification(notification.id)"
+      ></p-button>
+    </div>
+</div>
+
+@if (!loading && !page.total)
+{
+  <p>No notifications yet!</p>
+}
+
+<div class="notifications__footer">
+    <a routerLink="/notifications" class="social-link notifications__link">
+        <span>View all notifications ({{ page.total }})</span>
+        <span class="pi pi-angle-right"></span>
+    </a>
+</div>

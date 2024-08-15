@@ -30,6 +30,7 @@ import { CreateGroupComponent } from './pages/create-group/create-group.componen
 import { ChatsComponent } from './pages/chats/chats.component';
 import { ChatTemplateComponent } from './templates/chat-template/chat-template.component';
 import { MainTemplateComponent } from './templates/main-template/main-template.component';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
 
 const routes: Routes = [
   {
@@ -92,7 +93,8 @@ const routes: Routes = [
         ],
       },
       { path: 'create-group', component: CreateGroupComponent },
-      { path: 'not-found', component: NotFoundComponent },
+      { path: 'notifications', component: NotificationsComponent },
+      { path: '*', component: NotFoundComponent },
     ]
   }
 ];

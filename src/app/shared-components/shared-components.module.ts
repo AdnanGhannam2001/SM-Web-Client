@@ -40,6 +40,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { CommentComponent } from './comment/comment.component';
 import { ChatComponent } from './chat/chat.component';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { ChatMessageComponent } from './chat-message/chat-message.component';
     CommentComponent,
     ChatComponent,
     ChatMessageComponent,
+    NotificationsComponent,
   ],
   imports: [
     CommonModule,

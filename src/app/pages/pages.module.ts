@@ -47,6 +47,7 @@ import { FavoritesComponent } from './posts/favorites/favorites.component';
 import { JoinRequestsComponent } from './group/join-requests/join-requests.component';
 import { CreateGroupComponent } from './create-group/create-group.component';
 import { ChatsComponent } from './chats/chats.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { ChatsComponent } from './chats/chats.component';
     JoinRequestsComponent,
     CreateGroupComponent,
     ChatsComponent,
+    NotificationsComponent,
   ],
   imports: [
     CommonModule,

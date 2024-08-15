@@ -1,0 +1,51 @@
+<div class="container">
+  <social-page-title title="Notifications"></social-page-title>
+  <p-table [value]="page.items" dataKey="id" [rows]="pageRequest.pageSize" [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-notification>
+      <tr>
+        <td style="width: 90%;">
+          <div>
+            <a [routerLink]="notification.link" class="notifications__content__text social-link">
+              {{ notification.content }}
+            </a>
+          </div>
+        </td>
+        <td>
+          <div toolbar>
+            @if (notification.isRead)
+            {
+            <p-button icon="pi pi-eye-slash" styleClass="p-button-text" pTooltip="Mark as unread"
+              tooltipPosition="bottom" (onClick)="markAs(notification.id, false)"></p-button>
+            }
+            @else
+            {
+            <p-button icon="pi pi-eye" styleClass="p-button-text" pTooltip="Mark as read" tooltipPosition="bottom"
+              (onClick)="markAs(notification.id, true)"></p-button>
+            }
+          </div>
+        </td>
+        <td>
+          <div toolbar>
+            <p-button icon="pi pi-times-circle" styleClass="p-button-text" pTooltip="Delete" tooltipPosition="bottom"
+              (onClick)="deleteNotification(notification.id)"></p-button>
+          </div>
+        </td>
+        <td></td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  @if (page.items.length)
+  {
+  <p-paginator (onPageChange)="onPageChange($event)" [first]="pageRequest.pageNumber ?? 0" [rows]="pageRequest.pageSize"
+    [showCurrentPageReport]="true" currentPageReportTemplate="Viewing {first} - {last} of {totalRecords} notifications"
+    [totalRecords]="page.total" />
+  }
+</div>
