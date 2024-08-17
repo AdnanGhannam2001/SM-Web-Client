@@ -1,7 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { INotification } from '../../interfaces/notification.interface';
 import { NotificaitonService } from '../../services/notificaiton.service';
 import { IPage } from '../../interfaces/page.interface';
+import { HubConnectionBuilder } from '@aspnet/signalr';
+import { HUBS_NOTIFICATIONS } from '../../constants/hubs';
 
 @Component({
   selector: 'social-notifications',
@@ -12,12 +14,33 @@ export class NotificationsComponent {
   page: IPage<INotification> = { items: [], total: 0 };
   loading: boolean = true;
 
-  constructor(private readonly notificationService: NotificaitonService) { }
+  hubConnection;
+
+  constructor(private readonly notificationService: NotificaitonService) {
+    this.hubConnection = new HubConnectionBuilder()
+      .withUrl(`${HUBS_NOTIFICATIONS}/notification`)
+      .build();
+
+    this.hubConnection.on("Notify", (notification: INotification) => {
+      this.page.items.unshift(notification);
+      this.page.total++;
+    });
+  }
 
   async ngOnInit() {
     const pageRequest = { pageSize: 10 };
     this.page = await this.notificationService.getNotifications(pageRequest);
     this.loading = false;
+
+    try {
+      await this.hubConnection.start();
+      const connectionId = await this.hubConnection.invoke<string>("GetConnectionId");
+      await this.notificationService.start(connectionId);
+
+      console.info("Connected to notification hub with connection Id =", connectionId);
+    } catch (error) {
+      console.error("Error connecting to notification hub", error);
+    }
   }
 
   async markAs(id: string, read: boolean) {

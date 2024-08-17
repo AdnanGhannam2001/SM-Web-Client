@@ -26,7 +26,7 @@ export class ChatComponent extends Pagination<IMessage> {
     super();
 
     this.hubConnection = new HubConnectionBuilder()
-      .withUrl(`${HUBS_CHAT}/websocket/chat`)
+      .withUrl(`${HUBS_CHAT}/chat`)
       .build();
 
     this.hubConnection.on("MessageSent", (message: IMessage) => {

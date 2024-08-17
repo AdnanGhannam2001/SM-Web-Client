@@ -14,6 +14,11 @@ export class NotificaitonService {
       `${APIS_NOTIFICATIONS}/notifications`, { withCredentials: true, params: { ...pageRequest } }));
   }
 
+  start(connectionId: string): Promise<void> {
+    return lastValueFrom(this.http.post<void>(
+      `${APIS_NOTIFICATIONS}/notifications`, {}, { withCredentials: true, params: { connectionId } }));
+  }
+
   updateNotifications(id: string, read: boolean): Promise<INotification> {
     return lastValueFrom(this.http.patch<INotification>(
       `${APIS_NOTIFICATIONS}/notifications/${id}`, {}, { withCredentials: true, params: { read } }));
