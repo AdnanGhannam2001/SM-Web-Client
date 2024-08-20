@@ -3,6 +3,7 @@ import { IGroup, MemberRoleType } from '../../interfaces/group.interface';
 import { GroupService } from '../../services/group.service';
 import { MenuItem, MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { getGroupCoverImage, getGroupImage } from '../../helpers/file-helper';
 
 @Component({
   selector: 'social-group-header[group]',
@@ -58,6 +59,9 @@ export class GroupHeaderComponent {
       this.items.push({ label: "No Actions..." })
     }
   }
+
+  image(id: string) { return getGroupImage(id); }
+  coverImage(id: string) { return getGroupCoverImage(id); }
 
   async leave() {
     await this.groupService.leave(this.group.id);
@@ -144,7 +148,6 @@ export class GroupHeaderComponent {
     this.router.navigate(['/']);
   }
 
-  // TODO
   startInviting() {
     this.inviting = true;
   }

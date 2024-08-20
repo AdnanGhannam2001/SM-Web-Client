@@ -4,6 +4,7 @@ import { IChat } from '../../interfaces/chat.interface';
 import { ChatService } from '../../services/chat.service';
 import { GroupService } from '../../services/group.service';
 import { ProfileService } from '../../services/profile.service';
+import { getGroupCoverImage, getGroupImage, getProfileImage } from '../../helpers/file-helper';
 
 @Component({
   selector: 'social-chats',
@@ -15,6 +16,9 @@ export class ChatsComponent extends Pagination<IChat> {
   end = false;
   loading = true;
   selected?: number;
+
+  groupImage(id: string) { return getGroupImage(id); }
+  profileImage(id: string) { return getProfileImage(id); }
 
   constructor(private readonly chatService: ChatService,
               private readonly groupService: GroupService,

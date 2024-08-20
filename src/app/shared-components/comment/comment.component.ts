@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { IComment } from '../../interfaces/post.interface';
 import { MenuItem } from 'primeng/api';
 import { PostService } from '../../services/post.service';
+import { getProfileImage } from '../../helpers/file-helper';
 
 @Component({
   selector: 'social-comment[comment]',
@@ -18,6 +19,8 @@ export class CommentComponent {
   items: MenuItem[] = [];
   editing: boolean = false;
   deleted = false;
+
+  image(id: string) { return getProfileImage(id); }
 
   constructor(private readonly postService: PostService) { }
 

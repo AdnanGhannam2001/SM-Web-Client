@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IFollow } from '../../interfaces/profile.interface';
 import { ProfileService } from '../../services/profile.service';
 import { IPage } from '../../interfaces/page.interface';
+import { getProfileImage } from '../../helpers/file-helper';
 
 @Component({
   selector: 'social-followed-box',
@@ -11,6 +12,8 @@ import { IPage } from '../../interfaces/page.interface';
 export class FollowedBoxComponent {
   followed: IPage<IFollow> = { items: [], total: 0 };
   showButton = false;
+
+  image(id: string) { return getProfileImage(id); }
 
   constructor(private profileService: ProfileService) { }
 

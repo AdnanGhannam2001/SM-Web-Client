@@ -1,5 +1,5 @@
 <social-item-showcase
-    [image]="group.image"
+    [image]="group.image ? image(group.id) : undefined"
     size="big"
     [rounded]="false"
     [badgeColor]="color"

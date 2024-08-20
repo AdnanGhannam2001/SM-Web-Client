@@ -1,10 +1,30 @@
 <div class="profile-header__coverimg">
-    <img [src]="profile.coverImage" class="img"/>
+  @if (profile.coverImage)
+  {
+    <img [src]="coverImage(profile.id)" class="img"/>
+  }
 </div>
 
 <div class="profile-header__imgbox">
     <div class="imgbox" [attr.data-badge]="profile.jobInformations?.jobTitle" [class.online]="online">
-        <img [src]="profile.image" class="img"/>
+      @if (profile.image)
+      {
+        <img [src]="image(profile.id)" class="img"/>
+      }
+      @else
+      {
+        <p-fileUpload
+          mode="basic"
+          chooseLabel="Choose"
+          chooseIcon="pi pi-upload"
+          name="image"
+          [withCredentials]="true"
+          [url]="'https://localhost:7002/api/Profiles/profile/image'"
+          accept="image/*"
+          maxFileSize="1000000"
+          [auto]="true"
+          (onUpload)="onUpload()" />
+      }
     </div>
 </div>
 

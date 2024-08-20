@@ -21,11 +21,13 @@
 
         &__imgbox {
             @include mixin.size(12em);
+            @include mixin.flex;
+            border-radius: var(--br-b);
+            border: 1px solid var(--clr-group-header-imgbox-border);
+            background-color: #fff;
 
             .img {
-                border: 3px solid var(--clr-group-header-imgbox-border);
                 border-radius: var(--br-b);
-                transform: translateY(-5em);
             }
         }
 

@@ -2,7 +2,7 @@
 {
   <p-avatar
       class="avatar"
-      [image]="comment.profile?.image"
+      [image]="comment.profile?.image ? image(comment.profile!.id) : undefined"
       shape="circle"
   ></p-avatar>
   <div class="center">

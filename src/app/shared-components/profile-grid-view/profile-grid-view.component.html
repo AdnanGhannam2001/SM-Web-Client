@@ -1,7 +1,7 @@
 <div class="profile-grid-view__top">
   <social-item-showcase
       class="profile-grid-view__profilebox"
-      [image]="profile.image"
+      [image]="profile.image ? image(profile.id) : undefined"
       [content]="profile.firstName + ' ' + profile.lastName"
       [description]="profile.createdAtUtc.toString()"
       size="big"

@@ -62,7 +62,7 @@ export class ProfileComponent {
           localStorage.setItem("id", this.profile.id);
           localStorage.setItem("firstName", this.profile.firstName);
           localStorage.setItem("lastName", this.profile.lastName!);
-          localStorage.setItem("image", this.profile.image ?? "");
+          localStorage.setItem("image", `${this.profile.image}`);
           this.tabs.push({ url: url + 'followed', text: "Followed" });
         }
       } catch (error: any) {

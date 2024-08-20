@@ -1,7 +1,7 @@
 <div *ngFor="let blocked of page.items" class="blocked-members__item">
     <social-item-showcase
         class="profile-list-view__userbox"
-        [image]="blocked.blocked?.image"
+        [image]="blocked.blocked?.image ? image(blocked.blocked!.id) : undefined"
         [content]="blocked.blocked?.firstName"
         size="big"
         [rounded]="true"

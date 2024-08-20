@@ -3,6 +3,7 @@ import { IBlock } from '../../../interfaces/profile.interface';
 import { ProfileService } from '../../../services/profile.service';
 import { Pagination } from '../../../bases/pagination';
 import { MessageService } from 'primeng/api';
+import { getProfileImage } from '../../../helpers/file-helper';
 
 @Component({
   selector: 'social-blocked-list',
@@ -13,6 +14,8 @@ export class BlockedListComponent extends Pagination<IBlock> {
   constructor(private readonly profileService: ProfileService,
               private readonly messageService: MessageService
   ) { super(); }
+
+  image(id: string) { return getProfileImage(id); }
 
   override async requestPage() {
     this.page = await this.profileService.getBlocked(this.pageRequest);

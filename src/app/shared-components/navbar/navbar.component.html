@@ -17,7 +17,7 @@
       <p-button icon="pi pi-search" styleClass="p-button-text" (onClick)="searching = true"></p-button>
       @if (loggedIn)
       {
-        <p-button (onClick)="op.toggle($event); loadNotifications()" icon="pi pi-bell"
+        <p-button (onClick)="op.toggle($event);" icon="pi pi-bell"
           styleClass="p-button-text"></p-button>
         <p-overlayPanel #op styleClass="custom">
           <social-notifications></social-notifications>
@@ -28,7 +28,11 @@
       {
         <button (click)="userMenu.toggle($event)" class="navbar__user-btn">
           <span>{{ firstname }}</span>
-          <p-avatar [image]="image" shape="circle"></p-avatar>
+          @if (image)
+          {
+            <img [src]="" class="img"/>
+              <p-avatar [image]="image" shape="circle"></p-avatar>
+          }
         </button>
         <p-menu [style]="{ 'min-width': '250px' }" #userMenu [model]="userMenuItems" [popup]="true"></p-menu>
       }

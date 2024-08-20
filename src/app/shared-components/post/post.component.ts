@@ -2,6 +2,7 @@ import { Component, Input, input } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { IPost, ReactionType } from '../../interfaces/post.interface';
 import { PostService } from '../../services/post.service';
+import { getProfileImage } from '../../helpers/file-helper';
 
 @Component({
   selector: 'social-post[post]',
@@ -37,6 +38,8 @@ export class PostComponent {
   sendingComment = false;
 
   items: MenuItem[] = [];
+
+  image(id: string) { return getProfileImage(id); }
 
   constructor(private readonly postService: PostService,
               private readonly messageService: MessageService

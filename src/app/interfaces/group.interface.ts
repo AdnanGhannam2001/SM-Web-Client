@@ -8,8 +8,8 @@ export interface IGroup {
 
   name        : string;
   description : string;
-  image      ?: string;
-  coverImage ?: string;
+  image      ?: boolean;
+  coverImage ?: boolean;
   visibility  : GroupVisibilities;
   settings    : IGroupSettings;
 

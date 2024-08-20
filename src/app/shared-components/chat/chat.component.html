@@ -6,7 +6,7 @@
       {
         <social-item-showcase
           class="profile-list-view__profilebox"
-          [image]="chat.group!.image"
+          [image]="chat.group!.image ? groupImage(chat.group!.id) : undefined"
           [content]="chat.group!.name"
           size="big"
           [rounded]="true"
@@ -16,7 +16,7 @@
       {
         <social-item-showcase
           class="profile-list-view__profilebox"
-          [image]="chat.user!.image"
+          [image]="chat.user!.image ? profileImage(chat.user!.id) : undefined"
           [content]="chat.user!.firstName + ' ' + chat.user!.lastName"
           size="big"
           [rounded]="true"

@@ -1,14 +1,30 @@
 <div class="group-header__coverimg">
-  <img [src]="group.coverImage" class="img" />
+  @if (group.coverImage)
+  {
+    <img [src]="coverImage(group.id)" class="img"/>
+  }
 </div>
 
 <div class="group-header__bottom">
-  @if (group.image)
-  {
-    <div class="group-header__imgbox">
-      <img [src]="group.image" class="img" />
-    </div>
-  }
+  <div class="group-header__imgbox">
+    @if (group.image)
+    {
+      <img [src]="image(group.id)" class="img"/>
+    }
+    @else if (group.members.at(0)?.role == group.settings.editDetailsRole)
+    {
+      <p-fileUpload
+        mode="basic"
+        chooseLabel="Choose"
+        chooseIcon="pi pi-upload"
+        name="image"
+        [withCredentials]="true"
+        [url]="'https://localhost:7002/api/Groups/' + group.id + '/image'"
+        accept="image/*"
+        maxFileSize="1000000"
+        [auto]="true" />
+    }
+  </div>
   <div class="group-header__content">
     <div class="group-header__content__header">
       <div class="group-header__content__title">

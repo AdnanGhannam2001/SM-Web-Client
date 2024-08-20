@@ -13,8 +13,8 @@ export interface IProfile {
   dateOfBirth     : Date;
   gender          : Gender;
   bio            ?: string;
-  image          ?: string;
-  coverImage     ?: string;
+  image          ?: boolean;
+  coverImage     ?: boolean;
   jobInformations : IJobInformations;
   socials         : ISocials;
   settings        : ISettings;
@@ -63,8 +63,8 @@ export interface IProfileResponse {
   dateOfBirth    ?: Date;
   gender         ?: Gender;
   bio            ?: string;
-  image          ?: string;
-  coverImage     ?: string;
+  image          ?: boolean;
+  coverImage     ?: boolean;
   jobInformations?: IJobInformations;
   socials        ?: ISocials;
   settings        : ISettings;

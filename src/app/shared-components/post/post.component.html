@@ -2,7 +2,7 @@
 {
   <div class="post__top">
       <social-item-showcase
-          [image]="post.profile.image"
+          [image]="post.profile.image ? image(post.profile.id) : undefined"
           [url]="'/profiles/' + post.profile.id"
           [description]="(post.createdAtUtc | date: 'short')!"
           [rounded]="true">

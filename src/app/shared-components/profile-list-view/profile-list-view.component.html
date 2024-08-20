@@ -1,6 +1,6 @@
 <social-item-showcase
     class="profile-list-view__profilebox"
-    [image]="profile.image"
+    [image]="profile.image ? image(profile.id) : undefined"
     [content]="profile.firstName + ' ' + profile.lastName"
     [description]="profile.createdAtUtc.toString()"
     size="big"

@@ -35,7 +35,6 @@ export enum PostVisibilities {
 
 export interface IMedia {
   type: MediaType;
-  uri : string;
 };
 
 export enum MediaType {

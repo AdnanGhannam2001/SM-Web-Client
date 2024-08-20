@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { IProfileResponse, InformationVisibility } from '../../interfaces/profile.interface';
+import { getCoverImage, getProfileImage } from '../../helpers/file-helper';
 
 @Component({
   selector: 'social-profile-header[profile]',
@@ -55,8 +56,15 @@ export class ProfileHeaderComponent {
     }
   }
 
+  image(id: string) { return getProfileImage(id); }
+  coverImage(id: string) { return getCoverImage(id); }
+
   get links() {
     if (!this.profile.socials) return [];
     return Object.entries(this.profile.socials);
+  }
+
+  onUpload() {
+    window.location.reload();
   }
 }

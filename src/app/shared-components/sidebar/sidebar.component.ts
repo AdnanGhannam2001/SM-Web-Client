@@ -1,6 +1,5 @@
 import { Component, ElementRef } from '@angular/core';
 
-// TODO: Fill from api
 interface ListGroup {
   name?: string;
   items: {

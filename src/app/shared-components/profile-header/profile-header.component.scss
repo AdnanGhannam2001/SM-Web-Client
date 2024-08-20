@@ -13,6 +13,7 @@
         &__coverimg {
             width: 100%;
             height: 50%;
+            border-bottom: 1px solid #f1f1f1;
         }
 
         &__imgbox {
@@ -22,6 +23,10 @@
             .imgbox {
                 @include mixin.size(12em);
                 @include mixin.absolute(auto, auto, 0, 50%, -50%, 0);
+                @include mixin.flex;
+                border: 1px solid var(--clr-profile-header-img-border);
+                border-radius: 50%;
+                background-color: #fff;
 
                 &.online {
                     &::before {
@@ -49,7 +54,6 @@
                 }
 
                 img {
-                    border: 1px solid var(--clr-profile-header-img-border);
                     border-radius: 50%;
                 }
             }

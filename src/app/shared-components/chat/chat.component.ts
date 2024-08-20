@@ -5,6 +5,7 @@ import { ChatService } from '../../services/chat.service';
 import { HubConnectionBuilder } from '@aspnet/signalr';
 import { HUBS_CHAT } from '../../constants/hubs';
 import { ProfileService } from '../../services/profile.service';
+import { getGroupImage, getProfileImage } from '../../helpers/file-helper';
 
 @Component({
   selector: 'social-chat',
@@ -19,6 +20,9 @@ export class ChatComponent extends Pagination<IMessage> {
 
   hubConnection;
   connectionId?: string;
+
+  profileImage(id: string) { return getProfileImage(id); }
+  groupImage(id: string) { return getGroupImage(id); }
 
   constructor(private readonly chatService: ChatService,
               private readonly profileService: ProfileService

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { SidebarService } from '../../services/sidebar.service';
+import { getProfileImage } from '../../helpers/file-helper';
 
 @Component({
   selector: 'social-navbar',
@@ -14,7 +15,7 @@ export class NavbarComponent {
 
   loggedIn = false;
   firstname;
-  image;
+  image?: string;
 
   userMenuItems: MenuItem[] = [
     {
@@ -60,13 +61,14 @@ export class NavbarComponent {
   constructor (private readonly sidebarService: SidebarService) {
     this.loggedIn = localStorage.getItem("id") != undefined;
     this.firstname = localStorage.getItem("firstName") ?? "";
-    this.image = localStorage.getItem("image") ?? "";
+    const id = localStorage.getItem('id');
+    if (id) {
+      this.image = getProfileImage(id);
+    }
   }
 
   openSidebar() { this.sidebarService.toggle(); }
 
   // TODO
-  loadNotifications() { }
-
   onSubmit() { }
 }

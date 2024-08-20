@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { GroupService } from '../../services/group.service';
 import { GroupBaseComponent } from '../../bases/group-base-component';
+import { getGroupImage } from '../../helpers/file-helper';
 
 @Component({
   selector: 'social-group-list-view[group]',
@@ -10,6 +11,8 @@ import { GroupBaseComponent } from '../../bases/group-base-component';
   styleUrl: './group-list-view.component.scss'
 })
 export class GroupListViewComponent extends GroupBaseComponent {
+  image(id: string) { return getGroupImage(id); }
+
   constructor(groupService: GroupService,
               router: Router,
               messageService: MessageService

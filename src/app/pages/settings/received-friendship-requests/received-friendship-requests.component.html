@@ -1,7 +1,7 @@
 <div *ngFor="let request of page.items" class="requests__item">
     <social-item-showcase
         class="profile-list-view__userbox"
-        [image]="request.sender?.image"
+        [image]="request.sender?.image ? image(request.sender!.id) : undefined"
         [content]="request.sender?.firstName"
         size="big"
         [rounded]="true"
