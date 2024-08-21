@@ -2,7 +2,7 @@ import { Component, Input, input } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { IPost, ReactionType } from '../../interfaces/post.interface';
 import { PostService } from '../../services/post.service';
-import { getProfileImage } from '../../helpers/file-helper';
+import { getMedia, getProfileImage } from '../../helpers/file-helper';
 
 @Component({
   selector: 'social-post[post]',
@@ -39,7 +39,9 @@ export class PostComponent {
 
   items: MenuItem[] = [];
 
-  image(id: string) { return getProfileImage(id); }
+  personalImage() { return getProfileImage(localStorage.getItem('id')!); }
+  profileImage(id: string) { return getProfileImage(id); }
+  image(id: string) { return getMedia(id); }
 
   constructor(private readonly postService: PostService,
               private readonly messageService: MessageService

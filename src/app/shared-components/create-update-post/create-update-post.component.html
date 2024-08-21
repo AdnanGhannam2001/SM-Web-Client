@@ -4,14 +4,13 @@
     [style]="{ 'min-width': '50vw' }"
     [maximizable]="true"
     [resizable]="true">
-    <p-avatar [image]="image" size="large" shape="circle"></p-avatar>
     <div>
       <p-dropdown
         [options]="visibilities"
         [(ngModel)]="selected"
         optionLabel="name"
         [style]="{ width: '100%' }"
-        placeholder="Select a City" />
+        placeholder="Select a visibility" />
     </div>
     <textarea class="cu-post__textarea"
         [(ngModel)]="postRequest.content"
@@ -25,7 +24,7 @@
         chooseIcon="pi pi-upload"
         name="demo[]"
         (onSelect)="onSelect($event)"
-        accept="image/*"
+        accept="*/*"
         [maxFileSize]="1000000"
     ></p-fileUpload>
     <ng-template pTemplate="footer">

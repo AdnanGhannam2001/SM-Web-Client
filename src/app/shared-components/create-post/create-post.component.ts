@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { getProfileImage } from '../../helpers/file-helper';
 
 @Component({
   selector: 'social-create-post',
@@ -10,6 +11,10 @@ export class CreatePostComponent {
   visible = false;
 
   constructor() {
-    this.image = localStorage.getItem("image") ?? "";
+    const id = localStorage.getItem('id');
+    const image = localStorage.getItem('image');
+    if (id && image === 'true') {
+      this.image = getProfileImage(id);
+    }
   }
 }

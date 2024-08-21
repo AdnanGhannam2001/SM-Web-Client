@@ -5,6 +5,7 @@ import {
   IPostRequest,
   PostVisibilities,
 } from '../../interfaces/post.interface';
+import { FileSelectEvent } from 'primeng/fileupload';
 
 @Component({
   selector: 'social-create-update-post',
@@ -21,9 +22,9 @@ export class CreateUpdatePostComponent {
   postRequest: IPostRequest;
   mediaType: string = '';
   sending = false;
-  image;
   visibilities;
   selected;
+  file?: File;
 
   mediaOptions: any[] = [
     { icon: 'pi pi-camera', tooltip: 'Attach photo', value: 'img' },
@@ -36,7 +37,6 @@ export class CreateUpdatePostComponent {
       .map(([key, value]) => ({ name: value, code: Number(key) }));
     this.selected = this.visibilities[0];
     this.postRequest = { content: '', visibility: PostVisibilities.Public };
-    this.image = localStorage.getItem('image') ?? '';
   }
 
   ngOnInit() {
@@ -45,9 +45,8 @@ export class CreateUpdatePostComponent {
     }
   }
 
-  // TODO
-  onSelect(event: any) {
-    console.log({ event });
+  onSelect(event: FileSelectEvent) {
+    this.file = event.files[0];
   }
 
   async sendPost() {
@@ -61,10 +60,11 @@ export class CreateUpdatePostComponent {
         this.post.visibility = this.postRequest.visibility;
         this.post = await this.postService.updatePost(
           this.post.id,
-          this.postRequest
+          this.postRequest,
+          this.file
         );
       } else {
-        this.post = await this.postService.createPost(this.postRequest);
+        this.post = await this.postService.createPost(this.postRequest, this.file);
       }
 
       this.sending = false;

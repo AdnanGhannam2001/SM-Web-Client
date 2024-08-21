@@ -62,7 +62,8 @@ export class NavbarComponent {
     this.loggedIn = localStorage.getItem("id") != undefined;
     this.firstname = localStorage.getItem("firstName") ?? "";
     const id = localStorage.getItem('id');
-    if (id) {
+    const image = localStorage.getItem('image');
+    if (id && image === 'true') {
       this.image = getProfileImage(id);
     }
   }

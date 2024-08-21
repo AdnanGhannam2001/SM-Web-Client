@@ -30,12 +30,26 @@ export class PostService {
     return lastValueFrom(this.http.get<IPage<IPost>>(`${APIS_MAIN}/posts/${id}`, { withCredentials: true, params: { ...pageRequest } }));
   }
 
-  createPost(post: IPostRequest): Promise<IPost> {
-    return lastValueFrom(this.http.post<IPost>(`${APIS_MAIN}/posts`, post, { withCredentials: true }));
+  createPost(post: IPostRequest, file?: File): Promise<IPost> {
+    const form = new FormData();
+    form.append("content", post.content);
+    form.append("visibility", post.visibility.toString());
+    if (file) {
+      form.append("file", file);
+    }
+
+    return lastValueFrom(this.http.post<IPost>(`${APIS_MAIN}/posts`, form, { withCredentials: true }));
   }
 
-  updatePost(id: string, post: IPostRequest): Promise<IPost> {
-    return lastValueFrom(this.http.patch<IPost>(`${APIS_MAIN}/posts/${id}`, post, { withCredentials: true }));
+  updatePost(id: string, post: IPostRequest, file?: File): Promise<IPost> {
+    const form = new FormData();
+    form.append("content", post.content);
+    form.append("visibility", post.visibility?.toString());
+    if (file) {
+      form.append("file", file);
+    }
+
+    return lastValueFrom(this.http.patch<IPost>(`${APIS_MAIN}/posts/${id}`, form, { withCredentials: true }));
   }
 
   deletePost(id: string): Promise<IPost> {

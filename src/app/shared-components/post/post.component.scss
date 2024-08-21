@@ -25,6 +25,11 @@
       background-color: var(--bg-post-comments);
     }
 
+    &__imgbox {
+      max-width: 100%;
+      margin: 1em .5em;
+    }
+
     &__infobox {
       >* {
         display: inline-block;
