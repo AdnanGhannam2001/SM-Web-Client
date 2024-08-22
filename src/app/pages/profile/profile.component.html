@@ -2,7 +2,7 @@
   <div>
     @if (profile)
     {
-      <social-profile-header [profile]="profile"></social-profile-header>
+      <social-profile-header [editable]="editable" [profile]="profile"></social-profile-header>
     }
 
     <social-tab-menu [items]="tabs"></social-tab-menu>

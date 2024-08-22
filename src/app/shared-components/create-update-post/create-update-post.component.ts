@@ -6,6 +6,7 @@ import {
   PostVisibilities,
 } from '../../interfaces/post.interface';
 import { FileSelectEvent } from 'primeng/fileupload';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'social-create-update-post',
@@ -31,7 +32,9 @@ export class CreateUpdatePostComponent {
     { icon: 'pi pi-file', tooltip: 'Attach file', value: 'file' },
   ];
 
-  constructor(private readonly postService: PostService) {
+  constructor(private readonly postService: PostService,
+              private readonly messageService: MessageService)
+  {
     this.visibilities = postService
       .getVisibilities()
       .map(([key, value]) => ({ name: value, code: Number(key) }));
@@ -67,10 +70,15 @@ export class CreateUpdatePostComponent {
         this.post = await this.postService.createPost(this.postRequest, this.file);
       }
 
-      this.sending = false;
-      this.visible = false;
-    } catch (error) {
-      console.warn({ error });
+    } catch ({ error }: any) {
+      this.messageService.add({
+        severity: 'danger',
+        summary: 'Failed',
+        detail: error?.errors?.Content[0],
+      });
     }
+
+    this.sending = false;
+    this.visible = false;
   }
 }

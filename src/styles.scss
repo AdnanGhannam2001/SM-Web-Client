@@ -107,7 +107,7 @@ body {
   padding-inline: 1em;
 
   &.flex {
-    @include mixin.flex(stretch, flex-start, row, wrap);
+    @include mixin.flex(stretch, flex-start, row);
     gap: 1em;
     padding: 1em;
 
@@ -155,6 +155,10 @@ body {
       >*:last-child {
         @include side;
       }
+    }
+
+    @media (max-width: 875px) {
+      flex-wrap: wrap;
     }
   }
 }
@@ -215,7 +219,7 @@ social-root {
 
     .p-dataview-header,
     .p-dataview-content {
-      background-color: transparent;
+      background-color: transparent !important;
       border: none;
     }
 

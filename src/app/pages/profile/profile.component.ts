@@ -11,6 +11,7 @@ import { TabMenuItem } from '../../ui-components/tab-menu/tab-menu.component';
 })
 export class ProfileComponent {
   profile?: IProfileResponse;
+  editable = false;
 
   tabs: TabMenuItem[] = [];
 
@@ -24,9 +25,9 @@ export class ProfileComponent {
     this.activatedRoute.paramMap.subscribe(async (param) => {
       const id = param.get('id');
 
-      const personalProfile = id === "profile";
+      this.editable = id === "profile";
 
-      const promise = id && !personalProfile
+      const promise = id && !this.editable
         ? this.profileService.getProfile(id)
         : this.profileService.getPersonalProfile();
 
@@ -58,7 +59,7 @@ export class ProfileComponent {
           },
         ];
 
-        if (personalProfile) {
+        if (this.editable) {
           localStorage.setItem("id", this.profile.id);
           localStorage.setItem("firstName", this.profile.firstName);
           localStorage.setItem("lastName", this.profile.lastName!);

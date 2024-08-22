@@ -11,20 +11,6 @@
       {
         <img [src]="image(profile.id)" class="img"/>
       }
-      @else
-      {
-        <p-fileUpload
-          mode="basic"
-          chooseLabel="Choose"
-          chooseIcon="pi pi-upload"
-          name="image"
-          [withCredentials]="true"
-          [url]="'https://localhost:7002/api/Profiles/profile/image'"
-          accept="image/*"
-          maxFileSize="1000000"
-          [auto]="true"
-          (onUpload)="onUpload()" />
-      }
     </div>
 </div>
 

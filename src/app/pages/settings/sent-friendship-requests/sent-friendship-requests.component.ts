@@ -11,6 +11,8 @@ import { getProfileImage } from '../../../helpers/file-helper';
   styleUrl: './sent-friendship-requests.component.scss'
 })
 export class SentFriendshipRequestsComponent extends Pagination<IFriendshipRequest> {
+  loading = true;
+
   constructor(private readonly profileService: ProfileService,
               private readonly messageService: MessageService
   ) { super(); }
@@ -23,6 +25,7 @@ export class SentFriendshipRequestsComponent extends Pagination<IFriendshipReque
 
   async ngOnInit() {
     await this.requestPage();
+    this.loading = false;
   }
 
   async cancel(id: string) {

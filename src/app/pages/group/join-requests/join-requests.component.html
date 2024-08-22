@@ -1,27 +1,43 @@
-<p-dataView [value]="page.items" [layout]="layout">
-    <ng-template let-requests pTemplate="listItem">
-      <div *ngFor="let request of requests" class="join-requests__item">
-        <social-item-showcase
-          class="profile-list-view__profilebox"
-          [image]="request.profile!.image"
-          [content]="request.profile!.firstName + ' ' + request.profile!.lastName"
-          [description]="request.profile!.createdAtUtc.toString()"
-          [url]="'/profiles/' + request.profileId"
-          size="big"
-          [rounded]="true"
-        ></social-item-showcase>
-        <p-buttonGroup>
-          <p-button
-            label="Accept"
-            severity="success"
-            (onClick)="respond(request.profileId, true)"
-          ></p-button>
-          <p-button
-            label="Reject"
-            severity="danger"
-            (onClick)="respond(request.profileId, false)"
-          ></p-button>
-        </p-buttonGroup>
-      </div>
-    </ng-template>
-</p-dataView>
+@if (loading)
+{
+  <social-message severity="Info" *ngIf="loading">Getting join requests...</social-message>
+}
+@else if (!page.items.length)
+{
+  <social-message severity="Warn">There are no join requests for this group</social-message>
+}
+@else
+{
+  <p-dataView [value]="page.items" [layout]="layout">
+      <ng-template let-requests pTemplate="listItem">
+        <div *ngFor="let request of requests" class="join-requests__item">
+          <social-item-showcase
+            class="profile-list-view__profilebox"
+            [image]="request.profile!.image"
+            [content]="request.profile!.firstName + ' ' + request.profile!.lastName"
+            [description]="request.profile!.createdAtUtc.toString()"
+            [url]="'/profiles/' + request.profileId"
+            size="big"
+            [rounded]="true"
+          ></social-item-showcase>
+          <p-buttonGroup>
+            <p-button
+              label="Accept"
+              severity="success"
+              (onClick)="respond(request.profileId, true)"
+            ></p-button>
+            <p-button
+              label="Reject"
+              severity="danger"
+              (onClick)="respond(request.profileId, false)"
+            ></p-button>
+          </p-buttonGroup>
+        </div>
+      </ng-template>
+  </p-dataView>
+  <p-paginator
+    (onPageChange)="onPageChange($event)"
+    [first]="pageRequest.pageNumber ?? 0"
+    [rows]="pageRequest.pageSize"
+    [totalRecords]="page.total" />
+}

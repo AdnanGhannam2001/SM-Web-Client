@@ -13,6 +13,8 @@ export class JoinRequestsComponent extends Pagination<IJoinRequest> {
   id?: string;
   layout: 'list' | 'grid' = "list";
 
+  loading = true;
+
   constructor(private groupService: GroupService,
               private router: Router,
               private activatedRoute: ActivatedRoute) { super(); }
@@ -32,6 +34,7 @@ export class JoinRequestsComponent extends Pagination<IJoinRequest> {
 
       try {
         await this.requestPage();
+        this.loading = false;
       } catch (error) {
         this.router.navigate(['/not-found']);
       }

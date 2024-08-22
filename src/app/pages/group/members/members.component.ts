@@ -16,6 +16,8 @@ export class MembersComponent extends Pagination<IMember> {
 
   membership?: IMember;
 
+  loading = true;
+
   constructor(private groupService: GroupService,
               private router: Router,
               @Inject(GroupComponent) private readonly parent: GroupComponent,
@@ -23,6 +25,7 @@ export class MembersComponent extends Pagination<IMember> {
 
   override async requestPage() {
     this.page = await this.groupService.getMembers(this.id!, this.pageRequest);
+    this.loading = false;
   }
 
   ngOnInit() {

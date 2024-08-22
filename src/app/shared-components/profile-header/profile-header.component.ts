@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { IProfileResponse, InformationVisibility } from '../../interfaces/profile.interface';
 import { getCoverImage, getProfileImage } from '../../helpers/file-helper';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'social-profile-header[profile]',
@@ -15,18 +16,20 @@ export class ProfileHeaderComponent {
 
   items: MenuItem[] = [];
 
+  constructor(private readonly router: Router) { }
+
   ngOnInit() {
     if (this.editable) {
       this.items = [
         {
           label: "Change Profile Image",
           icon: "pi pi-camera",
-          routerLink: "/settings/profile-img"
+          routerLink: "/settings/image"
         },
         {
           label: "Change Cover Image",
           icon: "pi pi-image",
-          routerLink: "/settings/cover-img"
+          routerLink: "/settings/cover-image"
         },
         {
           label: "Go to Settings",
@@ -65,6 +68,7 @@ export class ProfileHeaderComponent {
   }
 
   onUpload() {
-    window.location.reload();
+    console.log("reloading...");
+    this.router.navigateByUrl(this.router.url);
   }
 }

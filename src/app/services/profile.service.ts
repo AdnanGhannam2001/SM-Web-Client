@@ -29,6 +29,14 @@ export class ProfileService {
     return lastValueFrom(this.http.patch<IProfile>(`${APIS_MAIN}/profiles`, profile, { withCredentials: true }));
   }
 
+  removeImage(): Promise<void> {
+    return lastValueFrom(this.http.delete<void>(`${APIS_MAIN}/profiles/profile/image`, { withCredentials: true }));
+  }
+
+  removeCoverImage(): Promise<void> {
+    return lastValueFrom(this.http.delete<void>(`${APIS_MAIN}/profiles/profile/cover-image`, { withCredentials: true }));
+  }
+
   getProfile(id: string): Promise<IProfileResponse> {
     return lastValueFrom(this.http.get<IProfileResponse>(`${APIS_MAIN}/profiles/${id}`, { withCredentials: true }));
   }

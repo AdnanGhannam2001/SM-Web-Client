@@ -1,15 +1,24 @@
-<social-message severity="Info" *ngIf="loading">Getting posts...</social-message>
-<social-message severity="Warn" *ngIf="!loading && !posts.items.length">There is no posts yet!</social-message>
-<p-dataView #dv [value]="posts.items" *ngIf="posts.items.length">
-  <ng-template let-posts pTemplate="listItem">
-    <social-post
-      [hidable]="hidable"
-      [updatable]="isUpdatable(post.profile?.id)"
-      [deletable]="isDeletable(post.profile?.id)"
-      [post]="post"
-      [hiddenPost]="hiddenPost"
-      [shouldHide]="shouldHide"
-      *ngFor="let post of posts"
-    ></social-post>
-  </ng-template>
-</p-dataView>
+@if (loading)
+{
+  <social-message severity="Info">Getting posts...</social-message>
+}
+@else if (!posts.items.length)
+{
+  <social-message severity="Warn">There is no posts yet!</social-message>
+}
+@else
+{
+  <p-dataView #dv [value]="posts.items">
+    <ng-template let-posts pTemplate="listItem">
+      <social-post
+        [hidable]="hidable"
+        [updatable]="isUpdatable(post.profile?.id)"
+        [deletable]="isDeletable(post.profile?.id)"
+        [post]="post"
+        [hiddenPost]="hiddenPost"
+        [shouldHide]="shouldHide"
+        *ngFor="let post of posts"
+      ></social-post>
+    </ng-template>
+  </p-dataView>
+}

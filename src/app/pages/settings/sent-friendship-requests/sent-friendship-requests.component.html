@@ -1,21 +1,29 @@
-<div *ngFor="let request of page.items" class="requests__item">
-    <social-item-showcase
-        class="profile-list-view__userbox"
-        [image]="request.receiver?.image ? image(request.receiver!.id) : undefined"
-        [content]="request.receiver?.firstName"
-        size="big"
-        [rounded]="true"
-        [badge]="request.receiver?.jobInformations?.jobTitle"
-    ></social-item-showcase>
-    <p-button
-        type="button"
-        label="Cancel"
-        severity="danger"
-        (onClick)="cancel(request.receiverId)"
-    ></p-button>
-</div>
-@if (page.items.length)
+@if (loading)
 {
+  <social-message severity="Info" *ngIf="loading">Getting sent friendship requests...</social-message>
+}
+@else if (!page.items.length)
+{
+  <social-message severity="Warn">You don't have any sent friendship requests</social-message>
+}
+@else
+{
+  <div *ngFor="let request of page.items" class="requests__item">
+      <social-item-showcase
+          class="profile-list-view__userbox"
+          [image]="request.receiver?.image ? image(request.receiver!.id) : undefined"
+          [content]="request.receiver?.firstName"
+          size="big"
+          [rounded]="true"
+          [badge]="request.receiver?.jobInformations?.jobTitle"
+      ></social-item-showcase>
+      <p-button
+          type="button"
+          label="Cancel"
+          severity="danger"
+          (onClick)="cancel(request.receiverId)"
+      ></p-button>
+  </div>
   <p-paginator
     (onPageChange)="onPageChange($event)"
     [first]="pageRequest.pageNumber ?? 0"

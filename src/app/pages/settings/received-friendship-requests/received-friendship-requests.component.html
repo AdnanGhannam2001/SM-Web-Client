@@ -1,28 +1,36 @@
-<div *ngFor="let request of page.items" class="requests__item">
-    <social-item-showcase
-        class="profile-list-view__userbox"
-        [image]="request.sender?.image ? image(request.sender!.id) : undefined"
-        [content]="request.sender?.firstName"
-        size="big"
-        [rounded]="true"
-        [badge]="request.sender?.jobInformations?.jobTitle"
-    ></social-item-showcase>
-    <p-buttonGroup>
-        <p-button
-            type="button"
-            label="Accept"
-            (onClick)="respond(request.senderId, true)"
-        ></p-button>
-        <p-button
-            type="button"
-            label="Delete"
-            severity="danger"
-            (onClick)="respond(request.senderId, false)"
-        ></p-button>
-    </p-buttonGroup>
-</div>
-@if (page.items.length)
+@if (loading)
 {
+  <social-message severity="Info" *ngIf="loading">Getting received friendship requests...</social-message>
+}
+@else if (!page.items.length)
+{
+  <social-message severity="Warn">You don't have any received friendship requests</social-message>
+}
+@else
+{
+  <div *ngFor="let request of page.items" class="requests__item">
+      <social-item-showcase
+          class="profile-list-view__userbox"
+          [image]="request.sender?.image ? image(request.sender!.id) : undefined"
+          [content]="request.sender?.firstName"
+          size="big"
+          [rounded]="true"
+          [badge]="request.sender?.jobInformations?.jobTitle"
+      ></social-item-showcase>
+      <p-buttonGroup>
+          <p-button
+              type="button"
+              label="Accept"
+              (onClick)="respond(request.senderId, true)"
+          ></p-button>
+          <p-button
+              type="button"
+              label="Delete"
+              severity="danger"
+              (onClick)="respond(request.senderId, false)"
+          ></p-button>
+      </p-buttonGroup>
+  </div>
   <p-paginator
     (onPageChange)="onPageChange($event)"
     [first]="pageRequest.pageNumber ?? 0"
