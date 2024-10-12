@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, SimpleChanges } from "@angular/core";
 import { MenuItem, MessageService } from "primeng/api";
 import { MemberRoleType, IMember } from "../interfaces/group.interface";
 import { IProfile } from "../interfaces/profile.interface";
@@ -16,13 +16,7 @@ export abstract class ProfileBaseComponent {
 
   isBlocked = false;
 
-  items: MenuItem[] = [
-    {
-      label: this.isBlocked ? 'Unblock' : 'Block',
-      icon: 'pi pi-flag',
-      command: async () => await this.block(),
-    }
-  ];
+  items: MenuItem[] = [];
 
   constructor(
     private readonly messageService: MessageService,
@@ -31,12 +25,22 @@ export abstract class ProfileBaseComponent {
   ) { }
 
   ngOnInit() {
-    this.isFriend = this.isFriend || this.profile.friends.length > 0;
+    this.isFriend = this.isFriend || (this.profile.friends !== undefined && this.profile.friends.length > 0);
     this.isFollowed = this.isFollowed || this.profile.followedBy.length > 0;
     this.isPending =
       this.isPending ||
-      this.profile.sentRequests.length > 0 ||
-      this.profile.receivedRequests.length > 0;
+      (this.profile.sentRequests !== undefined && this.profile.sentRequests.length > 0) ||
+      (this.profile.receivedRequests !== undefined && this.profile.receivedRequests.length > 0);
+
+    this.updateItems();
+  }
+
+  updateItems() {
+    this.items = [{
+      label: this.isBlocked ? 'Unblock' : 'Block',
+      icon: 'pi pi-flag',
+      command: async () => await this.block(),
+    }];
 
     if (this.profileRole !== undefined && this.membership !== undefined && this.membership.role <= this.profileRole) {
       this.items.push(...[
@@ -69,6 +73,37 @@ export abstract class ProfileBaseComponent {
         }
       }
     }
+
+    this.items.push(this.isFollowed
+      ? {
+        label: "Unfollow",
+        icon: "pi pi-heart",
+        command: async () => await this.followBtnClicked()
+      }
+      : {
+        label: "Follow",
+        icon: "pi pi-heart-fill",
+        command: async () => await this.followBtnClicked()
+      });
+
+    this.items.push(this.isFriend
+      ? {
+        label: "Unfriend",
+        icon: "pi pi-user-plus",
+        command: async () => await this.friendBtnClicked()
+      }
+      : this.isPending
+        ? {
+          label: "Cancel Request",
+          icon: "pi pi-users",
+          command: async () => await this.friendBtnClicked()
+        }
+        : {
+          label: "Send Request",
+          icon: "pi pi-users",
+          command: async () => await this.friendBtnClicked()
+        }
+      );
   }
 
   async kick() {
@@ -115,6 +150,7 @@ export abstract class ProfileBaseComponent {
     }
 
     this.isBlocked = !this.isBlocked;
+    this.updateItems();
   }
 
   async followBtnClicked() {
@@ -123,6 +159,8 @@ export abstract class ProfileBaseComponent {
     } else {
       await this.follow(this.profile.id);
     }
+
+    this.updateItems();
   }
 
   async friendBtnClicked() {
@@ -133,6 +171,8 @@ export abstract class ProfileBaseComponent {
     } else {
       await this.sendRequest(this.profile.id);
     }
+
+    this.updateItems();
   }
 
   async sendRequest(id: string) {

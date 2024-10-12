@@ -1,57 +1,6 @@
 import { IDiscussion, IInvite, IJoinRequest, IKicked, IMember } from "./group.interface";
 import { IComment, IPost, IReaction } from "./post.interface";
 
-export interface IProfile {
-  id          : string;
-  createdAtUtc: Date;
-  updatedAtUtc: Date;
-
-  firstName       : string;
-  lastName        : string;
-  phoneNumber    ?: IPhoneNumber;
-  isActive        : boolean;
-  dateOfBirth     : Date;
-  gender          : Gender;
-  bio            ?: string;
-  image          ?: boolean;
-  coverImage     ?: boolean;
-  jobInformations : IJobInformations;
-  socials         : ISocials;
-  settings        : ISettings;
-
-  blocked            : Array<IBlock>;
-  blockedBy          : Array<IBlock>;
-  sentRequests       : Array<IFriendshipRequest>;
-  receivedRequests   : Array<IFriendshipRequest>;
-  following          : Array<IFollow>;
-  followedBy         : Array<IFollow>;
-  friends            : Array<IFriendship>;
-  friendTo           : Array<IFriendship>;
-  posts              : Array<IPost>;
-  hidden             : Array<IPost>;
-  reactions          : Array<IReaction>;
-  comments           : Array<IComment>;
-  memberOf           : Array<IMember>;
-  kicked             : Array<IKicked>;
-  kickedFrom         : Array<IKicked>;
-  joinRequests       : Array<IJoinRequest>;
-  sentInvites        : Array<IInvite>;
-  receivedInvites    : Array<IInvite>;
-  discussions        : Array<IDiscussion>;
-  favoriteDiscussions: Array<IFavoriteDiscussion>;
-};
-
-export interface IProfileUpdateRequest {
-  firstName      ?: string;
-  lastName       ?: string;
-  dateOfBirth    ?: Date;
-  gender         ?: Gender;
-  phoneNumber    ?: string;
-  bio            ?: string;
-  jobInformations?: IJobInformations;
-  socials        ?: ISocials;
-}
-
 export interface IProfileResponse {
   id: string;
   createdAtUtc: Date;
@@ -68,8 +17,42 @@ export interface IProfileResponse {
   jobInformations?: IJobInformations;
   socials        ?: ISocials;
   settings        : ISettings;
-  followers       : number;
-  following       : number;
+  following       : Array<IFollow>;
+  followedBy      : Array<IFollow>;
+  followersCount  : number;
+  followingCount  : number;
+}
+
+export interface IProfile extends IProfileResponse {
+  blocked            ?: Array<IBlock>;
+  blockedBy          ?: Array<IBlock>;
+  sentRequests       ?: Array<IFriendshipRequest>;
+  receivedRequests   ?: Array<IFriendshipRequest>;
+  friends            ?: Array<IFriendship>;
+  friendTo           ?: Array<IFriendship>;
+  posts              ?: Array<IPost>;
+  hidden             ?: Array<IPost>;
+  reactions          ?: Array<IReaction>;
+  comments           ?: Array<IComment>;
+  memberOf           ?: Array<IMember>;
+  kicked             ?: Array<IKicked>;
+  kickedFrom         ?: Array<IKicked>;
+  joinRequests       ?: Array<IJoinRequest>;
+  sentInvites        ?: Array<IInvite>;
+  receivedInvites    ?: Array<IInvite>;
+  discussions        ?: Array<IDiscussion>;
+  favoriteDiscussions?: Array<IFavoriteDiscussion>;
+};
+
+export interface IProfileUpdateRequest {
+  firstName      ?: string;
+  lastName       ?: string;
+  dateOfBirth    ?: Date;
+  gender         ?: Gender;
+  phoneNumber    ?: string;
+  bio            ?: string;
+  jobInformations?: IJobInformations;
+  socials        ?: ISocials;
 }
 
 export interface IPhoneNumber {
