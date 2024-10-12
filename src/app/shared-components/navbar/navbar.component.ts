@@ -70,6 +70,6 @@ export class NavbarComponent {
 
   openSidebar() { this.sidebarService.toggle(); }
 
-  // TODO
+  // TODO: Add Global Search
   onSubmit() { }
 }

@@ -5,7 +5,7 @@
           class="groups-box__group"
           *ngFor="let group of groups.items"
           [url]="'/groups/' + group.id"
-          [image]="group.image ? image(group.id) : undefined"
+          [image]="group.image ? image(group.id) : '/assets/defaults/group.png'"
           [content]="group.name"
           [rounded]="false"
       ></social-item-showcase>
