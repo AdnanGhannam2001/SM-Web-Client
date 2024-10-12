@@ -1,5 +1,12 @@
 @if (profile)
 {
+  @if (errorMessage?.length)
+  {
+    <social-message severity="Error">
+      <span style="white-space: pre-line">{{errorMessage}}</span>
+    </social-message>
+  }
+
   <div class="social-input-container">
     <label htmlFor="firstname">First Name</label>
     <input pInputText id="firstname" name="firstname" [(ngModel)]="profile.firstName" />
@@ -58,5 +65,6 @@
       [(ngModel)]="profile.jobInformations!.startDate"></p-calendar>
     <small id="startDate-started-help">{{visibilities[profile.settings.startDate][1]}}</small>
   </div>
+
   <p-button label="Save Changes" (onClick)="onUpdate()"></p-button>
 }

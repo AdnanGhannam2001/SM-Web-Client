@@ -12,6 +12,8 @@ export class InformationComponent {
   visibilities;
   genders;
 
+  errorMessage?: string;
+
   constructor(private readonly profileService: ProfileService) {
     this.visibilities = profileService.getVisibilities();
     this.genders = profileService.getGenders().map(([key, value]) => ({ name: value, code: Number(key) }));
@@ -22,6 +24,8 @@ export class InformationComponent {
   }
 
   async onUpdate() {
+    this.errorMessage = '';
+
     try {
       await this.profileService.updateProfile({
         firstName: this.profile?.firstName,
@@ -33,9 +37,19 @@ export class InformationComponent {
         jobInformations: this.profile?.jobInformations,
         socials: this.profile?.socials,
       });
-    } catch (error) {
-      // TODO display validation errors
-      console.warn(error)
+
+    } catch (error: any) {
+      if (Array.isArray(error.error))
+      {
+        for (let err of error.error)
+        {
+          this.errorMessage += `${err.PropertyName}: ${err.Message}\n`;
+        }
+      }
+      else
+      {
+        this.errorMessage = `${error.error.PropertyName}: ${error.error.Message}`;
+      }
     }
   }
 }
