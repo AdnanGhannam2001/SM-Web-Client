@@ -2,7 +2,7 @@
 {
   <div class="post__top">
       <social-item-showcase
-          [image]="post.profile.image ? profileImage(post.profile.id) : undefined"
+          [image]="post.profile.image ? profileImage(post.profile.id) : '/assets/defaults/profile.png'"
           [url]="'/profiles/' + post.profile.id"
           [description]="(post.createdAtUtc | date: 'short')!"
           [rounded]="true">
@@ -40,19 +40,24 @@
           <p-overlayPanel #op>
             <div [style]="{ 'display': 'flex', 'gap': '.5em' }">
               <p-button [text]="true" (onClick)="react(0)">
-                <p-avatar [size]="post.reactions.at(0)?.type == 0 ? 'large' : 'normal'" label="LK" shape="circle" />
+                <p-avatar [size]="post.reactions.at(0)?.type == 0 ? 'large' : 'normal'" image="/assets/reactions/like.png"
+                  shape="circle" />
               </p-button>
               <p-button [text]="true" (onClick)="react(1)">
-                <p-avatar [size]="post.reactions.at(0)?.type == 1 ? 'large' : 'normal'" label="D" shape="circle" />
+                <p-avatar [size]="post.reactions.at(0)?.type == 1 ? 'large' : 'normal'" image="/assets/reactions/dislike.png"
+                  shape="circle" />
               </p-button>
               <p-button [text]="true" (onClick)="react(2)">
-                <p-avatar [size]="post.reactions.at(0)?.type == 2 ? 'large' : 'normal'" label="A" shape="circle" />
+                <p-avatar [size]="post.reactions.at(0)?.type == 2 ? 'large' : 'normal'" image="/assets/reactions/angry.png"
+                  shape="circle" />
               </p-button>
               <p-button [text]="true" (onClick)="react(3)">
-                <p-avatar [size]="post.reactions.at(0)?.type == 3 ? 'large' : 'normal'" label="H" shape="circle" />
+                <p-avatar [size]="post.reactions.at(0)?.type == 3 ? 'large' : 'normal'" image="/assets/reactions/happy.png"
+                  shape="circle" />
               </p-button>
               <p-button [text]="true" (onClick)="react(4)">
-                <p-avatar [size]="post.reactions.at(0)?.type == 4 ? 'large' : 'normal'" label="S" shape="circle" />
+                <p-avatar [size]="post.reactions.at(0)?.type == 4 ? 'large' : 'normal'" image="/assets/reactions/sad.png"
+                  shape="circle" />
               </p-button>
             </div>
           </p-overlayPanel>
@@ -95,10 +100,37 @@
       <p-divider *ngIf="post.comments.length && opened"></p-divider>
 
       <social-comments [comments]="post.comments" [deletable]="deletable"></social-comments>
-      <p-button label="Load more" (onClick)="getCommentsPage()" *ngIf="!end"></p-button>
+      <p-button label="Load more" (onClick)="getCommentsPage()" *ngIf="!commentsEnd"></p-button>
   </div>
 
   <social-create-update-post [(visible)]="editing" [post]="post"></social-create-update-post>
 }
+
+<p-dialog
+  [header]="'Reactions (' + post.reactions.length + ')'"
+  [modal]="true"
+  [(visible)]="reactionsVisible"
+  position="bottomright"
+  [style]="{ width: '25rem' }">
+
+  <div *ngFor="let reaction of post.reactions">
+    <social-item-showcase
+      *ngIf="reaction.profile"
+      class="profile-list-view__profilebox"
+      [image]="reaction.profile.image ? profileImage(reaction.profile.id) : '/assets/defaults/profile.png'"
+      [content]="reaction.profile.firstName + ' ' + reaction.profile.lastName"
+      size="medium"
+      [rounded]="true"
+    ></social-item-showcase>
+  </div>
+
+  <p-button
+    label="Load More"
+    styleClass="btn-load-more"
+    *ngIf="!reactionsEnd"
+    [text]="true"
+    (onClick)="getReactionsPage()"
+  ></p-button>
+</p-dialog>
 
 <p-toast />

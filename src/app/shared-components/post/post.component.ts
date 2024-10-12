@@ -17,13 +17,21 @@ export class PostComponent {
   @Input() hiddenPost = false;
   @Input() shouldHide = true;
 
+  reactionsVisible = false;
   editing = false;
+
+  reactionsCount = 0;
+  currentReactionsPage = 0;
+  reactionsEnd = false;
 
   commentsCount = -1;
   currentCommentsPage = -1;
-  end = false;
+  commentsEnd = false;
 
   // Add Comment
+  comment = "";
+  sendingComment = false;
+
   private _opened = false;
   get opened() { return this._opened; }
   set opened(val: boolean) {
@@ -33,9 +41,6 @@ export class PostComponent {
       this.getCommentsPage().then();
     }
   }
-
-  comment = "";
-  sendingComment = false;
 
   items: MenuItem[] = [];
 
@@ -48,6 +53,12 @@ export class PostComponent {
   ) { }
 
   ngOnInit() {
+    this.items.push({
+      label: 'Show Reactions',
+      icon: 'pi pi-thumbs-up',
+      command: async () => { await this.getReactionsPage(); this.reactionsVisible = true; }
+    });
+
     if (this.hidable) {
       if (!this.hiddenPost) {
         this.items.push({
@@ -88,11 +99,24 @@ export class PostComponent {
     this.commentsCount = page.total;
 
     if (page.items.length == 0 || this.post.comments.length == page.total) {
-      this.end = true;
+      this.commentsEnd = true;
       return;
     }
 
     this.currentCommentsPage++;
+  }
+
+  async getReactionsPage() {
+    const page = await this.postService.getReactions(this.post.id, { pageSize: 5, pageNumber: this.currentReactionsPage });
+    this.post.reactions.push(...page.items);
+    this.reactionsCount = page.total;
+
+    if (page.items.length == 0 || this.post.reactions.length == page.total) {
+      this.reactionsEnd = true;
+      return;
+    }
+
+    this.currentReactionsPage++;
   }
 
   get createdAtUtc() {
