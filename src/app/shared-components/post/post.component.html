@@ -37,7 +37,7 @@
               [text]="post.reactions.length > 0 ? false : true"
               (onClick)="op.toggle($event)"
           ></p-button>
-          <p-overlayPanel #op>
+          <p-overlayPanel #op styleClass="custom" [style]="{ height: '55px' }">
             <div [style]="{ 'display': 'flex', 'gap': '.5em' }">
               <p-button [text]="true" (onClick)="react(0)">
                 <p-avatar [size]="post.reactions.at(0)?.type == 0 ? 'large' : 'normal'" image="/assets/reactions/like.png"

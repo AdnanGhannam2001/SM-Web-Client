@@ -8,7 +8,7 @@
       <p-avatar
         class="followed-box__avatar"
         *ngFor="let follow of followed.items"
-        [image]="follow.followed?.image ? image(follow.followed!.id) : undefined"
+        [image]="follow.followed?.image ? image(follow.followed!.id) : '/assets/defaults/profile.png'"
         size="large"
         shape="circle"
         [pTooltip]="follow.followed?.firstName"

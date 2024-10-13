@@ -1,19 +1,18 @@
 <div class="container">
-  <form class="navbar__search navbar__box" [class.visible]="searching" (submit)="onSubmit()">
+  <!-- <form class="navbar__search navbar__box" [class.visible]="searching" (submit)="onSubmit()">
     <span class="p-input-icon-left">
       <i class="pi pi-search"></i>
       <input type="text" pInputText name="search" [(ngModel)]="search" />
     </span>
     <p-button icon="pi pi-times" styleClass="p-button-text" (onClick)="searching = false; search = ''"></p-button>
-  </form>
+  </form> -->
   <div class="navbar__main navbar__box" [class.visible]="!searching">
     <div class="navbar__left">
       <p-button (click)="openSidebar()" icon="pi pi-bars" [text]="true" severity="secondary" />
-      <a routerLink="/" social-logo class="social-link">Logo</a>
     </div>
 
     <div class="navbar__right">
-      <p-button icon="pi pi-search" styleClass="p-button-text" (onClick)="searching = true"></p-button>
+      <!-- <p-button icon="pi pi-search" styleClass="p-button-text" (onClick)="searching = true"></p-button> -->
       @if (loggedIn)
       {
         <p-button (onClick)="op.toggle($event);" icon="pi pi-bell"
