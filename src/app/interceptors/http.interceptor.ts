@@ -6,7 +6,7 @@ export function httpClientInterceptor(req: HttpRequest<unknown>, next: HttpHandl
   return next(req).pipe(tap({
     error: error => {
       if (error.status == 403) {
-        window.location.replace(`${LOGIN_REDIRECT_URI}?redirect_uri=${encodeURI(window.location.origin)}`);
+        window.location.replace(`${LOGIN_REDIRECT_URI}?redirect_uri=${encodeURI(window.location.origin)}/profiles/profile`);
       }
     }
   }));

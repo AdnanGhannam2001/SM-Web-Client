@@ -1,2 +1,2 @@
-export const HUBS_CHAT = "http://localhost:5003/websocket";
-export const HUBS_NOTIFICATIONS = "http://localhost:5004/websocket";
+export const HUBS_CHAT = "https://localhost:7003/websocket";
+export const HUBS_NOTIFICATIONS = "https://localhost:7004/websocket";

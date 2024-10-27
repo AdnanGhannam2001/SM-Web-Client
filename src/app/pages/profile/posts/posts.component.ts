@@ -36,6 +36,7 @@ export class PostsComponent extends Pagination<IPost> {
           : this.postService.getProfilePosts(this.id!, this.pageRequest);
 
       const postsPage = await promise;
+      this.loading = false;
 
       if (postsPage.items.length == 0) {
         this.end = true;
@@ -43,7 +44,6 @@ export class PostsComponent extends Pagination<IPost> {
       }
 
       this.page.items.push(...postsPage.items);
-      this.loading = false;
       (this.pageRequest.pageNumber!)++;
 
       if (postsPage.items.length < this.pageRequest.pageSize!) {

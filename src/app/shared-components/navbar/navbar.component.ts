@@ -14,7 +14,7 @@ export class NavbarComponent {
   loading = true;
 
   loggedIn = false;
-  firstname;
+  firstname?: string;
   image?: string;
 
   userMenuItems: MenuItem[] = [
@@ -58,7 +58,9 @@ export class NavbarComponent {
     }
   ];
 
-  constructor (private readonly sidebarService: SidebarService) {
+  constructor(private readonly sidebarService: SidebarService) { }
+
+  ngAfterContentChecked() {
     this.loggedIn = localStorage.getItem("id") != undefined;
     this.firstname = localStorage.getItem("firstName") ?? "";
     const id = localStorage.getItem('id');

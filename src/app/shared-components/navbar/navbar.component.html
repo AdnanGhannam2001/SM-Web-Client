@@ -13,6 +13,7 @@
 
     <div class="navbar__right">
       <!-- <p-button icon="pi pi-search" styleClass="p-button-text" (onClick)="searching = true"></p-button> -->
+      <p-button icon="pi pi-home" styleClass="p-button-text" routerLink="/"></p-button>
       @if (loggedIn)
       {
         <p-button (onClick)="op.toggle($event);" icon="pi pi-bell"
@@ -20,10 +21,9 @@
         <p-overlayPanel #op styleClass="custom">
           <social-notifications></social-notifications>
         </p-overlayPanel>
-      }
-      <p-divider layout="vertical"></p-divider>
-      @if (loggedIn)
-      {
+
+        <p-divider layout="vertical"></p-divider>
+
         <button (click)="userMenu.toggle($event)" class="navbar__user-btn">
           <span>{{ firstname }}</span>
           @if (image)
