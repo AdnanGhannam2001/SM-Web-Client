@@ -11,6 +11,8 @@ import { getProfileImage } from '../../../helpers/file-helper';
   styleUrl: './blocked-list.component.scss'
 })
 export class BlockedListComponent extends Pagination<IBlock> {
+  loading = true;
+
   constructor(private readonly profileService: ProfileService,
               private readonly messageService: MessageService
   ) { super(); }
@@ -23,6 +25,7 @@ export class BlockedListComponent extends Pagination<IBlock> {
 
   async ngOnInit() {
     await this.requestPage();
+    this.loading = false;
   }
 
   async unblock(id: string) {

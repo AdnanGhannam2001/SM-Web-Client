@@ -1,3 +1,13 @@
+@if (loading)
+{
+  <social-message severity="Info" *ngIf="loading">Getting blocked users...</social-message>
+}
+@else if (!page.items.length)
+{
+  <social-message severity="Warn">You didn't block any user</social-message>
+}
+@else
+{
 <div *ngFor="let blocked of page.items" class="blocked-members__item">
     <social-item-showcase
         class="profile-list-view__userbox"
@@ -13,6 +23,7 @@
         (onClick)="unblock(blocked.blockedId)"
     ></p-button>
 </div>
+}
 @if (page.items.length)
 {
   <p-paginator
