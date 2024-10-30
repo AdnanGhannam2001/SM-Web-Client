@@ -9,6 +9,7 @@ import { NotificaitonService } from '../../services/notificaiton.service';
   styleUrl: './notifications.component.scss'
 })
 export class NotificationsComponent extends Pagination<INotification> {
+  loading = false;
   constructor(private readonly notificationService: NotificaitonService) { super(); }
 
   override async requestPage(): Promise<void> {
@@ -17,6 +18,7 @@ export class NotificationsComponent extends Pagination<INotification> {
 
   async ngOnInit() {
     await this.requestPage();
+    this.loading = false;
   }
 
   async markAs(id: string, read: boolean) {

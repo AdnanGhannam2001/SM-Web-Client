@@ -1,5 +1,16 @@
 <div class="container">
   <social-page-title title="Notifications"></social-page-title>
+
+  @if (loading)
+  {
+    <social-message severity="Info" *ngIf="loading">Getting notifications...</social-message>
+  }
+  @else if (!page.items.length)
+  {
+    <social-message severity="Warn">You don't have any notifications</social-message>
+  }
+  @else
+  {
   <p-table [value]="page.items" dataKey="id" [rows]="pageRequest.pageSize" [showCurrentPageReport]="true"
     [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
@@ -41,6 +52,7 @@
       </tr>
     </ng-template>
   </p-table>
+  }
 
   @if (page.items.length)
   {
