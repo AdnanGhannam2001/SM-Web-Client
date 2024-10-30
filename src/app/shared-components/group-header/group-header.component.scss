@@ -11,6 +11,13 @@
     .group-header {
         &__coverimg {
             height: 50%;
+            position: relative;
+
+            &__edit {
+                @include mixin.absolute(1em, 1em);
+                @include mixin.flex;
+                gap: 1em;
+            }
         }
 
         &__bottom {
@@ -25,9 +32,21 @@
             border-radius: var(--br-b);
             border: 1px solid var(--clr-group-header-imgbox-border);
             background-color: #fff;
+            position: relative;
 
-            .img {
-                border-radius: var(--br-b);
+            img {
+              border-radius: var(--br-b);
+              position: absolute;
+            }
+
+            ::ng-deep .hidable {
+              display: none;
+            }
+
+            &:hover {
+              ::ng-deep .hidable {
+                display: block;
+              }
             }
         }
 
@@ -36,11 +55,6 @@
 
             &__header {
                 @include mixin.flex(space-between);
-            }
-
-            &__title {
-                @include mixin.flex;
-                gap: .5em;
             }
         }
 
@@ -61,7 +75,7 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
-            margin: .5em 0;
+            margin: 1em 0;
         }
 
         &__admins {

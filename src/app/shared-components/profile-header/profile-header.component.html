@@ -1,4 +1,32 @@
 <div class="profile-header__coverimg">
+  @if (editable)
+  {
+    <div class="profile-header__coverimg__edit">
+      <p-fileUpload
+        styleClass="custom"
+        mode="basic"
+        chooseIcon="pi pi-upload"
+        name="image"
+        [withCredentials]="true"
+        [url]="'https://localhost:7002/api/Profiles/profile/cover-image'"
+        accept="image/*"
+        maxFileSize="1000000"
+        (onUpload)="onUpload()"
+        [auto]="true" />
+
+      @if (profile.coverImage)
+      {
+        <p-button
+          [text]="true"
+          icon="pi pi-trash"
+          severity="danger"
+          styleClass="hidable"
+          (onClick)="deleteCoverImage()"
+        ></p-button>
+      }
+    </div>
+  }
+
   @if (profile.coverImage)
   {
     <img [src]="coverImage(profile.id)" class="img"/>
@@ -7,9 +35,31 @@
 
 <div class="profile-header__imgbox">
     <div class="imgbox" [attr.data-badge]="profile.jobInformations?.jobTitle" [class.online]="online">
+      @if (editable)
+      {
+        <p-fileUpload
+          styleClass="custom hidable"
+          mode="basic"
+          chooseIcon="pi pi-upload"
+          name="image"
+          [withCredentials]="true"
+          [url]="'https://localhost:7002/api/Profiles/profile/image'"
+          accept="image/*"
+          maxFileSize="1000000"
+          (onUpload)="onUpload()"
+          [auto]="true" />
+      }
+
       @if (profile.image)
       {
         <img [src]="image(profile.id)" class="img"/>
+        <p-button
+          [text]="true"
+          icon="pi pi-trash"
+          severity="danger"
+          styleClass="hidable"
+          (onClick)="deleteImage()"
+        ></p-button>
       }
     </div>
 </div>

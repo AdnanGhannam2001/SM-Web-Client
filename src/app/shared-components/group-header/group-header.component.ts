@@ -155,4 +155,24 @@ export class GroupHeaderComponent {
   async invite(id: string) {
     await this.groupService.sendInvite(this.group.id, id, "");
   }
+
+  async reload() {
+    await this.router.navigateByUrl('/', { skipLocationChange: true });
+    await this.router.navigate([this.router.url]);
+  }
+
+  async onUpload() {
+    console.log("reloading...");
+    await this.reload();
+  }
+
+  async deleteImage() {
+    await this.groupService.removeImage(this.group.id);
+    await this.reload();
+  }
+
+  async deleteCoverImage() {
+    await this.groupService.removeCoverImage(this.group.id);
+    await this.reload();
+  }
 }

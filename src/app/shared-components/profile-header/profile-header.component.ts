@@ -13,7 +13,6 @@ import { GroupService } from '../../services/group.service';
   styleUrls: ['./profile-header.component.scss']
 })
 export class ProfileHeaderComponent extends ProfileBaseComponent {
-  @Input() editable = false;
   @Input() online = false;
 
   constructor(private readonly router: Router,
@@ -30,8 +29,23 @@ export class ProfileHeaderComponent extends ProfileBaseComponent {
     return Object.entries(this.profile.socials);
   }
 
-  onUpload() {
+  async reload() {
+    await this.router.navigateByUrl('/', { skipLocationChange: true });
+    await this.router.navigate([this.router.url]);
+  }
+
+  async onUpload() {
     console.log("reloading...");
-    this.router.navigateByUrl(this.router.url);
+    await this.reload();
+  }
+
+  async deleteImage() {
+    await this.profileService.removeImage();
+    await this.reload();
+  }
+
+  async deleteCoverImage() {
+    await this.profileService.removeCoverImage();
+    await this.reload();
   }
 }

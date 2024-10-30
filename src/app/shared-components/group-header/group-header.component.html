@@ -1,28 +1,67 @@
-<div class="group-header__coverimg">
+<!-- TODO -->
+<!-- <div class="group-header__coverimg">
+  @if (group.members.at(0)?.role == group.settings.editDetailsRole)
+  {
+    <div class="group-header__coverimg__edit">
+      <p-fileUpload
+        styleClass="custom"
+        mode="basic"
+        chooseIcon="pi pi-upload"
+        name="image"
+        [withCredentials]="true"
+        [url]="'https://localhost:7002/api/Groups/' + group.id + '/cover-image'"
+        accept="image/*"
+        maxFileSize="1000000"
+        (onUpload)="onUpload()"
+        [auto]="true" />
+
+      @if (group.coverImage)
+      {
+        <p-button
+          [text]="true"
+          icon="pi pi-trash"
+          severity="danger"
+          styleClass="hidable"
+          (onClick)="deleteCoverImage()"
+        ></p-button>
+      }
+    </div>
+  }
+
   @if (group.coverImage)
   {
     <img [src]="coverImage(group.id)" class="img"/>
   }
-</div>
+</div> -->
 
 <div class="group-header__bottom">
   <div class="group-header__imgbox">
-    @if (group.image)
-    {
-      <img [src]="image(group.id)" class="img"/>
-    }
-    @else if (group.members.at(0)?.role == group.settings.editDetailsRole)
+    @if (group.members.at(0)?.role == group.settings.editDetailsRole)
     {
       <p-fileUpload
+        [style]="{ 'z-index': 10 }"
+        styleClass="custom hidable"
         mode="basic"
-        chooseLabel="Choose"
         chooseIcon="pi pi-upload"
         name="image"
         [withCredentials]="true"
         [url]="'https://localhost:7002/api/Groups/' + group.id + '/image'"
         accept="image/*"
         maxFileSize="1000000"
+        (onUpload)="onUpload()"
         [auto]="true" />
+    }
+
+    @if (group.image)
+    {
+      <img [src]="image(group.id)" class="img"/>
+      <p-button
+        [text]="true"
+        icon="pi pi-trash"
+        severity="danger"
+        styleClass="hidable"
+        (onClick)="deleteImage()"
+      ></p-button>
     }
   </div>
   <div class="group-header__content">
@@ -34,7 +73,7 @@
       <div>
         @if (group.members.length > 0)
         {
-          <p-splitButton appendTo="body" [model]="items" label="Leave Group" (onClick)="leave()" styleClass="p-button-danger"></p-splitButton>
+          <p-splitButton appendTo="body" [model]="items" label="Leave" (onClick)="leave()" styleClass="p-button-danger"></p-splitButton>
         }
         @else if (group.joinRequests.length > 0)
         {
@@ -54,58 +93,78 @@
 </div>
 
 <p-toast />
-<p-dialog header="Edit Group" [modal]="true" [(visible)]="updating" [style]="{ width: '25rem' }">
-  <div class="flex align-items-center gap-3 mb-3">
-    <label for="username" class="font-semibold w-6rem">Name</label>
-    <input pInputText id="username" class="flex-auto" autocomplete="off" [(ngModel)]="this.group.name" />
+<p-dialog header="Edit Group" [modal]="true" [(visible)]="updating" [style]="{ width: '25rem' }" styleClass="custom-form">
+  <div>
+    <label for="username">Name</label>
+    <input pInputText id="username" autocomplete="off" [(ngModel)]="this.group.name" />
   </div>
-  <div class="flex align-items-center gap-3 mb-5">
-    <label for="email" class="font-semibold w-6rem">Description</label>
-    <input pInputText id="username" class="flex-auto" autocomplete="off" [(ngModel)]="this.group.description" />
+  <div>
+    <label for="email">Description</label>
+    <input pInputText id="username" autocomplete="off" [(ngModel)]="this.group.description" />
   </div>
-  <div class="flex align-items-center gap-3 mb-5">
-    <label for="email" class="font-semibold w-6rem">Visibility</label>
-    <p-dropdown [style]="{ 'width': '100%' }" optionLabel="name" optionValue="code" [options]="visibilities" [(ngModel)]="group.visibility"
+  <div>
+    <label for="email">Visibility</label>
+    <p-dropdown [style]="{ 'width': '100%' }"
+      optionLabel="name"
+      optionValue="code"
+      [options]="visibilities"
+      [(ngModel)]="group.visibility"
       appendTo="body"
-      optionLabel="name"></p-dropdown>
+      optionLabel="name"
+    ></p-dropdown>
   </div>
 
-  <div class="flex justify-content-end gap-2">
+  <div>
     <p-button label="Cancel" severity="secondary" (click)="updating = false" />
     <p-button label="Save" (click)="update()" [loading]="loading" />
   </div>
 </p-dialog>
 
-<p-dialog header="Edit Group" [modal]="true" [(visible)]="updatingSettings" [style]="{ width: '25rem' }">
-  <div class="flex align-items-center gap-3 mb-5">
-    <label for="email" class="font-semibold w-6rem">Inviting Role</label>
-    <p-dropdown [style]="{ 'width': '100%' }" optionLabel="name" optionValue="code" [options]="roles" [(ngModel)]="group.settings.inviterRole"
+<p-dialog header="Edit Group" [modal]="true" [(visible)]="updatingSettings" [style]="{ width: '25rem' }" styleClass="custom-form">
+  <div class="custom-form">
+    <label for="email">Inviting Role</label>
+    <p-dropdown
+      [style]="{ 'width': '100%' }"
+      optionLabel="name"
+      optionValue="code"
+      [options]="roles"
+      [(ngModel)]="group.settings.inviterRole"
       appendTo="body"
       optionLabel="name"></p-dropdown>
   </div>
 
-  <div class="flex align-items-center gap-3 mb-5">
-    <label for="email" class="font-semibold w-6rem">Posting Role</label>
-    <p-dropdown [style]="{ 'width': '100%' }" optionLabel="name" optionValue="code" [options]="roles" [(ngModel)]="group.settings.postingRole"
+  <div>
+    <label>Posting Role</label>
+    <p-dropdown
+      [style]="{ 'width': '100%' }"
+      optionLabel="name"
+      optionValue="code"
+      [options]="roles"
+      [(ngModel)]="group.settings.postingRole"
       appendTo="body"
       optionLabel="name"></p-dropdown>
   </div>
 
-  <div class="flex align-items-center gap-3 mb-5">
-    <label for="email" class="font-semibold w-6rem">Updating Role</label>
-    <p-dropdown [style]="{ 'width': '100%' }" optionLabel="name" optionValue="code" [options]="roles" [(ngModel)]="group.settings.editDetailsRole"
+  <div>
+    <label>Updating Role</label>
+    <p-dropdown
+      [style]="{ 'width': '100%' }"
+      optionLabel="name"
+      optionValue="code"
+      [options]="roles"
+      [(ngModel)]="group.settings.editDetailsRole"
       appendTo="body"
       optionLabel="name"></p-dropdown>
   </div>
 
-  <div class="flex justify-content-end gap-2">
+  <div>
     <p-button label="Cancel" severity="secondary" (click)="updatingSettings = false" />
     <p-button label="Save" (click)="updateSettings()" [loading]="loading" />
   </div>
 </p-dialog>
 
 <p-dialog header="Edit Group" [modal]="true" [(visible)]="inviting" [style]="{ width: '25rem' }">
-  <div class="flex justify-content-end gap-2">
+  <div>
     <p-button label="Cancel" severity="secondary" (click)="updatingSettings = false" />
     <p-button label="Save" (click)="updateSettings()" [loading]="loading" />
   </div>
