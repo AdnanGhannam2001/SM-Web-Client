@@ -33,6 +33,14 @@ export class GroupService {
     return lastValueFrom(this.http.delete<IGroup>(`${APIS_MAIN}/groups/${id}`, { withCredentials: true }));
   }
 
+  removeImage(id: string): Promise<any> {
+    return lastValueFrom(this.http.delete<any>(`${APIS_MAIN}/groups/${id}/image`, { withCredentials: true }));
+  }
+
+  removeCoverImage(id: string): Promise<void> {
+    return lastValueFrom(this.http.delete<void>(`${APIS_MAIN}/groups/${id}/cover-image`, { withCredentials: true }));
+  }
+
   getGroup(id: string): Promise<IGroup> {
     return lastValueFrom(this.http.get<IGroup>(`${APIS_MAIN}/groups/${id}`, { withCredentials: true }));
   }
