@@ -1,8 +1,6 @@
 @use "../../../utilities/mixin.scss";
 
 :host {
-    border: 1px solid var(--clr-border);
-    border-radius: var(--br-b);
     background-color: var(--bg-blocked-members);
 
     .requests {

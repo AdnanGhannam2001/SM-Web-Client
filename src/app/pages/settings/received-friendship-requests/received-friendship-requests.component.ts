@@ -6,7 +6,7 @@ import { MenuItem, MessageService } from 'primeng/api';
 import { getProfileImage } from '../../../helpers/file-helper';
 
 @Component({
-  selector: 'app-received-friendship-requests',
+  selector: 'social-received-friendship-requests',
   templateUrl: './received-friendship-requests.component.html',
   styleUrl: './received-friendship-requests.component.scss'
 })

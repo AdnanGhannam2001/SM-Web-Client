@@ -54,8 +54,8 @@
   --bg-post: var(--white);
   --bg-post-comments: var(--gray-200);
 
-  --bg-profile-grid-view: var(--white);
-  --bg-profile-grid-view-bottom: var(--gray-200);
+  --bg-profile-view: var(--white);
+  --bg-profile-view-bottom: var(--gray-200);
 
   --bg-group: var(--white);
   --clr-cover-img-border: var(--white);
@@ -180,11 +180,7 @@ body {
 .social-input-container {
   @include mixin.flex(flex-start, stretch, column);
   gap: .5em;
-  padding: .5em 0;
-
-  &:first-child {
-    margin-top: .5em;
-  }
+  padding-bottom: 1em;
 
   label {
     font-size: 1.15em;
@@ -277,6 +273,8 @@ social-root {
   }
 
   .p-paginator {
+    background-color: transparent;
+
     .p-paginator-current {
       background-color: transparent;
       border: none;
@@ -312,8 +310,28 @@ social-root {
     }
   }
 
+  .p-fileupload-choose.custom {
+    background-color: transparent;
+    border: 0;
+    color: #007cff;
+  }
+
   *[pDraggable] {
     cursor: move;
+  }
+
+  .custom-form {
+
+    .p-dialog-content > div {
+      @include mixin.flex(stretch);
+      gap: .5em;
+      margin-bottom: .5em;
+
+      p-dropdown,
+      input {
+        flex: 1;
+      }
+    }
   }
 }
 

@@ -13,15 +13,16 @@ export abstract class ProfileBaseComponent {
   @Input() isPending = false;
   @Input() profileRole?: MemberRoleType;
   @Input() membership?: IMember;
+  @Input() editable? = false;
 
   isBlocked = false;
 
   items: MenuItem[] = [];
 
   constructor(
-    private readonly messageService: MessageService,
-    private readonly profileService: ProfileService,
-    private readonly groupService: GroupService
+    protected readonly messageService: MessageService,
+    protected readonly profileService: ProfileService,
+    protected readonly groupService: GroupService
   ) { }
 
   ngOnInit() {

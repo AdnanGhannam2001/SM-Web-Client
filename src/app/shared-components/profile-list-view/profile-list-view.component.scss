@@ -6,6 +6,7 @@
     padding: 1em;
     border: 1px solid var(--clr-border);
     border-bottom-color: transparent;
+    background-color: var(--bg-profile-view);
     transition: box-shadow .25s ease;
 
     &:first-child {
