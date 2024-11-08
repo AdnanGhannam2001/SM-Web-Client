@@ -1,5 +1,8 @@
 <div [class]="'chat-message' + (isSameUser(message.senderId) ? ' reverse' : '')">
-  <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png" styleClass="mr-2" size="large"
+  <p-avatar
+    [image]="message.sender!.image ? profileImage(message.sender!.id) : '/assets/defaults/profile.png'"
+    styleClass="mr-2"
+    size="large"
     shape="circle" />
   <div class="chat-message__box">
     <a [routerLink]="'/profiles/' + message.senderId" class="social-link">

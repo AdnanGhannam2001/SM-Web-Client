@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/
 import { IMessage } from '../../interfaces/chat.interface';
 import { MenuItem } from 'primeng/api';
 import { MemberRoleType } from '../../interfaces/group.interface';
+import { getProfileImage } from '../../helpers/file-helper';
 
 @Component({
   selector: 'social-chat-message[message]',
@@ -21,6 +22,8 @@ export class ChatMessageComponent {
   constructor() {
     this.currentUserId = localStorage.getItem("id");
   }
+
+  profileImage(id: string) { return getProfileImage(id); }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes["message"]?.currentValue) {

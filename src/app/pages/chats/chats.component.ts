@@ -86,7 +86,6 @@ export class ChatsComponent extends Pagination<IChat> {
 
   async open(id: string) {
     this.selected = this.page.items.findIndex(chat => chat.id == id);
-    console.log(this.selected)
     this.visible = false;
   }
 }

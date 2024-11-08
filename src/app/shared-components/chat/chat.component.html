@@ -6,7 +6,7 @@
       {
         <social-item-showcase
           class="profile-list-view__profilebox"
-          [image]="chat.group!.image ? groupImage(chat.group!.id) : undefined"
+          [image]="chat.group!.image ? groupImage(chat.group!.id) : '/assets/defaults/group.png'"
           [content]="chat.group!.name"
           size="big"
           [rounded]="true"

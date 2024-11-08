@@ -45,6 +45,11 @@ export class SidebarComponent {
           icon: 'pi pi-users',
           url: '/groups',
         },
+        {
+          label: 'Chats',
+          icon: 'pi pi-comments',
+          url: '/chats',
+        },
       ],
     },
   ];

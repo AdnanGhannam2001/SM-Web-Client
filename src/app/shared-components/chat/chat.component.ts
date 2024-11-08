@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/
 import { Pagination } from '../../bases/pagination';
 import { IChat, IMessage } from '../../interfaces/chat.interface';
 import { ChatService } from '../../services/chat.service';
-import { HubConnectionBuilder } from '@aspnet/signalr';
+import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import { HUBS_CHAT } from '../../constants/hubs';
 import { ProfileService } from '../../services/profile.service';
 import { getGroupImage, getProfileImage } from '../../helpers/file-helper';
@@ -18,7 +18,7 @@ export class ChatComponent extends Pagination<IMessage> {
 
   message = "";
 
-  hubConnection;
+  hubConnection?: HubConnection;
   connectionId?: string;
 
   profileImage(id: string) { return getProfileImage(id); }
@@ -28,12 +28,19 @@ export class ChatComponent extends Pagination<IMessage> {
               private readonly profileService: ProfileService
   ) {
     super();
+  }
 
+  chatsButtonClick(event: MouseEvent) {
+    this.onChatsButtonClick.emit(event);
+  }
+
+  async ngOnInit() {
     this.hubConnection = new HubConnectionBuilder()
       .withUrl(`${HUBS_CHAT}/chat`)
       .build();
 
-    this.hubConnection.on("MessageSent", (message: IMessage) => {
+    this.hubConnection.on("MessageSent", async (message: IMessage) => {
+      message.sender = (await this.profileService.getProfilesNamesByIds([message.senderId]))[0];
       this.page.items.unshift(message);
     });
 
@@ -48,13 +55,7 @@ export class ChatComponent extends Pagination<IMessage> {
       this.page.items.find(x => x.id == messageId)
       this.page.items = this.page.items.filter(x => x.id != messageId);
     });
-  }
 
-  chatsButtonClick(event: MouseEvent) {
-    this.onChatsButtonClick.emit(event);
-  }
-
-  async ngOnInit() {
     try {
       await this.hubConnection.start();
       this.connectionId = await this.hubConnection.invoke<string>("GetConnectionId");
@@ -75,8 +76,8 @@ export class ChatComponent extends Pagination<IMessage> {
 
     const profiles = await this.profileService.getProfilesNamesByIds(ids);
 
-    for (let chat of response.items) {
-      chat.sender = profiles.find(x => x.id == chat.senderId);
+    for (let mesage of response.items) {
+      mesage.sender = profiles.find(x => x.id == mesage.senderId);
     }
 
     this.page = response;

@@ -19,7 +19,6 @@
 {
   <p-paginator
     (onPageChange)="onPageChange($event)"
-    [first]="pageRequest.pageNumber ?? 0"
     [rows]="pageRequest.pageSize"
     [totalRecords]="page.total" />
 }

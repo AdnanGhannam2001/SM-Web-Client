@@ -13,12 +13,6 @@
   {
   <p-table [value]="page.items" dataKey="id" [rows]="pageRequest.pageSize" [showCurrentPageReport]="true"
     [tableStyle]="{ 'min-width': '50rem' }">
-    <ng-template pTemplate="header">
-      <tr>
-        <th></th>
-        <th></th>
-      </tr>
-    </ng-template>
     <ng-template pTemplate="body" let-notification>
       <tr>
         <td style="width: 90%;">
@@ -56,7 +50,7 @@
 
   @if (page.items.length)
   {
-  <p-paginator (onPageChange)="onPageChange($event)" [first]="pageRequest.pageNumber ?? 0" [rows]="pageRequest.pageSize"
+  <p-paginator (onPageChange)="onPageChange($event)" [rows]="pageRequest.pageSize"
     [showCurrentPageReport]="true" currentPageReportTemplate="Viewing {first} - {last} of {totalRecords} notifications"
     [totalRecords]="page.total" />
   }
